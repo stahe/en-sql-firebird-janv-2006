@@ -1,32 +1,32 @@
-# Introduction au langage SQL avec le SGBD Firebird
+# Introduction to SQL with the Firebird DBMS
 
-➡️ Cours associé : **[Introduction au langage SQL avec le SGBD Firebird](https://stahe.github.io/sql-firebird-janv-2006/)**
+➡️ Related course: **[Introduction to SQL with the Firebird DBMS](https://stahe.github.io/en-sql-firebird-janv-2006/)**
 
-## Présentation
+## Overview
 
-Ce document est une introduction au langage **SQL (Structured Query Language)** appliquée au **SGBD Firebird**.
-Il reprend et adapte un document pédagogique plus ancien rédigé en **1991 pour Oracle**, lui-même largement inspiré de la documentation officielle d’Oracle et de l’ouvrage :
+This document is an introduction to the **SQL (Structured Query Language)** language as applied to the **Firebird DBMS**.
+It revises and adapts an older educational document written in **1991 for Oracle**, which was itself largely inspired by Oracle’s official documentation and the book:
 
-* *SQL – Initiation, Programmation et Maîtrise*
-  par **Christian Marée** et **Guy Ledant**, publié chez Eyrolles. 
+* *SQL – Introduction, Programming, and Mastery*
+  by **Christian Marée** and **Guy Ledant**, published by Eyrolles. 
 
-SQL est un **langage standard permettant de créer, maintenir et interroger des bases de données relationnelles**.
-Il est largement indépendant du système de gestion de bases de données (SGBD) utilisé, même si certains SGBD introduisent des extensions propriétaires. 
+SQL is a **standard language used to create, maintain, and query relational databases**.
+It is largely independent of the database management system (DBMS) used, even though some DBMSs introduce proprietary extensions. 
 
-## Pourquoi Firebird ?
+## Why Firebird?
 
-Les exemples de ce document utilisent le **SGBD Firebird**.
-Ce choix est motivé par une caractéristique particulièrement pratique dans un contexte pédagogique : une base de données Firebird peut être **contenue dans un unique fichier**.
+The examples in this document use the **Firebird DBMS**.
+This choice is motivated by a feature that is particularly practical in an educational context: a Firebird database can be **contained in a single file**.
 
-Cela permet par exemple :
+This allows, for example:
 
-* de copier facilement une base sur une **clé USB**
-* de l’utiliser sur **différents ordinateurs** (personnel, université, laboratoire)
-* de travailler sans infrastructure complexe
+* easily copying a database to a **USB drive**
+* using it on **different computers** (home, university, lab)
+* working without complex infrastructure
 
-## Compatibilité SQL
+## SQL Compatibility
 
-Bien que les exemples soient écrits pour Firebird, la plupart peuvent être reproduits avec d’autres SGBD relationnels, par exemple :
+Although the examples are written for Firebird, most can be reproduced with other relational DBMSs, for example:
 
 * MySQL
 * PostgreSQL
@@ -35,24 +35,26 @@ Bien que les exemples soient écrits pour Firebird, la plupart peuvent être rep
 * Microsoft Access
 * Oracle
 
-Ces systèmes utilisent tous SQL, avec parfois des **variantes ou extensions propres au produit**. 
+These systems all use SQL, sometimes with **product-specific variants or extensions**.
 
-## Public visé
+## Target Audience
 
-Ce document s’adresse :
+This document is intended for:
 
-* aux **débutants souhaitant découvrir SQL**
-* aux personnes désirant **réviser les bases du langage**
+* **beginners who want to learn SQL**
+* people who want to **review the basics of the language**
 
-Il se concentre sur l’apprentissage du **SQL fondamental**.
+It focuses on learning **fundamental SQL**.
 
-## Hors périmètre
+## Scope Exclusions
 
-Certains aspects ne sont volontairement pas abordés :
+Certain topics are intentionally not covered:
 
-* procédures stockées
-* programmation SQL avancée
-* API SQL
-* administration d’un SGBD
+* stored procedures
+* advanced SQL programming
+* SQL APIs
+* DBMS administration
 
-L’objectif est de fournir une **initiation claire et progressive au langage SQL**. 
+The goal is to provide a **clear and step-by-step introduction to the SQL language**. 
+
+Serge Tahé, january 2006
