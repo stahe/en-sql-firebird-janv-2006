@@ -1,0 +1,1265 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Introduction to SQL with the Firebird DBMS">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/en-sql-firebird-janv-2006/sql-expressions.html">
+      
+      
+        <link rel="prev" href="introduction-to-the-sql-language.html">
+      
+      
+        <link rel="next" href="relationships-between-tables.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>4. SQL expressions - Introduction to SQL with the Firebird DBMS</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Introduction to SQL with the Firebird DBMS";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-sql-expressions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Introduction to SQL with the Firebird DBMS" class="md-header__button md-logo" aria-label="Introduction to SQL with the Firebird DBMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction to SQL with the Firebird DBMS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. SQL expressions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/en-sql-firebird-janv-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Introduction to SQL with the Firebird DBMS" class="md-nav__button md-logo" aria-label="Introduction to SQL with the Firebird DBMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Introduction to SQL with the Firebird DBMS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/en-sql-firebird-janv-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="firebird-tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Firebird Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction-to-the-sql-language.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Introduction to the SQL Language
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. SQL expressions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="sql-expressions.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. SQL expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-expressions-with-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Expressions with operators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2. Expressions with operators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#421-expressions-with-numeric-operands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1. Expressions with numeric operands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2.1. Expressions with numeric operands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4211-list-of-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1.1. List of operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4212-relational-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1.2. Relational operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4213-arithmetic-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1.3. Arithmetic operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#422-expressions-with-character-operands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2. Expressions with character operands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2.2. Expressions with character operands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4221-list-of-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2.1. List of operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4222-relational-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2.2. Relational operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4223-comparing-two-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2.3. Comparing Two Strings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4224-the-like-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2.4. The LIKE operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4225-the-concatenation-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2.5. The concatenation operator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#423-expressions-with-date-type-operands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.3. Expressions with date-type operands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#424-expressions-with-boolean-operands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.4. Expressions with Boolean operands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-firebirds-predefined-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Firebird&#x27;s predefined functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3. Firebird&#39;s predefined functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#431-functions-with-numeric-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.1. Functions with numeric parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#432-functions-with-string-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.2. Functions with string parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="relationships-between-tables.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Relationships between tables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced-sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Advanced SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="managing-concurrent-access-to-data.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Managing concurrent access to data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installing-and-using-an-odbc-driver-for-firebird.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Installing and using an ODBC driver for [Firebird]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="4-sql-expressions">4. <span style="color: #365f91"><strong>SQL expressions</strong></span></h1>
+<h2 id="41-introduction">4.1. <span style="color: #4f81bd"><strong>Introduction</strong></span></h2>
+<p>In most SQL commands, it is possible to use an expression. Take, for example, the SELECT command:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>syntax
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>expr1, expr2, </i>... <b>from </b><i>table</i></div><div style="margin:0 0 0.5em 0"><b>WHERE </b><i>expression</i></div></td></tr></table>
+
+<p>SELECT selects the rows for which <em>expression</em> is true and displays the values of <em>expr1, expr2</em>, ... for each of them.</p>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">price</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">186</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">150</span>
+</code></pre></div>
+<p>In this section, we will explain the concept of an expression. A basic expression is of the form: </p>
+<p><strong>operand1</strong> <em>operator</em> <strong>operand2</strong></p>
+<div class="highlight"><pre><span></span><code>or
+</code></pre></div>
+<p><strong>function</strong>(<em>parameters</em>)</p>
+<p><strong>Example</strong></p>
+<p>In the expression   <em>GENRE = &#x27;ROMAN&#x27;</em> </p>
+<ul>
+  <li>GENRE    is operand1
+  </li>
+  <li>&#x27;ROMAN&#x27; is operand2
+  </li>
+  <li>= is the operator
+  </li>
+</ul>
+
+<p>In the expression <strong>upper</strong><em>(genre)</em> </p>
+<ul>
+  <li><b>upper </b>is a function
+  </li>
+  <li>&#x27;genre&#x27; is a parameter of this function.
+  </li>
+</ul>
+
+<p>We will first cover expressions with operators, then we will present the functions available in Firebird. </p>
+<h2 id="42-expressions-with-operators">4.2. <span style="color: #4f81bd"><strong>Expressions with operators</strong></span></h2>
+<p>We will classify expressions with operators according to the type of their operands:</p>
+<ul>
+  <li>numeric
+  </li>
+  <li>string
+  </li>
+  <li>date
+  </li>
+  <li>Boolean or logical
+  </li>
+</ul>
+<h3 id="421-expressions-with-numeric-operands">4.2.1. <span style="color: #4f81bd"><strong>Expressions with numeric operands</strong></span></h3>
+<h4 id="4211-list-of-operators">4.2.1.1. <span style="color: #4f81bd"><strong>List of operators</strong></span></h4>
+<p>Let <em>number1</em>, <em>number2</em>, and <em>number3</em> be numbers. The following operators can be used:</p>
+<p>Relational operators</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>number1 &gt; number2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 is greater than number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>number1 &gt;= number2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 is greater than or equal to number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>number1 &lt; number2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 is less than number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>number1 &lt;= number2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 is less than or equal to number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>number1 = number2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 is equal to number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>number1 != number2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 is not equal to number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>number1 ≠ number2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: same as</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>number1 BETWEEN number2 AND number3
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 is in the range [number2, number3]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>number1 IN (list of numbers)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 belongs to list of numbers</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>number1 IS NULL
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 has no value</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>number1 IS NOT NULL
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 has a value</div></td></tr></table>
+
+<p><strong>Arithmetic operators</strong></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>number1 + number2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: addition</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>number1 - number2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: subtraction</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>number1 * number2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: multiplication</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>number1 / number2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: division</div></td></tr></table>
+
+<h4 id="4212-relational-operators">4.2.1.2. <span style="color: #4f81bd"><strong>Relational operators</strong></span></h4>
+<p>A relational expression expresses a relationship that is either true or false. The result of such an expression is therefore a Boolean or logical value.</p>
+<p><strong>Examples</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">150</span>
+</code></pre></div>
+<p><img src="images/1000000000000088000000340447F341.png" style="width:2.879cm;height:1.101cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000088000000340447F341.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">150</span>
+</code></pre></div>
+<p><img src="images/10000000000000A700000089774425EA.png" style="width:3.528cm;height:2.895cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000A700000089774425EA.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">210</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="images/1000000000000092000000362EBD5C84.png" style="width:3.089cm;height:1.143cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000092000000362EBD5C84.png" /></p>
+<h4 id="4213-arithmetic-operators">4.2.1.3. <span style="color: #4f81bd"><strong>Arithmetic operators</strong></span></h4>
+<p>We are familiar with arithmetic expressions. They express a calculation to be performed on numerical data. We have already encountered such expressions: suppose that the price stored in the records of the BIBLIO file is a pre-tax price. We want to display each title with its price including tax for a VAT rate of 18.6%:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TITLE</span><span class="p">,</span><span class="w"> </span><span class="n">PRICE</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">186</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">BIBLIO</span>
+</code></pre></div>
+<p>If prices are to increase by 3%, the command will be</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="w">    </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">PRICE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PRICE</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">03</span>
+</code></pre></div>
+<p>An expression may contain multiple arithmetic operators, as well as functions and parentheses. These elements are processed according to different priorities:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nx">functions</span>
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">&lt;---- highest priority</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>()
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">3</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>* and /
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">4</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>+ and -
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">&lt;---- lower priority</div></td></tr></table>
+
+<p>When two operators of the same priority are present in an expression, the one on the far left is evaluated first.</p>
+<p><strong>Examples</strong></p>
+<p>The expression PRICE*RATE+TAXES will be evaluated as (PRICE*RATE)+TAXES. This is because the multiplication operator is used first. The expression PRICE*RATE/100 will be evaluated as (PRICE*RATE)/100.</p>
+<h3 id="422-expressions-with-character-operands">4.2.2. <span style="color: #4f81bd"><strong>Expressions with character operands</strong></span></h3>
+<h4 id="4221-list-of-operators">4.2.2.1. <span style="color: #4f81bd"><strong>List of operators</strong></span></h4>
+<p>The following operators can be used:</p>
+<p>Let <em>string1, string2, string3,</em> and string <em>pattern</em> be</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>string1 &gt; string2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 is greater than string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>string1 &gt;= string2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 is greater than or equal to string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>string1 &lt; string2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 is less than string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>string1 &lt;= string2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 is less than or equal to string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>string1 = string2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 equals string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>string1 != string2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 is not equal to string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>string1 ≠ string2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: same</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>string1 BETWEEN string2 AND string3
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 is in the range [string2, string3]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>string1 IN list of strings
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 belongs to list of strings</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>string1 IS NULL
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 has no value</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>string1 IS NOT NULL
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: channel1 has a value</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>string1 LIKE pattern
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 matches pattern</div></td></tr></table>
+
+<p>Concatenation operator</p>
+<p><em>string1 || string2</em>    : <em>string2</em> concatenated to <em>string1</em></p>
+<h4 id="4222-relational-operators">4.2.2.2. <span style="color: #4f81bd"><strong>Relational operators</strong></span></h4>
+<p>What does it mean to compare strings using operators such as &lt;, &lt;=, etc.?</p>
+<p>Every character is encoded as an integer. When comparing two characters, their integer codes are compared. The encoding used follows the natural order of the dictionary:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>space &lt;..&lt; 0 &lt; 1 &lt; ...&lt; 9 &lt; ...&lt; A &lt; B &lt;... &lt; Z &lt; ... &lt; a &lt; b &lt; ... &lt; z
+</code></pre></div>
+<p>Numbers come before letters, and uppercase letters before lowercase letters.</p>
+<h4 id="4223-comparing-two-strings">4.2.2.3. <span style="color: #4f81bd"><strong>Comparing Two Strings</strong></span></h4>
+<p>Consider the relation &#x27;CAT&#x27; &lt; &#x27;DOG&#x27;. Is it true or false? To perform this comparison, the DBMS compares the two strings character by character based on their integer codes. As soon as two characters are found to be different, the string containing the smaller of the two is said to be smaller than the other string. In our example, &#x27;CAT&#x27; is compared to &#x27;DOG&#x27;. We get the following successive results:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>    &#39;CAT&#39;    &#39;DOG&#39;
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>----------------------------
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>    &#39;C&#39;    =    &#39;C&#39;
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>    &#39;H&#39;    =    &#39;H&#39;
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>    &#39;A&#39;    &lt;    &#39;I&#39;
+</code></pre></div>
+<p>After this last comparison, the string &#x27;CAT&#x27; is declared to be shorter than the string &#x27;DOG&#x27;. The relation <em>&#x27;CAT&#x27; &lt; &#x27;DOG&#x27;</em> is therefore true. </p>
+<p>Now let&#x27;s compare &#x27;CHAT&#x27; and &#x27;chat&#x27;.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>    &#39;CAT&#39;    &#39;cat&#39;
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>--------------------------
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>    &#39;C&#39;    &lt;    &#39;c&#39;
+</code></pre></div>
+<p>After this comparison, the relation &#x27;CHAT&#x27; &lt; &#x27;chat&#x27; is declared true.</p>
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span>
+</code></pre></div>
+<p><img src="images/100000000000007A000000AAD562DF38.png" style="width:2.579cm;height:3.595cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007A000000AAD562DF38.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="s1">&#39;L&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="s1">&#39;M&#39;</span>
+</code></pre></div>
+<p><img src="images/100000000000007800000046F9D8BDAF.png" style="width:2.538cm;height:1.48cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007800000046F9D8BDAF.png" /></p>
+<h4 id="4224-the-like-operator">4.2.2.4. <span style="color: #4f81bd"><strong>The LIKE operator</strong></span></h4>
+<p>The LIKE operator is used as follows: <em>string</em> <strong>LIKE</strong> <em>pattern</em></p>
+<p>The condition is true if <em>string</em> matches <em>pattern</em>. The pattern is a string that may contain two wildcard characters:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>%
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">which denotes any sequence of characters</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>_
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">which stands for any single character</div></td></tr></table>
+
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span>
+</code></pre></div>
+<p><img src="images/100000000000007A000000AAD562DF38.png" style="width:2.579cm;height:3.595cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007A000000AAD562DF38.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;M%&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p><img src="images/100000000000006600000035B50B937F.png" style="width:2.159cm;height:1.122cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000006600000035B50B937F.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;L_ %&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p><img src="images/100000000000005A00000037EB0C4057.png" style="width:1.909cm;height:1.168cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000005A00000037EB0C4057.png" /></p>
+<h4 id="4225-the-concatenation-operator">4.2.2.5. <span style="color: #4f81bd"><strong>The concatenation operator</strong></span></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">SQL</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="s1">&#39;[&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;]&#39;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">uppercase</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;L_ %&#39;</span>
+</code></pre></div>
+<p><img src="images/1000000000000072000000334D87104D.png" style="width:2.408cm;height:1.078cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000072000000334D87104D.png" /></p>
+<h3 id="423-expressions-with-date-type-operands">4.2.3. <span style="color: #4f81bd"><strong>Expressions with date-type operands</strong></span></h3>
+<p>Let <em>date1, date2, and date3</em> be dates. The following operators can be used:</p>
+<p><strong>Relational operators</strong></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>date1 &lt; date2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if date1 is earlier than date2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>date1 &lt;= date2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if date1 is earlier than or equal to date2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>date1 &gt; date2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if date1 is later than date2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>date1 &gt;= date2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if date1 is on or after date2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>date1 = date2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if date1 and date2 are identical</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>date1 ≠ date2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if date1 and date2 are different.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>date1 != date2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">same as</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>date1 BETWEEN date2 AND date3
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if date1 is between date2 and date3</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>date1 IN (list of dates)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if date1 is in the list of dates</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>date1 IS NULL
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if date1 has no value</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>date1 IS NOT NULL
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if date1 has a value</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>date1 LIKE pattern
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if date1 matches the pattern</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>ALL, ANY, EXISTS
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p><strong>Arithmetic operators</strong></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>date1 - date2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number of days between date1 and date2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>date1 - number
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: date2 such that date1 - date2 = number</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>date1 + number
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: date2 such that date2 - date1 = number</div></td></tr></table>
+
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span>
+</code></pre></div>
+<p><img src="images/1000000000000041000000ABDCCBC35A.png" style="width:1.378cm;height:3.625cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000041000000ABDCCBC35A.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a><span class="w">   </span><span class="k">where</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="s1">&#39;01/01/1988&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="s1">&#39;12/31/1988&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p><img src="images/100000000000006000000022FC599FB9.png" style="width:2.538cm;height:0.9cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000006000000022FC599FB9.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span>
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="k">where</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="n">purchase</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;1988&#39;</span>
+</code></pre></div>
+<p><img src="images/1000000000000097000000273B1A2937.png" style="width:3.993cm;height:1.032cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000097000000273B1A2937.png" /></p>
+<p>How old are the books in the library?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">date</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="ss">&quot;age(days)&quot;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span>
+</code></pre></div>
+<p><img src="images/10000000000000B8000000AB71AF4F61.png" style="width:3.888cm;height:3.612cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B8000000AB71AF4F61.png" /></p>
+<h3 id="424-expressions-with-boolean-operands">4.2.4. <span style="color: #4f81bd"><strong>Expressions with Boolean operands</strong></span></h3>
+<p>Recall that a Boolean or logical value has two possible values: true or false. The logical operand is often the result of a relational expression.</p>
+<p>Let <em>boolean1</em> and <em>boolean2</em> be two booleans. There are three possible operators, which are, in order of precedence:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="font-style:italic">boolean1 </span><span style="font-weight:bold">AND </span><span style="font-style:italic">boolean2</span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if both <i>boolean1 </i>and <i>boolean2 </i>are true.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="font-style:italic">boolean1 </span><span style="font-weight:bold">OR </span><span style="font-style:italic">boolean2</span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">is true if either <i>boolean1 </i>or <i>boolean2 </i>is true.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="font-weight:bold">NOT </span><span style="font-style:italic">boolean1</span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">has a value that is the inverse of the value of <i>boolean1</i>.</div></td></tr></table>
+
+<p><strong>Examples</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">desc</span>
+</code></pre></div>
+<p><img src="images/10000000000000DE000000AA98BAEE8A.png" style="width:4.699cm;height:3.598cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000DE000000AA98BAEE8A.png" /></p>
+<p>We are looking for books within a price range:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span>
+<a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a><span class="w">     </span><span class="k">where</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">130</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">170</span>
+</code></pre></div>
+<p><img src="images/10000000000000BB00000025D046B587.png" style="width:4.946cm;height:0.979cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000BB00000025D046B587.png" /></p>
+<p>Reverse search:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+<a id="__codelineno-71-2" name="__codelineno-71-2" href="#__codelineno-71-2"></a><span class="w">     </span><span class="k">where</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">130</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">170</span>
+<a id="__codelineno-71-3" name="__codelineno-71-3" href="#__codelineno-71-3"></a><span class="w">     </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">asc</span>
+</code></pre></div>
+<p><img src="images/10000000000000DE0000009911033726.png" style="width:4.699cm;height:3.239cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000DE0000009911033726.png" /></p>
+<p>Be careful with operator precedence!</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span>
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">genre</span><span class="o">=</span><span class="s1">&#39;NOVEL&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">price</span><span class="o">&gt;</span><span class="mi">200</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">price</span><span class="o">&lt;</span><span class="mi">100</span>
+<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="w">  </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">asc</span>
+</code></pre></div>
+<p><img src="images/10000000000000E10000006817271824.png" style="width:4.759cm;height:2.2cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E10000006817271824.png" /></p>
+<p>Use parentheses to control operator precedence:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span>
+<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">genre</span><span class="o">=</span><span class="s1">&#39;NOVEL&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">price</span><span class="o">&gt;</span><span class="mi">200</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">price</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="w">  </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">asc</span>
+</code></pre></div>
+<p><img src="images/10000000000000DF0000004659081CB8.png" style="width:4.718cm;height:1.482cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000DF0000004659081CB8.png" /></p>
+<h2 id="43-firebirds-predefined-functions">4.3. <span style="color: #4f81bd"><strong>Firebird&#x27;s predefined functions</strong></span></h2>
+<p>Firebird has predefined functions. They cannot be used immediately in SQL statements. You must first run the SQL script <strong>&lt;firebird&gt;\UDF\ib_udf.sql</strong>, where &lt;firebird&gt; refers to the installation directory of the Firebird DBMS:</p>
+<p><img src="images/10000000000000E4000000833335D76D.png" style="width:4.828cm;height:2.775cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E4000000833335D76D.png" /></p>
+<p>With IBExpert, we proceed as follows:</p>
+<ul>
+  <li>we use the [Script Executive] tool accessed via the [Tools/Script Executive] option:
+  </li>
+</ul>
+
+<p><img src="images/10000000000000F0000000AA275DBAED.png" style="width:5.078cm;height:3.597cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F0000000AA275DBAED.png" /></p>
+<ul>
+  <li>Once the tool is open, we load the script &lt;firebird&gt;\UDF\ib_udf.sql:
+  </li>
+</ul>
+
+<p><img src="images/10000000000001CC0000005F3722CDD5.png" style="width:9.738cm;height:2.011cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CC0000005F3722CDD5.png" /></p>
+<ul>
+  <li>then we execute the script:
+  </li>
+</ul>
+
+<p><img src="images/1000000000000232000000D8F6B5C758.png" style="width:8.918cm;height:3.427cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000232000000D8F6B5C758.png" /></p>
+<p>Once this is done, Firebird&#x27;s predefined functions are available for the database you were connected to when the script was run. To see this, simply go to the database explorer and click on the [UDF] node for the database into which the functions were imported:</p>
+<p><img src="images/100000000000009B0000011312E88160.png" style="width:3.279cm;height:5.817cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000009B0000011312E88160.png" /></p>
+<p>Above are the functions available to the database. To test them, it’s handy to have a one-row table. Let’s call it TEST:</p>
+<p><img src="images/100000000000008A0000005622B803A9.png" style="width:2.917cm;height:1.819cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000008A0000005622B803A9.png" /></p>
+<p>and define it as follows (right-click on Tables / New Table):</p>
+<p>Let’s add a single row to this table:</p>
+<p><img src="images/100000000000020700000074B5AF90E7.png" style="width:10.989cm;height:2.455cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000020700000074B5AF90E7.png" /></p>
+<p><img src="images/1000000000000179000000786AD08B5F.png" style="width:7.978cm;height:2.538cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000179000000786AD08B5F.png" /></p>
+<p>Now let’s go to the SQL Editor (F12) and execute the following SQL statement:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test</span>
+</code></pre></div>
+<p>which uses the predefined cos (cosine) function. The command above evaluates <em>cos(0)</em> for each row in the TEST table, so in fact for a single row. It therefore simply displays the value of <em>cos(0):</em></p>
+<p><img src="images/10000000000000390000002315445C4E.png" style="width:1.506cm;height:0.924cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000390000002315445C4E.png" /></p>
+<p>UDFs (User-Defined Functions) are functions that users can create, and libraries of UDFs can be found on the web. Here, we describe only some of those available with the downloadable version of Firebird (2005). We classify them according to the predominant type of their parameters or according to their role:</p>
+<ul>
+  <li>functions with numeric parameters
+  </li>
+  <li>functions with string-type parameters
+  </li>
+</ul>
+<h3 id="431-functions-with-numeric-parameters">4.3.1. <span style="color: #4f81bd"><strong>Functions with numeric parameters</strong></span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="font-weight:bold">abs</span><span style="font-style:italic">(number)</span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">absolute value of number</div><div style="margin:0 0 0.5em 0">abs(-15) = 15</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="font-weight:bold">ceil</span><span style="font-style:italic">(number)</span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">the smallest integer greater than or equal to <i>number</i></div><div style="margin:0 0 0.5em 0">ceil(15.7) = 16</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="font-weight:bold">floor</span><span style="font-style:italic">(number)</span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">the largest integer less than or equal to <i>number</i></div><div style="margin:0 0 0.5em 0">floor(14.3) = 14</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="font-weight:bold;font-style:italic">div</span><span style="font-style:italic">(number1, number2)</span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">quotient of the integer division (the quotient is an integer) of <i>number1 </i>by <i>number2</i></div><div style="margin:0 0 0.5em 0">div(7,3)=2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="font-weight:bold">mod</span><span style="font-style:italic">(number1, number2)</span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">remainder of the integer division (the quotient is an integer) of <i>number1 </i>by <i>number2</i></div><div style="margin:0 0 0.5em 0">mod(7,3)=1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="font-weight:bold">sign</span><span style="font-style:italic">(number)</span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">-1 if <i>number </i>&lt; 0</div><div style="margin:0 0 0.5em 0">0 if number=0</div><div style="margin:0 0 0.5em 0">+1 if <i>number </i>&gt; 0</div><div style="margin:0 0 0.5em 0">sign(-6) = -1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span style="font-weight:bold">sqrt</span><span style="font-style:italic">(number)</span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">square root of <i>number </i>if <i>number </i>&gt;= 0</div><div style="margin:0 0 0.5em 0">-1 if <i>number </i>&lt; 0</div><div style="margin:0 0 0.5em 0">sqrt(16) = 4</div></td></tr></table>
+
+<h3 id="432-functions-with-string-parameters">4.3.2. <span style="color: #4f81bd"><strong>Functions with string parameters</strong></span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><i><b>ascii_char</b></i><i>(number)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ASCII code character <i>number</i></div><div style="margin:0 0 0.5em 0">ascii_char(65) = &#x27;A&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>lower</b><i>(string)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">converts <i>string </i>to lowercase</div><div style="margin:0 0 0.5em 0">lower(&#x27;INFO&#x27;)=&#x27;info&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>ltrim</b><i>(string)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Left Trim - Spaces preceding the text in <i>string </i>are removed:</div><div style="margin:0 0 0.5em 0">ltrim(&#x27;  kitten&#x27;)=&#x27;kitten&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>replace</b><i>(string1, string2, string3)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Replaces <i>string2 </i>with <i>string3 </i>in <i>string1</i>.</div><div style="margin:0 0 0.5em 0">replace(&#x27;cat and dog&#x27;,&#x27;cat&#x27;,&#x27;**&#x27;)=&#x27;**at and **og&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>rtrim</b><i>(string1, string2)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Right Trim - same as ltrim but on the right</div><div style="margin:0 0 0.5em 0">rtrim(&#x27;cat  &#x27;)=&#x27;cat&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>substr</b><i>(string, p, q)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">substring of <i>string </i>starting at position <i>p </i>and ending at position <i>q.</i></div><div style="margin:0 0 0.5em 0">substr(&#x27;kitten&#x27;,3,5)=&#x27;to&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>ascii_val</b><i>(character)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ASCII code of <i>character</i></div><div style="margin:0 0 0.5em 0">ascii_val(&#x27;A&#x27;)=65</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>strlen(</b><i>string)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">number of characters in <i>string</i></div><div style="margin:0 0 0.5em 0">strlen(&#x27;kitten&#x27;)=6</div></td></tr></table>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://tahe.developpez.com" target="_blank">
+          https://tahe.developpez.com
+        </a>
+        <br>
+        This tutorial written by <strong>Serge Tahé</strong> is made available to the public under the terms of the
+<em>Creative Commons Attribution – Non-Commercial –
+ShareAlike 3.0 Unported</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

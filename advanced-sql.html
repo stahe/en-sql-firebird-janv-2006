@@ -1,0 +1,1243 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Introduction to SQL with the Firebird DBMS">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/en-sql-firebird-janv-2006/advanced-sql.html">
+      
+      
+        <link rel="prev" href="relationships-between-tables.html">
+      
+      
+        <link rel="next" href="managing-concurrent-access-to-data.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>6. Advanced SQL - Introduction to SQL with the Firebird DBMS</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Introduction to SQL with the Firebird DBMS";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#6-advanced-sql" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Introduction to SQL with the Firebird DBMS" class="md-header__button md-logo" aria-label="Introduction to SQL with the Firebird DBMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction to SQL with the Firebird DBMS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6. Advanced SQL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/en-sql-firebird-janv-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Introduction to SQL with the Firebird DBMS" class="md-nav__button md-logo" aria-label="Introduction to SQL with the Firebird DBMS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Introduction to SQL with the Firebird DBMS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/en-sql-firebird-janv-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="firebird-tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Firebird Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction-to-the-sql-language.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Introduction to the SQL Language
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sql-expressions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. SQL expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="relationships-between-tables.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Relationships between tables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Advanced SQL
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="advanced-sql.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Advanced SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Introduction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1. Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#611-the-clients-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1.1. the CLIENTS table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#612-the-articles-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1.2. The ARTICLES table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#613-the-orders-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1.3. the ORDERS table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#614-the-details-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1.4. The DETAILS table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-the-select-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. The SELECT Statement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2. The SELECT Statement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621-syntax-of-a-multi-table-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.1. Syntax of a multi-table query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-self-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.2. Self-join
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#623-outer-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.3. Outer Join
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#624-nested-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.4. Nested queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#625-nested-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.5. Nested Queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#626-criteria-for-writing-the-select-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.6. Criteria for Writing the SELECT Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63-syntax-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Syntax Extensions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="managing-concurrent-access-to-data.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Managing concurrent access to data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installing-and-using-an-odbc-driver-for-firebird.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Installing and using an ODBC driver for [Firebird]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="6-advanced-sql">6. <span style="color: #365f91"><strong>Advanced SQL</strong></span></h1>
+<h2 id="61-introduction">6.1. <span style="color: #4f81bd"><strong>Introduction</strong></span></h2>
+<p>In this chapter, we present</p>
+<ul>
+  <li>additional syntaxes of the SELECT statement that make it a very powerful query command, particularly for querying multiple tables at once.
+  </li>
+  <li>extended syntaxes of commands already covered
+  </li>
+</ul>
+
+<p>To illustrate the various orders, we will work with the following tables used for order management in a small-to-medium-sized book distribution company:</p>
+<h3 id="611-the-clients-table">6.1.1. <span style="color: #4f81bd"><strong>the CLIENTS table</strong></span></h3>
+<p>It stores information about the company&#x27;s customers:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000106000000CCCC752293.png" style="display:inline-block; margin:4px;width:5.547cm;height:4.32cm;" class="odt-zoomable" data-zoom-src="images/1000000000000106000000CCCC752293.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p><img src="images/10000000000002EA000000BDDB8C27BC.png" style="width:13.818cm;height:3.501cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002EA000000BDDB8C27BC.png" /></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ID
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">A unique identifier for the customer - primary key</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>NAME
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">customer name</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>STATUS
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">I=Individual, E=Business, A=Government</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>FIRST NAME
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">first name for an individual</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>CONTACT
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Name of the contact person at the client’s location (in the case of a company or government agency)</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>STREET
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Client address - street</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>CITY
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">City</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ZIP
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ZIP</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Phone
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Phone</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>SINCE
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Since when have you been a customer?</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>DEBTOR
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Y (Yes) if the customer owes money to the company and N (No) otherwise.</div></td></tr></table>
+
+<h3 id="612-the-articles-table">6.1.2. <span style="color: #4f81bd"><strong>The ARTICLES table</strong></span></h3>
+<p>It stores information about the products sold, in this case books. Its structure is as follows:</p>
+<p><img src="images/100000000000012D00000111F02EADDB.png" style="width:6.368cm;height:5.777cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000012D00000111F02EADDB.png" /></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ISBN
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">A unique identifier for a book (ISBN = International Standard Book Number) - primary key</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>TITLE
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Title of the book</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>PUBLISHER_CODE
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Code uniquely identifying a publisher</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>AUTHOR
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Author&#x27;s name</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>SUMMARY
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Book summary</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>QTY
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Quantity sold this year</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>QTEANPREC
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Quantity sold the previous year</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>LAST SALE
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Date of last sale</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>QTERECUE
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Quantity of the last delivery</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>LASTDELIVERY
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Date of last delivery</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>SELLPRICE
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Selling price</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>COST
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Purchase cost</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>MINCDE
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Minimum Order Quantity</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>MINSTOCK
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Minimum stock level</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>QTESTOCK
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Quantity in stock</div></td></tr></table>
+
+<p>Its contents could be as follows:</p>
+<p><img src="images/10000000000003DF0000007812E326FD.png" style="width:16.933cm;height:2.05cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003DF0000007812E326FD.png" /></p>
+<h3 id="613-the-orders-table">6.1.3. <span style="color: #4f81bd"><strong>the ORDERS table</strong></span></h3>
+<p>It stores information about orders placed by customers. Its structure is as follows:</p>
+<p><img src="images/10000000000001410000005798884DB4.png" style="width:6.787cm;height:1.84cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001410000005798884DB4.png" /></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>NOCMD
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">A unique identifier for an order - primary key</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>CUSTID
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Customer ID for this order - foreign key - reference to CUSTOMERS(ID)</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>ORDER_DATE
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Date this order was entered</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>CANCELED
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">O (Yes) if the order was canceled and N (No) otherwise.</div></td></tr></table>
+
+<p><img src="images/100000000000010D000000992E8A3DB3.png" style="width:5.689cm;height:3.237cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010D000000992E8A3DB3.png" /></p>
+<h3 id="614-the-details-table">6.1.4. <span style="color: #4f81bd"><strong>The DETAILS table</strong></span></h3>
+<p>It contains the details of an order, i.e., the titles and quantities of the books ordered. Its structure is as follows:</p>
+<p><img src="images/100000000000011F00000058C4AC6156.png" style="width:6.068cm;height:1.861cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011F00000058C4AC6156.png" /></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>NOCMD
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Order number - foreign key referencing the NOCMD column of the COMMANDES table</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>ISBN
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Ordered book number - foreign key referencing the ISBN column in the BOOKS table</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>QTE
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Ordered quantity</div></td></tr></table>
+
+<p>Its contents could be as follows:</p>
+<p><img src="images/10000000000000DB000000F0554D0F9F.png" style="width:4.639cm;height:5.084cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000DB000000F0554D0F9F.png" /></p>
+<p>Above, we see that order No. 3 (NOCMD) involves three books. This means that the customer ordered three books at the same time. This customer’s records can be found in the [ORDERS] table, where we see that order No. 3 was placed by customer No. 5. The [CUSTOMERS] table tells us that customer No. 5 is the company NetLogos in Segré.</p>
+<h2 id="62-the-select-statement">6.2. <span style="color: #4f81bd"><strong>The SELECT Statement</strong></span></h2>
+<p>Here, we aim to deepen our understanding of the SELECT statement by introducing new syntaxes for it.</p>
+<h3 id="621-syntax-of-a-multi-table-query">6.2.1. <span style="color: #4f81bd"><strong>Syntax of a multi-table query</strong></span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>syntax
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>column1, column2, ...</i></div><div style="margin:0 0 0.5em 0"><b>FROM </b><i>table1, table2, ..., tablep</i></div><div style="margin:0 0 0.5em 0"><b>WHERE </b><i>condition</i></div><div style="margin:0 0 0.5em 0"><b>ORDER BY </b>...</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>action
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">The novelty here is that the columns <i>column1, column2, ... </i>come from multiple tables <i>table1, table2</i>, ... If two tables have columns with the same name, the ambiguity is resolved using the notation <i>tablei.columnj</i>. The <i>condition </i>can apply to columns from different tables.</div></td></tr></table>
+
+<p>How it works</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">The Cartesian product of <i>tables table1, table2, ..., tablep </i>is constructed. If <i>n_i </i>is the number of rows in <i>table_i</i>, the resulting table has <i>n₁*n₂*...*n_p </i>rows containing all the columns from the different tables.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">The <b>WHERE </b><i>condition </i>is applied to this table. A new table is thus produced</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>3
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">This table is sorted according to the method specified in <b>ORDER</b>.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>4
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">The columns specified after <b>SELECT </b>are displayed.</div></td></tr></table>
+
+<p><strong>Examples</strong></p>
+<p>We use the tables presented earlier. We want to see the details of orders placed after September 25:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">nocmd</span><span class="p">,</span><span class="w"> </span><span class="n">isbn</span><span class="p">,</span><span class="w"> </span><span class="n">qte</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span><span class="w"> </span><span class="n">details</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="s1">&#39;25-sep-91&#39;</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">  </span><span class="k">and</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">nocmd</span><span class="o">=</span><span class="n">orders</span><span class="p">.</span><span class="n">nocmd</span>
+</code></pre></div>
+<p><img src="images/10000000000000BB000000468E8D5B3D.png" style="width:3.958cm;height:1.482cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000BB000000468E8D5B3D.png" /></p>
+<p>Note that after FROM, we list the names of all the tables whose columns we are referencing. In the previous example, the selected columns all belong to the DETAILS table. However, the condition references the ORDERS table. Hence the need to list the latter after FROM. The operation that tests for equality between columns in two different tables is often called an equijoin.</p>
+<p>The SELECT query could also have been written as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">nocmd</span><span class="p">,</span><span class="w"> </span><span class="n">isbn</span><span class="p">,</span><span class="w"> </span><span class="n">qte</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">commandes</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">details</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">nocmd</span><span class="o">=</span><span class="n">commandes</span><span class="p">.</span><span class="n">nocmd</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="s1">&#39;25-Sep-91&#39;</span>
+</code></pre></div>
+<p>Let’s continue with our examples. We want the same result as before but with the title of the ordered book, rather than its ISBN:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">items</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">quantity</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span><span class="w"> </span><span class="n">items</span><span class="p">,</span><span class="w"> </span><span class="n">details</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="s1">&#39;25-Sep-91&#39;</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="w">  </span><span class="k">and</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">orderNo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">orderNo</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="w">  </span><span class="k">and</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">isbn</span><span class="o">=</span><span class="n">articles</span><span class="p">.</span><span class="n">isbn</span>
+</code></pre></div>
+<p><img src="images/1000000000000100000000469B800507.png" style="width:5.419cm;height:1.482cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000100000000469B800507.png" /></p>
+<p>The same result is obtained with the following SQL query, which is less readable:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">articles</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">quantity</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">details</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">order_id</span><span class="o">=</span><span class="n">orders</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">isbn</span><span class="o">=</span><span class="n">articles</span><span class="p">.</span><span class="n">isbn</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="s1">&#39;25-Sep-91&#39;</span>
+</code></pre></div>
+<p>Above, two inner joins are performed with the [DETAILS] table:</p>
+<ul>
+  <li>one with the [ORDERS] table to access the order date of a book
+  </li>
+  <li>one with the [ARTICLES] table to access the title of the ordered book
+  </li>
+</ul>
+
+<p>We also want the name of the customer placing the order:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">items</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">qty</span><span class="p">,</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">name</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="w">  </span><span class="k">from</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span><span class="n">details</span><span class="p">,</span><span class="n">items</span><span class="p">,</span><span class="n">customers</span>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="s1">&#39;25-Sep-91&#39;</span>
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="w">  </span><span class="k">and</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">orderID</span><span class="o">=</span><span class="n">orders</span><span class="p">.</span><span class="n">orderID</span>
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="w">  </span><span class="k">and</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">isbn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">items</span><span class="p">.</span><span class="n">isbn</span>
+<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a><span class="w">  </span><span class="k">and</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span>
+</code></pre></div>
+<p><img src="images/1000000000000144000000468E42B5D0.png" style="width:6.858cm;height:1.482cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000144000000468E42B5D0.png" /></p>
+<p>We also want the order dates and a display of these dates in descending order:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">orderId</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">orderDate</span><span class="p">,</span><span class="w"> </span><span class="n">items</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">qty</span><span class="p">,</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">name</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span><span class="w"> </span><span class="n">details</span><span class="p">,</span><span class="w"> </span><span class="n">items</span><span class="p">,</span><span class="w"> </span><span class="n">customers</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="s1">&#39;25-Sep-91&#39;</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">orderId</span><span class="o">=</span><span class="n">orders</span><span class="p">.</span><span class="n">orderId</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">isbn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">articles</span><span class="p">.</span><span class="n">isbn</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span>
+<a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a><span class="w">    </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_date</span><span class="w"> </span><span class="n">descending</span>
+</code></pre></div>
+<p><img src="images/10000000000001AA00000045E498CFA3.png" style="width:9.019cm;height:1.461cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001AA00000045E498CFA3.png" /></p>
+<p>Here are a few rules to follow when creating joins:</p>
+<ol>
+  <li>After SELECT, list the columns you want to display. If the column exists in multiple tables, precede it with the table name.
+  </li>
+  <li>After FROM, list all the tables that will be queried by the SELECT statement, i.e., the tables containing the columns listed after SELECT and WHERE.
+  </li>
+</ol>
+<h3 id="622-self-join">6.2.2. <span style="color: #4f81bd"><strong>Self-join</strong></span></h3>
+<p>We want to find the books that have a higher retail price than the book &#x27;Using SQL&#x27;:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="n">b</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Using SQL&#39;</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="w">  </span><span class="k">and</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">selling_price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">selling_price</span>
+</code></pre></div>
+<p><img src="images/10000000000000990000003514713338.png" style="width:3.239cm;height:1.122cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000990000003514713338.png" /></p>
+<p>The two tables in the join are identical here: the <em>articles</em> table. To distinguish them, we give them aliases: <em>from articles a, articles b.</em> The alias for the first table is <em>a</em>, and the alias for the second is <em>b</em>. This syntax can be used even if the tables are different. When using an alias, it must be used throughout the SELECT statement in place of the table it refers to.</p>
+<h3 id="623-outer-join">6.2.3. <span style="color: #4f81bd"><strong>Outer Join</strong></span></h3>
+<p>We want to identify the customers who made a purchase in September, along with the order date. The other customers are displayed without this date:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">SELECT</span><span class="w"> </span><span class="n">clients</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_date</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">clients</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">    </span><span class="k">LEFT</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">orders</span><span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="n">clients</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">idcli</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="s1">&#39;01-Sep-91&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="s1">&#39;30-Sep-91&#39;</span>
+</code></pre></div>
+<p><img src="images/10000000000000C60000009D26D9D567.png" style="width:4.187cm;height:3.32cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C60000009D26D9D567.png" /></p>
+<p>It is surprising here that we do not get the correct result. We should have all the customers present in the [CLIENTS] table, which is not the case. When we think about how an outer join works, we realize that customers who haven’t made a purchase have been matched with an empty row in the ORDERS table and therefore with an empty date (a NULL value in SQL terminology). This date doesn’t meet the condition set for the date, so the corresponding customer isn’t displayed. Let’s try something else:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">clients</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_date</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">clients</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="w">    </span><span class="k">left</span><span class="w"> </span><span class="k">outer</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">orders</span><span class="w">  </span><span class="k">on</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="n">orders</span><span class="p">.</span><span class="n">id</span>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="p">(</span><span class="n">orders</span><span class="p">.</span><span class="n">order_date</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="s1">&#39;01-sep-91&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="s1">&#39;30-sep-91&#39;</span><span class="p">)</span>
+<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="w">        </span><span class="k">or</span><span class="w"> </span><span class="p">(</span><span class="n">orders</span><span class="p">.</span><span class="n">order_date</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="images/10000000000000C6000000F07104897A.png" style="width:4.187cm;height:5.075cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C6000000F07104897A.png" /></p>
+<p>This time, we get the correct answer to our question.</p>
+<h3 id="624-nested-queries">6.2.4. <span style="color: #4f81bd"><strong>Nested queries</strong></span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>syntax
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>column[s] </i>FROM <i>table[s]</i></div><div style="margin:0 0 0.5em 0"><b>WHERE </b><i>expression query operator</i></div><div style="margin:0 0 0.5em 0"><b>ORDER BY </b>...</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>How it works
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><i>A query </i>is a SELECT statement that returns a set of 0, 1, or more values. We then have a <b>WHERE</b> condition of the type</div><div style="margin:0 0 0.5em 0">    <b>expression operator (val1, val2, ..., vali)</b></div><div style="margin:0 0 0.5em 0"><i>expression </i>and <i>vali </i>must be of the same type. If the query returns a single value, we are reduced to a condition of the type</div><div style="margin:0 0 0.5em 0">    <b>expression operator value</b></div><div style="margin:0 0 0.5em 0">which we are familiar with. If the query returns a list of values, we can use the following operators:</div><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>IN
+</code></pre></div>
+</div>
+<div style="margin:0 0 0.5em 0"><i>expression </i><b>IN </b><i>(val1, val2, ..., vali): </i><b>true </b>if <i>expression </i>evaluates to one of the elements in the list <i>vali</i>.</div><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>NOT IN
+</code></pre></div>
+</div>
+<div style="margin:0 0 0.5em 0">opposite of <b>IN</b></div><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>ANY
+</code></pre></div>
+</div>
+<div style="margin:0 0 0.5em 0">must be preceded by =, !=, &gt;, &gt;=, &lt;, &lt;=</div><div style="margin:0 0 0.5em 0"><i>expression </i>&gt;= <b>ANY </b><i>(val1, val2, .., valn): </i>true if <i>expression </i>is &gt;= one of the values <i>vali </i>in the list</div><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>ALL
+</code></pre></div>
+</div>
+<div style="margin:0 0 0.5em 0">must be preceded by =, !=, &gt;, &gt;=, &lt;, &lt;=</div><div style="margin:0 0 0.5em 0"><i>expression </i>&gt;= <b>ALL </b><i>(val1, val2, .., valn)</i>: <b>true </b>if expression is &gt;= all valid values in the list</div><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>EXISTS
+</code></pre></div>
+</div>
+<div style="margin:0 0 0.5em 0">query: true if the <i>query </i>returns at least one row.</div></td></tr></table>
+
+<p><strong>Examples</strong></p>
+<p>Let’s revisit the question already solved by an equijoin: display the titles with a selling price higher than that of the book &#x27;Using SQL&#x27;.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ARTICLES</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">selling_price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">selling_price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ARTICLES</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Using SQL&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="images/10000000000000B9000000361BEA796C.png" style="width:3.918cm;height:1.145cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B9000000361BEA796C.png" /></p>
+<p>This solution seems more intuitive than the equijoin. We perform an initial filter with a SELECT, then a second one on the resulting set. We can perform several filters in sequence this way.</p>
+<p>We want to find the titles with a selling price higher than the average selling price:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ARTICLES</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">selling_price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">selling_price</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ARTICLES</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="images/10000000000000B7000000455DE2D15A.png" style="width:3.868cm;height:1.459cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B7000000455DE2D15A.png" /></p>
+<p>Which customers ordered the titles returned by the previous query?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">idcli</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ORDERS</span><span class="p">,</span><span class="w"> </span><span class="n">DETAILS</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">DETAILS</span><span class="p">.</span><span class="n">isbn</span><span class="w"> </span><span class="k">in</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="w">    </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">isbn</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ARTICLES</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">selling_price</span>
+<a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a><span class="w">        </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">selling_price</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ITEMS</span><span class="p">))</span>
+<a id="__codelineno-57-5" name="__codelineno-57-5" href="#__codelineno-57-5"></a><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="n">ORDERS</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DETAILS</span><span class="p">.</span><span class="n">order_id</span>
+</code></pre></div>
+<p><img src="images/100000000000004200000045E07D4FCA.png" style="width:1.399cm;height:1.462cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000004200000045E07D4FCA.png" /></p>
+<p><strong>Explanation</strong></p>
+<ol>
+  <li>We select from the DETAILS table the ISBN codes found among the books with a price higher than the average book price.
+  </li>
+  <li>In the rows selected in the previous step, the customer ID (IDCLI) is not present. It is found in the ORDERS table. The link between the two tables is established via the order number (NOCMD), hence the join condition ORDERS.nocmd=DETAILS.nocmd.
+  </li>
+  <li>A single customer may have purchased one of the relevant books multiple times, in which case their IDCLI code would appear multiple times. To avoid this, we place the DISTINCT keyword after SELECT. DISTINCT generally eliminates duplicates from the rows returned by a SELECT query.
+  </li>
+  <li>To retrieve the customer&#x27;s name, we would need to perform an additional join between the ORDERS and CUSTOMERS tables, as shown in the following query.
+  </li>
+</ol>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">CLIENTS</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ORDERS</span><span class="p">,</span><span class="w"> </span><span class="n">DETAILS</span><span class="p">,</span><span class="w"> </span><span class="n">CLIENTS</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">DETAILS</span><span class="p">.</span><span class="n">isbn</span><span class="w"> </span><span class="k">in</span>
+<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="w">    </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">isbn</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ITEMS</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">selling_price</span>
+<a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a><span class="w">        </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">selling_price</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ITEMS</span><span class="p">))</span>
+<a id="__codelineno-58-5" name="__codelineno-58-5" href="#__codelineno-58-5"></a><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="n">ORDERS</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DETAILS</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-58-6" name="__codelineno-58-6" href="#__codelineno-58-6"></a><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="n">ORDERS</span><span class="p">.</span><span class="n">CUSTID</span><span class="o">=</span><span class="n">CUSTOMERS</span><span class="p">.</span><span class="n">ID</span>
+</code></pre></div>
+<p><img src="images/100000000000006300000045EAF6B60A.png" style="width:2.099cm;height:1.462cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000006300000045EAF6B60A.png" /></p>
+<p>Find customers who haven&#x27;t placed an order since September 24:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">CUSTOMERS</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">clients</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span>
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="w">    </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">&#39;24-Sep-91&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="images/1000000000000062000000697F66C567.png" style="width:2.069cm;height:2.217cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000062000000697F66C567.png" /></p>
+<p>We have seen that rows can be filtered in ways other than using the WHERE clause: by using the HAVING clause in conjunction with the GROUP BY clause. The HAVING clause <strong>filters groups of rows</strong>.</p>
+<p>Just like with the WHERE clause, the syntax</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line">     <span style="font-weight:bold">HAVING </span><span style="font-style:italic">expression operator query </span></span>
+</code></pre></div>
+
+<p>is possible, with the constraint already mentioned that <em>expression</em> must be one of the expressions <em>expri</em> in the clause</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line">     <span style="font-weight:bold">GROUP BY </span><span style="font-style:italic">expr1, expr2</span>, ...</span>
+</code></pre></div>
+
+<p><strong>Examples</strong></p>
+<p>What are the sales figures for books priced over 200F?</p>
+<p>First, let’s display the quantities sold by title:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">ARTICLES</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">qty</span><span class="p">)</span><span class="w"> </span><span class="n">QTY</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ARTICLES</span><span class="p">,</span><span class="w"> </span><span class="n">DETAILS</span>
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">DETAILS</span><span class="p">.</span><span class="n">isbn</span><span class="o">=</span><span class="n">ARTICLES</span><span class="p">.</span><span class="n">isbn</span>
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">title</span>
+</code></pre></div>
+<p><img src="images/10000000000000C400000078499745AB.png" style="width:4.149cm;height:2.54cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C400000078499745AB.png" /></p>
+<p>Now, let’s filter the titles:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">ARTICLES</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">qty</span><span class="p">)</span><span class="w"> </span><span class="n">QTY</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ARTICLES</span><span class="p">,</span><span class="w"> </span><span class="n">DETAILS</span>
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">DETAILS</span><span class="p">.</span><span class="n">isbn</span><span class="o">=</span><span class="n">ARTICLES</span><span class="p">.</span><span class="n">isbn</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">title</span>
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ARTICLES</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">retail_price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">200</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="images/10000000000000C300000069973ECCBA.png" style="width:4.128cm;height:2.223cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C300000069973ECCBA.png" /></p>
+<p>Perhaps more obviously, we could have written:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">ARTICLES</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">qty</span><span class="p">)</span><span class="w"> </span><span class="n">QTY</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ARTICLES</span><span class="p">,</span><span class="w"> </span><span class="n">DETAILS</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">DETAILS</span><span class="p">.</span><span class="n">isbn</span><span class="o">=</span><span class="n">ARTICLES</span><span class="p">.</span><span class="n">isbn</span>
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="n">ARTICLES</span><span class="p">.</span><span class="n">selling_price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">200</span>
+<a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">title</span>
+</code></pre></div>
+<p><img src="images/10000000000000C500000067A841E54B.png" style="width:4.168cm;height:2.178cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C500000067A841E54B.png" /></p>
+<h3 id="625-nested-queries">6.2.5. <span style="color: #4f81bd"><strong>Nested Queries</strong></span></h3>
+<p>In the case of nested queries, there is a parent query (the outermost query) and a child query (the innermost query). The parent query is evaluated only after the child query has been fully evaluated.</p>
+<p>Correlated queries have the same syntax, with the following minor difference: the child query performs a join on the parent query’s table. In this case, the parent-child query pair is evaluated repeatedly for each row in the parent table.</p>
+<p><strong>Example</strong></p>
+<p>Let’s revisit the example where we want the names of customers who haven’t placed an order since September 24:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span>
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="k">select</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">customers</span>
+<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span>
+<a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a><span class="w">        </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">orders</span>
+<a id="__codelineno-63-5" name="__codelineno-63-5" href="#__codelineno-63-5"></a><span class="w">            </span><span class="k">where</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">&#39;24-Sep-91&#39;</span>
+<a id="__codelineno-63-6" name="__codelineno-63-6" href="#__codelineno-63-6"></a><span class="w">                </span><span class="k">and</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="images/100000000000006600000067D7A37F6F.png" style="width:2.159cm;height:2.18cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000006600000067D7A37F6F.png" /></p>
+<p>The parent query operates on the <em>customers</em> table. The child query performs a join between the <em>customers</em> and <em>orders</em> tables. This is therefore a correlated query. For each row in the <em>clients</em> table, the child query runs: it searches for the client’s <em>ID</em> in orders placed after September 24. If it finds none (<em>not exists</em>), the client’s name is displayed. Then, it moves on to the next row in the <em>clients</em> table.</p>
+<h3 id="626-criteria-for-writing-the-select-statement">6.2.6. <span style="color: #4f81bd"><strong>Criteria for Writing the SELECT Statement</strong></span></h3>
+<p>We have seen, on several occasions, that it is possible to obtain the same result using different SELECT statements. Let’s take an example: Display customers who have placed an order:</p>
+<p><strong>Join</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="k">SQL</span><span class="o">&gt;</span>
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">customers</span><span class="p">,</span><span class="n">orders</span>
+<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">id</span>
+</code></pre></div>
+<p><img src="images/100000000000006600000068EBEEBF10.png" style="width:2.159cm;height:2.201cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000006600000068EBEEBF10.png" /></p>
+<p><strong>Nested queries</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span>
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
+<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="n">idcli</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">orders</span><span class="p">)</span>
+</code></pre></div>
+<p>returns the same result.</p>
+<p><strong>Correlated queries</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="k">SQL</span><span class="o">&gt;</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">idcli</span><span class="o">=</span><span class="n">clients</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+</code></pre></div>
+<p>returns the same result.</p>
+<p>Authors Christian MAREE and Guy LEDANT, in their book &#x27;SQL: Introduction, Programming, and Mastery,&#x27; suggest a few selection criteria:</p>
+<p><strong>Performance</strong></p>
+<p>The user does not know how the DBMS &quot;manages&quot; to find the results they request. It is therefore only through experience that they will discover that one query is more efficient than another. MAREE and LEDANT assert from experience that correlated queries generally seem slower than nested queries or joins.</p>
+<p><strong>Formulation</strong></p>
+<p>Formulation using nested queries is often more readable and intuitive than joins. However, it is not always usable. Two points in particular should be noted:</p>
+<ul>
+  <li>The tables containing the columns specified in the SELECT clause (SELECT col1, col2, ...) must be listed after the FROM keyword. The Cartesian product of these tables is then performed, which is known as a join.
+  </li>
+</ul>
+
+<ul>
+  <li>When the query displays results from <b>a single table</b>, and filtering the rows of that table requires consulting another table, nested queries can be used.
+  </li>
+</ul>
+<h2 id="63-syntax-extensions">6.3. <span style="color: #4f81bd"><strong>Syntax Extensions</strong></span></h2>
+<p>For convenience, we have mostly presented abbreviated syntaxes for the various commands. In this section, we present their expanded syntaxes. They are self-explanatory because they are analogous to those of the widely studied SELECT command.</p>
+<p><strong>INSERT</strong></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>syntax1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>INSERT INTO </b><i>table (col1, col2, ...) </i><b>VALUES </b><i>(val1, val2, ...)</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>syntax2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>INSERT INTO </b><i>table (col1, col2, ..) (query)</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>explanation
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">These two syntaxes have been presented</div></td></tr></table>
+
+<p><strong>DELETE</strong></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a>syntax1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>DELETE FROM </b><i>table </i><b>WHERE </b><i>condition</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>explanation
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">This syntax is well-known. Note that the condition may contain a query using the syntax <i>WHERE expression operator (query)</i></div></td></tr></table>
+
+<p><strong>UPDATE</strong></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a>syntax1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>UPDATE </b><i>table</i></div><div style="margin:0 0 0.5em 0"><b>SET </b><i>col1=expr1, col2=expr2, ...</i></div><div style="margin:0 0 0.5em 0"><b>WHERE </b><i>condition</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>explanation
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">This syntax has already been presented. Note that the condition may contain a query using the syntax <b>WHERE </b><i>expression operator (query)</i></div></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>syntax2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>UPDATE </b><i>table</i></div><div style="margin:0 0 0.5em 0"><b>SET </b><i>(col1, col2, ..) = query1</i>, <i>(cola, colb, ..) = query2</i>, ...</div><div style="margin:0 0 0.5em 0"><b>WHERE </b><i>condition</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a>explanation
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">The values assigned to the various columns may come from a query.</div></td></tr></table>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://tahe.developpez.com" target="_blank">
+          https://tahe.developpez.com
+        </a>
+        <br>
+        This tutorial written by <strong>Serge Tahé</strong> is made available to the public under the terms of the
+<em>Creative Commons Attribution – Non-Commercial –
+ShareAlike 3.0 Unported</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
