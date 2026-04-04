@@ -787,8 +787,8 @@
 
 
 
-<h1 id="4-sql-expressions">4. <span style="color: #365f91"><strong>SQL expressions</strong></span></h1>
-<h2 id="41-introduction">4.1. <span style="color: #4f81bd"><strong>Introduction</strong></span></h2>
+<h1 id="4-sql-expressions">4. <span style="color: #365f91">SQL expressions</span></h1>
+<h2 id="41-introduction">4.1. <span style="color: #4f81bd">Introduction</span></h2>
 <p>In most SQL commands, it is possible to use an expression. Take, for example, the SELECT command:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>syntax
@@ -825,7 +825,7 @@
 </ul>
 
 <p>We will first cover expressions with operators, then we will present the functions available in Firebird. </p>
-<h2 id="42-expressions-with-operators">4.2. <span style="color: #4f81bd"><strong>Expressions with operators</strong></span></h2>
+<h2 id="42-expressions-with-operators">4.2. <span style="color: #4f81bd">Expressions with operators</span></h2>
 <p>We will classify expressions with operators according to the type of their operands:</p>
 <ul>
   <li>numeric
@@ -837,8 +837,8 @@
   <li>Boolean or logical
   </li>
 </ul>
-<h3 id="421-expressions-with-numeric-operands">4.2.1. <span style="color: #4f81bd"><strong>Expressions with numeric operands</strong></span></h3>
-<h4 id="4211-list-of-operators">4.2.1.1. <span style="color: #4f81bd"><strong>List of operators</strong></span></h4>
+<h3 id="421-expressions-with-numeric-operands">4.2.1. <span style="color: #4f81bd">Expressions with numeric operands</span></h3>
+<h4 id="4211-list-of-operators">4.2.1.1. <span style="color: #4f81bd">List of operators</span></h4>
 <p>Let <em>number1</em>, <em>number2</em>, and <em>number3</em> be numbers. The following operators can be used:</p>
 <p>Relational operators</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
@@ -891,7 +891,7 @@
 </code></pre></div>
 </div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: division</div></td></tr></table>
 
-<h4 id="4212-relational-operators">4.2.1.2. <span style="color: #4f81bd"><strong>Relational operators</strong></span></h4>
+<h4 id="4212-relational-operators">4.2.1.2. <span style="color: #4f81bd">Relational operators</span></h4>
 <p>A relational expression expresses a relationship that is either true or false. The result of such an expression is therefore a Boolean or logical value.</p>
 <p><strong>Examples</strong>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">150</span>
@@ -903,7 +903,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">210</span><span class="p">)</span>
 </code></pre></div>
 <p><img src="images/1000000000000092000000362EBD5C84.png" style="width:3.089cm;height:1.143cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000092000000362EBD5C84.png" /></p>
-<h4 id="4213-arithmetic-operators">4.2.1.3. <span style="color: #4f81bd"><strong>Arithmetic operators</strong></span></h4>
+<h4 id="4213-arithmetic-operators">4.2.1.3. <span style="color: #4f81bd">Arithmetic operators</span></h4>
 <p>We are familiar with arithmetic expressions. They express a calculation to be performed on numerical data. We have already encountered such expressions: suppose that the price stored in the records of the BIBLIO file is a pre-tax price. We want to display each title with its price including tax for a VAT rate of 18.6%:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TITLE</span><span class="p">,</span><span class="w"> </span><span class="n">PRICE</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">186</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">BIBLIO</span>
 </code></pre></div>
@@ -928,8 +928,8 @@
 <p>When two operators of the same priority are present in an expression, the one on the far left is evaluated first.</p>
 <p><strong>Examples</strong></p>
 <p>The expression PRICE*RATE+TAXES will be evaluated as (PRICE*RATE)+TAXES. This is because the multiplication operator is used first. The expression PRICE*RATE/100 will be evaluated as (PRICE*RATE)/100.</p>
-<h3 id="422-expressions-with-character-operands">4.2.2. <span style="color: #4f81bd"><strong>Expressions with character operands</strong></span></h3>
-<h4 id="4221-list-of-operators">4.2.2.1. <span style="color: #4f81bd"><strong>List of operators</strong></span></h4>
+<h3 id="422-expressions-with-character-operands">4.2.2. <span style="color: #4f81bd">Expressions with character operands</span></h3>
+<h4 id="4221-list-of-operators">4.2.2.1. <span style="color: #4f81bd">List of operators</span></h4>
 <p>The following operators can be used:</p>
 <p>Let <em>string1, string2, string3,</em> and string <em>pattern</em> be</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
@@ -972,13 +972,13 @@
 
 <p>Concatenation operator</p>
 <p><em>string1 || string2</em>    : <em>string2</em> concatenated to <em>string1</em></p>
-<h4 id="4222-relational-operators">4.2.2.2. <span style="color: #4f81bd"><strong>Relational operators</strong></span></h4>
+<h4 id="4222-relational-operators">4.2.2.2. <span style="color: #4f81bd">Relational operators</span></h4>
 <p>What does it mean to compare strings using operators such as &lt;, &lt;=, etc.?</p>
 <p>Every character is encoded as an integer. When comparing two characters, their integer codes are compared. The encoding used follows the natural order of the dictionary:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>space &lt;..&lt; 0 &lt; 1 &lt; ...&lt; 9 &lt; ...&lt; A &lt; B &lt;... &lt; Z &lt; ... &lt; a &lt; b &lt; ... &lt; z
 </code></pre></div>
 <p>Numbers come before letters, and uppercase letters before lowercase letters.</p>
-<h4 id="4223-comparing-two-strings">4.2.2.3. <span style="color: #4f81bd"><strong>Comparing Two Strings</strong></span></h4>
+<h4 id="4223-comparing-two-strings">4.2.2.3. <span style="color: #4f81bd">Comparing Two Strings</span></h4>
 <p>Consider the relation &#x27;CAT&#x27; &lt; &#x27;DOG&#x27;. Is it true or false? To perform this comparison, the DBMS compares the two strings character by character based on their integer codes. As soon as two characters are found to be different, the string containing the smaller of the two is said to be smaller than the other string. In our example, &#x27;CAT&#x27; is compared to &#x27;DOG&#x27;. We get the following successive results:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>    &#39;CAT&#39;    &#39;DOG&#39;
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>----------------------------
@@ -1000,7 +1000,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="s1">&#39;L&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="s1">&#39;M&#39;</span>
 </code></pre></div>
 <p><img src="images/100000000000007800000046F9D8BDAF.png" style="width:2.538cm;height:1.48cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007800000046F9D8BDAF.png" /></p>
-<h4 id="4224-the-like-operator">4.2.2.4. <span style="color: #4f81bd"><strong>The LIKE operator</strong></span></h4>
+<h4 id="4224-the-like-operator">4.2.2.4. <span style="color: #4f81bd">The LIKE operator</span></h4>
 <p>The LIKE operator is used as follows: <em>string</em> <strong>LIKE</strong> <em>pattern</em></p>
 <p>The condition is true if <em>string</em> matches <em>pattern</em>. The pattern is a string that may contain two wildcard characters:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
@@ -1021,7 +1021,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;L_ %&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p><img src="images/100000000000005A00000037EB0C4057.png" style="width:1.909cm;height:1.168cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000005A00000037EB0C4057.png" /></p>
-<h4 id="4225-the-concatenation-operator">4.2.2.5. <span style="color: #4f81bd"><strong>The concatenation operator</strong></span></h4>
+<h4 id="4225-the-concatenation-operator">4.2.2.5. <span style="color: #4f81bd">The concatenation operator</span></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">SQL</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="s1">&#39;[&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;]&#39;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">uppercase</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;L_ %&#39;</span>
 </code></pre></div>
 <p><img src="images/1000000000000072000000334D87104D.png" style="width:2.408cm;height:1.078cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000072000000334D87104D.png" /></p>
@@ -1097,7 +1097,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">date</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="ss">&quot;age(days)&quot;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span>
 </code></pre></div>
 <p><img src="images/10000000000000B8000000AB71AF4F61.png" style="width:3.888cm;height:3.612cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B8000000AB71AF4F61.png" /></p>
-<h3 id="424-expressions-with-boolean-operands">4.2.4. <span style="color: #4f81bd"><strong>Expressions with Boolean operands</strong></span></h3>
+<h3 id="424-expressions-with-boolean-operands">4.2.4. <span style="color: #4f81bd">Expressions with Boolean operands</span></h3>
 <p>Recall that a Boolean or logical value has two possible values: true or false. The logical operand is often the result of a relational expression.</p>
 <p>Let <em>boolean1</em> and <em>boolean2</em> be two booleans. There are three possible operators, which are, in order of precedence:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
@@ -1135,7 +1135,7 @@
 <a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="w">  </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">asc</span>
 </code></pre></div>
 <p><img src="images/10000000000000DF0000004659081CB8.png" style="width:4.718cm;height:1.482cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000DF0000004659081CB8.png" /></p>
-<h2 id="43-firebirds-predefined-functions">4.3. <span style="color: #4f81bd"><strong>Firebird&#x27;s predefined functions</strong></span></h2>
+<h2 id="43-firebirds-predefined-functions">4.3. <span style="color: #4f81bd">Firebird&#x27;s predefined functions</span></h2>
 <p>Firebird has predefined functions. They cannot be used immediately in SQL statements. You must first run the SQL script <strong>&lt;firebird&gt;\UDF\ib_udf.sql</strong>, where &lt;firebird&gt; refers to the installation directory of the Firebird DBMS:</p>
 <p><img src="images/10000000000000E4000000833335D76D.png" style="width:4.828cm;height:2.775cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E4000000833335D76D.png" /></p>
 <p>With IBExpert, we proceed as follows:</p>
@@ -1177,7 +1177,7 @@
   <li>functions with string-type parameters
   </li>
 </ul>
-<h3 id="431-functions-with-numeric-parameters">4.3.1. <span style="color: #4f81bd"><strong>Functions with numeric parameters</strong></span></h3>
+<h3 id="431-functions-with-numeric-parameters">4.3.1. <span style="color: #4f81bd">Functions with numeric parameters</span></h3>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span style="font-weight:bold">abs</span><span style="font-style:italic">(number)</span></span>
 </code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">absolute value of number</div><div style="margin:0 0 0.5em 0">abs(-15) = 15</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">

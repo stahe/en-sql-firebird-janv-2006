@@ -642,9 +642,9 @@
 
 
 
-<h1 id="2-firebird-tutorial">2. <span style="color: #365f91"><strong>Firebird Tutorial</strong></span></h1>
+<h1 id="2-firebird-tutorial">2. <span style="color: #365f91">Firebird Tutorial</span></h1>
 <p>Before covering the basics of the SQL language, we will show the reader how to install the Firebird DBMS as well as the IB-Expert graphical client.</p>
-<h2 id="21-where-to-find-firebird">2.1. <span style="color: #4f81bd"><strong>Where to find Firebird?</strong></span></h2>
+<h2 id="21-where-to-find-firebird">2.1. <span style="color: #4f81bd">Where to find Firebird?</span></h2>
 <p>The main Firebird<a id="firebird"></a> website is [<a href="http://firebird.sourceforge.net/"><u><span style="color: #0563c1">http://firebird.sourceforge.net/</span></u></a>]. The downloads page offers the following links (April 2005):</p>
 <p><img src="images/100000000000029C000001F5CFB40258.png" style="width:12.363cm;height:9.273cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029C000001F5CFB40258.png" /></p>
 <p>You will download the following items:</p>
@@ -754,7 +754,7 @@
 <p><img src="images/100000000000013A000000D07E511B2E.png" style="width:6.634cm;height:4.394cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013A000000D07E511B2E.png" /></p>
 <p>To access the database you created, simply double-click its link. IBExpert will then display a tree view providing access to the database properties:</p>
 <p><img src="images/100000000000013B000000FBEC216B48.png" style="width:5.824cm;height:4.641cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013B000000FBEC216B48.png" /></p>
-<h2 id="24-creating-a-data-table">2.4. <span style="color: #4f81bd"><strong>Creating a Data Table</strong></span></h2>
+<h2 id="24-creating-a-data-table">2.4. <span style="color: #4f81bd">Creating a Data Table</span></h2>
 <p>Let’s create a table. Right-click on [Tables] (see window above) and select the [New Table] option. This opens the window for defining the table’s properties:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000025C0000011864B71078.png" style="display:inline-block; margin:4px;width:7.99cm;height:3.704cm;" class="odt-zoomable" data-zoom-src="images/100000000000025C0000011864B71078.png" /></td></tr></table>
 
@@ -815,7 +815,7 @@
 <a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ARTICLES</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">UNQ_NAME</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">NAME</span><span class="p">);</span>
 <a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ARTICLES</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">PK_ARTICLES</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">);</span>
 </code></pre></div>
-<h2 id="25-inserting-data-into-a-table">2.5. <span style="color: #4f81bd"><strong>Inserting data into a table</strong></span></h2>
+<h2 id="25-inserting-data-into-a-table">2.5. <span style="color: #4f81bd">Inserting data into a table</span></h2>
 <p>It is now time to enter data into the [ARTICLES] table. To do this, use its [Data] panel:</p>
 <p><img src="images/10000000000001CC0000009C5D747458.png" style="width:8.401cm;height:2.849cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CC0000009C5D747458.png" /></p>
 <p>Data is entered by double-clicking on the input fields of each row in the table. A new row is added using the [+] button, and a row is deleted using the [-] button. These operations are performed within a transaction that is committed using the [Commit Transaction] button (see above). Without this commit, the data will be lost.</p>

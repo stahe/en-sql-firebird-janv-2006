@@ -687,9 +687,9 @@
 
 
 
-<h1 id="7-managing-concurrent-access-to-data">7. <span style="color: #365f91"><strong>Managing concurrent access to data</strong></span></h1>
+<h1 id="7-managing-concurrent-access-to-data">7. <span style="color: #365f91">Managing concurrent access to data</span></h1>
 <p>So far, we have used tables of which we were the sole users. In practice, on a multi-user machine, data is most often shared among different users. This raises the question: Who can use a given table and in what capacity (query, insert, delete, append, ...)?</p>
-<h2 id="71-creating-firebird-users">7.1. <span style="color: #4f81bd"><strong>Creating Firebird Users</strong></span></h2>
+<h2 id="71-creating-firebird-users">7.1. <span style="color: #4f81bd">Creating Firebird Users</span></h2>
 <p>When we worked with IB-Expert, we logged in as the SYSDBA user. This information can be found in the properties of the open connection to the DBMS:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000015C0000019296125B1C.png" style="display:inline-block; margin:4px;width:7.37cm;height:8.514cm;" class="odt-zoomable" data-zoom-src="images/100000000000015C0000019296125B1C.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E9000000A7423AE975.png" style="display:inline-block; margin:4px;width:4.93cm;height:3.535cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E9000000A7423AE975.png" /></td></tr></table>
 
@@ -702,7 +702,7 @@
 <p>Let’s create the following users:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>username</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>password</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ADMIN1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">admin1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ADMIN2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">admin2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">SELECT1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">select1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">SELECT2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">select2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">UPDATE1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">update1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">UPDATE2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">update2</div></td></tr></table>
 
-<h2 id="72-granting-access-rights-to-users">7.2. <span style="color: #4f81bd"><strong>Granting Access Rights to Users</strong></span></h2>
+<h2 id="72-granting-access-rights-to-users">7.2. <span style="color: #4f81bd">Granting Access Rights to Users</span></h2>
 <p>A database belongs to the user who created it. The databases we have created so far belonged to the user [SYSDBA]. To illustrate the concept of permissions, let’s create (Database / Create Database) a new database under the identity [ADMIN1, admin1]:</p>
 <p><img src="images/10000000000001F500000145D25B9213.png" style="width:10.599cm;height:6.876cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F500000145D25B9213.png" /></p>
 <p>and register it with the alias DBACCES (ADMIN1). Using aliases allows you to open connections to the same database with different usernames, making them easier to identify in the IBExpert database explorer. :</p>
@@ -842,8 +842,8 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E60000006B00BEEFFE.png" style="display:inline-block; margin:4px;width:4.87cm;height:2.267cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E60000006B00BEEFFE.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E1000000B78A269E42.png" style="display:inline-block; margin:4px;width:4.761cm;height:3.872cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E1000000B78A269E42.png" /></td></tr></table>
 
 <p>The user USER1 does indeed have SELECT permission on the TA table.</p>
-<h2 id="73-transactions">7.3. <span style="color: #4f81bd"><strong>Transactions</strong></span></h2>
-<h3 id="731-isolation-levels">7.3.1. <span style="color: #4f81bd"><strong>Isolation levels</strong></span></h3>
+<h2 id="73-transactions">7.3. <span style="color: #4f81bd">Transactions</span></h2>
+<h3 id="731-isolation-levels">7.3.1. <span style="color: #4f81bd">Isolation levels</span></h3>
 <p>We will now move on from the issue of access rights to database objects to address that of concurrent access to these objects. Two users with sufficient access rights to a database object—a table, for example—want to use it at the same time. What happens?</p>
 <p>Each user works within a transaction. A transaction is a sequence of SQL statements that is executed &quot;atomically&quot;: </p>
 <ul>
@@ -856,13 +856,13 @@
 <p>Ultimately, the operations in a transaction are either all successfully applied or none are applied. When the user has control over the transaction (as is the case throughout this document), they commit a transaction with a COMMIT statement or roll it back with a ROLLBACK statement.</p>
 <p>Each user works within a transaction that belongs to them. There are typically four levels of isolation between different users:</p>
 <ul>
-  <li><b>Uncommitted Read</b>
+  <li>Uncommitted Read
   </li>
-  <li><b>Committed Read</b>
+  <li>Committed Read
   </li>
-  <li><b>Repeatable Read</b>
+  <li>Repeatable Read
   </li>
-  <li><b>Serializable</b>
+  <li>Serializable
   </li>
 </ul>
 
@@ -929,7 +929,7 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000016A0000015D0BF1E0D0.png" style="display:inline-block; margin:4px;width:6.699cm;height:6.458cm;" class="odt-zoomable" data-zoom-src="images/100000000000016A0000015D0BF1E0D0.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000026F00000176ABC54C0F.png" style="display:inline-block; margin:4px;width:9.89cm;height:5.937cm;" class="odt-zoomable" data-zoom-src="images/100000000000026F00000176ABC54C0F.png" /></td></tr></table>
 
 <p>The screen on the right shows a [Transactions] option. This will allow us to set the transaction isolation level. Here, we set it to [snapshot]. We do the same with the DBACCES(ADMIN2) connection.</p>
-<h3 id="732-snapshot-mode">7.3.2. <span style="color: #4f81bd"><strong>Snapshot mode</strong></span></h3>
+<h3 id="732-snapshot-mode">7.3.2. <span style="color: #4f81bd">Snapshot mode</span></h3>
 <p>Let’s examine the <em>snapshot</em> isolation level, which is Firebird’s default isolation mode. When a user starts a transaction, a snapshot of the database is taken. The user then works on this snapshot. Each user thus works on their own snapshot of the database. If they make changes to it, other users do not see them. They will only see them once the user who made the changes has committed them with a COMMIT.</p>
 <p>There are two possible scenarios:</p>
 <ul>
@@ -938,7 +938,7 @@
   <li>Both users want to modify the table at the same time
   </li>
 </ul>
-<h4 id="7321-principle-of-consistent-reading">7.3.2.1. <span style="color: #4f81bd"><strong>Principle of consistent reading</strong></span></h4>
+<h4 id="7321-principle-of-consistent-reading">7.3.2.1. <span style="color: #4f81bd">Principle of consistent reading</span></h4>
 <p>Consider two users, <em>U1</em> and <em>U2,</em> working on the same table <em>TAB</em>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>      --------+----------+--------+-------+----------------------
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>              T1a       T2a      T1b     T2b 
@@ -960,7 +960,7 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E90000006EEB11B30B.png" style="display:inline-block; margin:4px;width:4.93cm;height:2.327cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E90000006EEB11B30B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E8000000B64E181B3C.png" style="display:inline-block; margin:4px;width:4.93cm;height:3.868cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E8000000B64E181B3C.png" /></td></tr></table>
 
 <p>ADMIN2 sees the changes made by ADMIN1. In snapshot mode, a transaction does not see changes made by other transactions until those transactions are complete.</p>
-<h4 id="7322-simultaneous-modification-of-the-same-database-object-by-two-transactions">7.3.2.2. <span style="color: #4f81bd"><strong>Simultaneous modification of the same database object by two transactions</strong></span></h4>
+<h4 id="7322-simultaneous-modification-of-the-same-database-object-by-two-transactions">7.3.2.2. <span style="color: #4f81bd">Simultaneous modification of the same database object by two transactions</span></h4>
 <p>Let’s take an example from accounting: <em>U1</em> and <em>U2</em> are working on accounts. <em>U1</em> debits <em>accountX</em> by an amount S and credits <em>accountY</em> by the same amount. He will do this in several steps: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>      --------+----------+--------+-------+----------------------
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>              T1a       T1b     T1c      T1d 
@@ -997,7 +997,7 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB000000B32400DCFA.png" style="display:inline-block; margin:4px;width:4.971cm;height:3.785cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB000000B32400DCFA.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EE0000006FAFD9E9F9.png" style="display:inline-block; margin:4px;width:5.039cm;height:2.35cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EE0000006FAFD9E9F9.png" /></td></tr></table>
 
 <p>The UPDATE operation completes successfully even though row #4 no longer exists, as shown by the following SELECT statement. It is at this point that ADMIN2 discovers that the row no longer exists.</p>
-<h4 id="7323-repeatable-read-mode">7.3.2.3. <span style="color: #4f81bd"><strong>Repeatable Read Mode</strong></span></h4>
+<h4 id="7323-repeatable-read-mode">7.3.2.3. <span style="color: #4f81bd">Repeatable Read Mode</span></h4>
 <p>Let’s now illustrate “Repeatable Read” mode. This isolation level is provided by “snapshot” mode. It ensures that a transaction always obtains the same result when reading the database.</p>
 <p>Let’s start by working with ADMIN2’s SQL editor:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E900000067526D557E.png" style="display:inline-block; margin:4px;width:4.93cm;height:2.178cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E900000067526D557E.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EA0000006DC025DF7D.png" style="display:inline-block; margin:4px;width:4.949cm;height:2.305cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EA0000006DC025DF7D.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EC000000BB05C5D76F.png" style="display:inline-block; margin:4px;width:5.805cm;height:4.6cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EC000000BB05C5D76F.png" /></td></tr></table>
@@ -1019,7 +1019,7 @@
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB0000006FF3AD4208.png" style="display:inline-block; margin:4px;width:4.971cm;height:2.348cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB0000006FF3AD4208.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000014B00000068F5D7B36D.png" style="display:inline-block; margin:4px;width:7.01cm;height:2.203cm;" class="odt-zoomable" data-zoom-src="images/100000000000014B00000068F5D7B36D.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB00000093506B2531.png" style="display:inline-block; margin:4px;width:5.108cm;height:3.194cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB00000093506B2531.png" /></td></tr></table>
 
 <p>The rows added by ADMIN1 are now taken into account.</p>
-<h3 id="733-committed-read-mode">7.3.3. <span style="color: #4f81bd"><strong>Committed Read mode</strong></span></h3>
+<h3 id="733-committed-read-mode">7.3.3. <span style="color: #4f81bd">Committed Read mode</span></h3>
 <p>Let’s now illustrate “Committed Read” mode. This isolation level is similar to that of <em>a snapshot,</em> except with regard to “Repeatable Read.”</p>
 <p>We start by changing the transaction isolation level for both connections. </p>
 <ul>

@@ -618,15 +618,15 @@
 
 
 
-<h1 id="8-installing-and-using-an-odbc-driver-for-firebird">8. <span style="color: #365f91"><strong>Installing and using an ODBC driver for [Firebird]</strong></span></h1>
-<h2 id="81-installing-the-driver">8.1. <span style="color: #4f81bd"><strong>Installing the driver</strong></span></h2>
+<h1 id="8-installing-and-using-an-odbc-driver-for-firebird">8. <span style="color: #365f91">Installing and using an ODBC driver for [Firebird]</span></h1>
+<h2 id="81-installing-the-driver">8.1. <span style="color: #4f81bd">Installing the driver</span></h2>
 <p>There are many databases on the market. To standardize database access under MS Windows, Microsoft developed an interface called ODBC (Open DataBase Connectivity). This layer hides the specific features of each database behind a standard interface. There are many ODBC drivers available for MS Windows that facilitate database access. Here are, for example, some of the ODBC drivers installed on a Windows XP machine: </p>
 <p><img src="images/10000000000001D10000015EA41092C7.png" style="width:9.841cm;height:7.407cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D10000015EA41092C7.png" /></p>
 <p>An application relying on these drivers can use any database without rewriting. The ODBC driver acts as an intermediary between the application and the DBMS. The Application &lt;-&gt; ODBC driver interface is standard. If you switch DBMSes, you simply install the ODBC driver for the new DBMS, and the application remains unchanged.</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000489000000C4DC1F7C74.png" style="display:inline-block; margin:4px;width:15.36cm;height:2.593cm;" class="odt-zoomable" data-zoom-src="images/1000000000000489000000C4DC1F7C74.png" /></td></tr></table>
 
 <p>The [firebird-odbc-provider] link on the [Firebird] downloads page (section<a href="#firebird"><u><span style="color: #0563c1"> 2.1</span></u></a>) provides access to an ODBC driver. Once installed, it appears in the list of installed ODBC drivers.</p>
-<h2 id="82-create-an-odbc-data-source">8.2. <span style="color: #4f81bd"><strong>Create an ODBC data source</strong></span></h2>
+<h2 id="82-create-an-odbc-data-source">8.2. <span style="color: #4f81bd">Create an ODBC data source</span></h2>
 <ul>
   <li>Launch the tool [Start -&gt; Settings -&gt; Configuration Tool -&gt; Administrative Tools -&gt; ODBC Data Sources]:
   </li>
@@ -678,7 +678,7 @@
   </li>
 </ul>
 <p><a id="testersourceodbc"></a></p>
-<h2 id="83-test-the-odbc-source">8.3. <span style="color: #4f81bd"><strong>Test the ODBC source</strong></span></h2>
+<h2 id="83-test-the-odbc-source">8.3. <span style="color: #4f81bd">Test the ODBC source</span></h2>
 <p>There are various ways to verify that an ODBC source is working properly. Here, we will use Excel:</p>
 <p><img src="images/10000000000002FE0000011C4766F8B1.png" style="width:14.183cm;height:5.258cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002FE0000011C4766F8B1.png" /></p>
 <ul>
@@ -794,7 +794,7 @@
   <li>You can drag the [ARTICLES] table from above into the [OpenOffice] document using the mouse.
   </li>
 </ul>
-<h2 id="84-microsoft-query">8.4. <span style="color: #4f81bd"><strong>Microsoft Query</strong></span></h2>
+<h2 id="84-microsoft-query">8.4. <span style="color: #4f81bd">Microsoft Query</span></h2>
 <p>Although MS Query is included with MS Office, there isn’t always a shortcut to this program. It can be found in the <em>Office</em> folder of MS Office under the name <em>MSQRY32.EXE</em>. For example<em>, &quot;C:\Program Files\Office 2000\Office\MSQRY32.EXE&quot;</em>. MS Query allows you to query any ODBC data source using SQL queries. These can be built graphically or typed directly on the keyboard. Since most Windows databases provide ODBC drivers, they can all be queried using MS Query. When MS Query is launched, the following screen appears:</p>
 <p><img src="images/10000000000001C70000006854343211.png" style="width:9.631cm;height:2.201cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C70000006854343211.png" /></p>
 <p>First, we need to specify the ODBC data source to be queried. To do this, use the option: <em>File/New</em>:</p>

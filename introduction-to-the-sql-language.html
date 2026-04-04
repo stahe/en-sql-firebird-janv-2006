@@ -808,7 +808,7 @@
 
 
 
-<h1 id="3-introduction-to-the-sql-language">3. <span style="color: #365f91"><strong>Introduction to the SQL Language</strong></span></h1>
+<h1 id="3-introduction-to-the-sql-language">3. <span style="color: #365f91">Introduction to the SQL Language</span></h1>
 <p>In this section of the chapter, we present the first SQL commands <strong>for</strong> <strong>creating</strong> and <strong>working with</strong> a single table. We generally provide a simplified version of these commands. Their full syntax is available in the Firebird reference guides (see Section<a href="#docfirebird"><u><span style="color: #0563c1"> 2.2</span></u></a>).</p>
 <p>A database is used by people with various skill sets:</p>
 <ul>
@@ -830,7 +830,7 @@
 <p>The screenshot above is often represented by the text below:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO</span>
 </code></pre></div>
-<h2 id="31-firebird-data-types">3.1. <span style="color: #4f81bd"><strong>Firebird Data Types</strong></span></h2>
+<h2 id="31-firebird-data-types">3.1. <span style="color: #4f81bd">Firebird Data Types</span></h2>
 <p>When creating a table, you must specify the data type that a table column can contain. Here, we present the most common Firebird data types. Note that these data types may vary from one DBMS to another.</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SMALLINT
@@ -879,7 +879,7 @@
 
 <p>In a table, a row may have columns with no value. We say that the value of the column is the NULL constant. You can check for the presence of this value using the operators </p>
 <p><strong>IS NULL</strong>    /    <strong>IS NOT NULL</strong></p>
-<h2 id="32-creating-a-table">3.2. <span style="color: #4f81bd"><strong>Creating a table</strong></span></h2>
+<h2 id="32-creating-a-table">3.2. <span style="color: #4f81bd">Creating a table</span></h2>
 <p>To learn how to create a table, we’ll start by creating one in [Design] mode with IBExpert. To do this, we’ll follow the method described in section<a href="#createdatabase"><u><span style="color: #0563c1"> 2.3</span></u></a>. This will create the following table:</p>
 <p><img src="images/10000000000002450000008A601A62B7.png" style="width:12.3cm;height:2.923cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002450000008A601A62B7.png" /></p>
 <p>This table will be used to record the books purchased by a library. The meaning of the fields is as follows:</p>
@@ -1068,7 +1068,7 @@
 <p>By double-clicking on its name, we can view its structure:</p>
 <p><img src="images/1000000000000246000000CFD6B31107.png" style="width:12.298cm;height:4.374cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000246000000CFD6B31107.png" /></p>
 <p>We can see the definition we created for the [BIBLIO2] table</p>
-<h2 id="33-deleting-a-table">3.3. <span style="color: #4f81bd"><strong>Deleting a table</strong></span></h2>
+<h2 id="33-deleting-a-table">3.3. <span style="color: #4f81bd">Deleting a table</span></h2>
 <p>The SQL statement to delete a table is as follows:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>syntax
@@ -1082,7 +1082,7 @@
 <p><img src="images/10000000000000C7000000518AFF2DC0.png" style="width:4.209cm;height:1.713cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C7000000518AFF2DC0.png" /></p>
 <p>and confirm it with [Commit]. The [BIBLIO2] table is deleted:</p>
 <p><img src="images/1000000000000090000000C9A9522CA4.png" style="width:3.048cm;height:4.255cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000090000000C9A9522CA4.png" /></p>
-<h2 id="34-filling-a-table">3.4. <span style="color: #4f81bd"><strong>Filling a Table</strong></span></h2>
+<h2 id="34-filling-a-table">3.4. <span style="color: #4f81bd">Filling a Table</span></h2>
 <p>Let’s insert a row into the [BIBLIO] table we just created:</p>
 <p><img src="images/10000000000001C800000086CDFCE3F7.png" style="width:9.647cm;height:2.835cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C800000086CDFCE3F7.png" /></p>
 <p>Confirm the addition of the row with [Commit], then right-click on the added row:</p>
@@ -1117,8 +1117,8 @@
 <p>After committing [Commit] the various SQL statements, we obtain the following table:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000203000001026998415E.png" style="display:inline-block; margin:4px;width:10.899cm;height:5.459cm;" class="odt-zoomable" data-zoom-src="images/1000000000000203000001026998415E.png" /></td></tr></table>
 
-<h2 id="35-querying-a-table">3.5. <span style="color: #4f81bd"><strong>Querying a table</strong></span></h2>
-<h3 id="351-introduction">3.5.1. <span style="color: #4f81bd"><strong>Introduction</strong></span></h3>
+<h2 id="35-querying-a-table">3.5. <span style="color: #4f81bd">Querying a table</span></h2>
+<h3 id="351-introduction">3.5.1. <span style="color: #4f81bd">Introduction</span></h3>
 <p>In the SQL editor, type the following command:</p>
 <p><img src="images/10000000000001DD000000608F293F33.png" style="width:10.098cm;height:2.032cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001DD000000608F293F33.png" /></p>
 <p>and execute it. We get the following result:</p>
@@ -1143,7 +1143,7 @@
 </code></pre></div>
 <p><img src="images/10000000000001160000009BF994E384.png" style="width:5.879cm;height:3.277cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001160000009BF994E384.png" /></p>
 <p>In the examples above, we have assigned aliases (BOOK_TITLE, PURCHASE_PRICE) to the requested columns.</p>
-<h3 id="352-displaying-rows-that-meet-a-condition">3.5.2. <span style="color: #4f81bd"><strong>Displaying rows that meet a condition</strong></span></h3>
+<h3 id="352-displaying-rows-that-meet-a-condition">3.5.2. <span style="color: #4f81bd">Displaying rows that meet a condition</span></h3>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>syntax
 </code></pre></div>
@@ -1197,7 +1197,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">150</span>
 </code></pre></div>
 <p><img src="images/1000000000000119000000440BBBF342.png" style="width:5.948cm;height:1.439cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000119000000440BBBF342.png" /></p>
-<h3 id="353-displaying-rows-in-a-specific-order">3.5.3. <span style="color: #4f81bd"><strong>Displaying rows in a specific order</strong></span></h3>
+<h3 id="353-displaying-rows-in-a-specific-order">3.5.3. <span style="color: #4f81bd">Displaying rows in a specific order</span></h3>
 <p>To the previous syntaxes, you can add an <strong>ORDER BY</strong> clause specifying the desired display order:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>syntax
@@ -1223,7 +1223,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="p">,</span><span class="w"> </span><span class="n">purchase</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">library</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">genre</span><span class="w"> </span><span class="k">desc</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">desc</span>
 </code></pre></div>
 <p><img src="images/100000000000011F0000009A39F46255.png" style="width:6.068cm;height:3.256cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011F0000009A39F46255.png" /></p>
-<h2 id="36-deleting-rows-from-a-table">3.6. <span style="color: #4f81bd"><strong>Deleting rows from a table</strong></span></h2>
+<h2 id="36-deleting-rows-from-a-table">3.6. <span style="color: #4f81bd">Deleting rows from a table</span></h2>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>syntax
 </code></pre></div>
@@ -1242,7 +1242,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/100000000000007A0000008871DE31D3.png" style="width:2.579cm;height:2.875cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007A0000008871DE31D3.png" /></p>
-<h2 id="37-modifying-the-contents-of-a-table">3.7. <span style="color: #4f81bd"><strong>Modifying the contents of a table</strong></span></h2>
+<h2 id="37-modifying-the-contents-of-a-table">3.7. <span style="color: #4f81bd">Modifying the contents of a table</span></h2>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>syntax
 </code></pre></div>
@@ -1273,7 +1273,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/10000000000000670000008957F3498F.png" style="width:2.178cm;height:2.896cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000670000008957F3498F.png" /></p>
-<h2 id="38-permanently-updating-a-table">3.8. <span style="color: #4f81bd"><strong>Permanently updating a table</strong></span></h2>
+<h2 id="38-permanently-updating-a-table">3.8. <span style="color: #4f81bd">Permanently updating a table</span></h2>
 <p>When changes are made to a table, Firebird actually applies them to a copy of the table. These changes can then be made permanent or rolled back using the <strong>COMMIT</strong> and <strong>ROLLBACK</strong> commands.</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a>Syntax
@@ -1337,7 +1337,7 @@
 </code></pre></div>
 <p><img src="images/100000000000003C0000008B47503EC8.png" style="width:1.268cm;height:2.939cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000003C0000008B47503EC8.png" /></p>
 <p>We have restored the original prices.</p>
-<h2 id="39-adding-rows-from-one-table-to-another">3.9. <span style="color: #4f81bd"><strong>Adding rows from one table to another</strong></span></h2>
+<h2 id="39-adding-rows-from-one-table-to-another">3.9. <span style="color: #4f81bd">Adding rows from one table to another</span></h2>
 <p>It is possible to add rows from one table to another when their structures are compatible. To demonstrate this, let’s start by creating a table [BIBLIO2] with the same structure as [BIBLIO].</p>
 <p>In the IBExpert database explorer, double-click the [BIBLIO] table to access the [DDL] tab:</p>
 <p><img src="images/1000000000000314000001241011E3D9.png" style="width:14.589cm;height:5.406cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000314000001241011E3D9.png" /></p>
@@ -1409,7 +1409,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-114-1" name="__codelineno-114-1" href="#__codelineno-114-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO2</span>
 </code></pre></div>
 <p><img src="images/10000000000001D1000000550A786F95.png" style="width:9.839cm;height:1.799cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D1000000550A786F95.png" /></p>
-<h2 id="310-deleting-a-table">3.10. <span style="color: #4f81bd"><strong>Deleting a table</strong></span></h2>
+<h2 id="310-deleting-a-table">3.10. <span style="color: #4f81bd">Deleting a table</span></h2>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-115-1" name="__codelineno-115-1" href="#__codelineno-115-1"></a>syntax
 </code></pre></div>
@@ -1428,7 +1428,7 @@
 <p><img src="images/100000000000015A000000B9F7D9352A.png" style="width:7.318cm;height:3.912cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015A000000B9F7D9352A.png" /></p>
 <p>We see that the [BIBLIO2] table has been deleted:</p>
 <p><img src="images/10000000000001030000005133B61751.png" style="width:5.479cm;height:1.715cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001030000005133B61751.png" /></p>
-<h2 id="311-modifying-a-tables-structure">3.11. <span style="color: #4f81bd"><strong>Modifying a table&#x27;s structure</strong></span></h2>
+<h2 id="311-modifying-a-tables-structure">3.11. <span style="color: #4f81bd">Modifying a table&#x27;s structure</span></h2>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-119-1" name="__codelineno-119-1" href="#__codelineno-119-1"></a>Syntax
 </code></pre></div>
@@ -1456,7 +1456,7 @@
 <p>Let&#x27;s check the new structure of the [BIBLIO] table:</p>
 <p><img src="images/10000000000001660000009FF1750C5B.png" style="width:7.578cm;height:3.366cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001660000009FF1750C5B.png" /></p>
 <p>The [NB_PAGES] column has indeed disappeared.</p>
-<h2 id="312-views">3.12. <span style="color: #4f81bd"><strong>Views</strong></span></h2>
+<h2 id="312-views">3.12. <span style="color: #4f81bd">Views</span></h2>
 <p>It is possible to have a partial view of a table or multiple tables. A view behaves like a table but does not contain data. Its data is extracted from other tables or views. A view has several advantages:</p>
 <ol>
   <li>A user may be interested only in certain columns and rows of a given table. The view allows them to see only those rows and columns.
@@ -1513,7 +1513,7 @@
 </code></pre></div>
 <p><img src="images/10000000000000B900000068B5D0F04D.png" style="width:3.918cm;height:2.203cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B900000068B5D0F04D.png" /></p>
 <p>The added book is not in the [ROMANS] view because it did not have upper(genre)=&#x27;ROMAN&#x27;.</p>
-<h3 id="3122-updating-a-view">3.12.2. <span style="color: #4f81bd"><strong>Updating a view</strong></span></h3>
+<h3 id="3122-updating-a-view">3.12.2. <span style="color: #4f81bd">Updating a view</span></h3>
 <p>You can update a view just as you would a table. All tables from which the view’s data is extracted are affected by this update. Here are a few examples:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-137-1" name="__codelineno-137-1" href="#__codelineno-137-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">author</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">purchase_date</span><span class="p">,</span><span class="n">price</span><span class="p">,</span><span class="n">available</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="s1">&#39;The Red and the Black&#39;</span><span class="p">,</span><span class="s1">&#39;Stendhal&#39;</span><span class="p">,</span><span class="s1">&#39;Novel&#39;</span><span class="p">,</span><span class="s1">&#39;Oct 3, 1992&#39;</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
 </code></pre></div>
@@ -1544,7 +1544,7 @@
 </code></pre></div>
 <p><img src="images/10000000000000E5000000AC516AA2EA.png" style="width:4.849cm;height:3.642cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E5000000AC516AA2EA.png" /></p>
 <p>The prices of the novels have indeed been increased by 5% in [BIBLIO] as well.</p>
-<h3 id="3123-deleting-a-view">3.12.3. <span style="color: #4f81bd"><strong>Deleting a view</strong></span></h3>
+<h3 id="3123-deleting-a-view">3.12.3. <span style="color: #4f81bd">Deleting a view</span></h3>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-146-1" name="__codelineno-146-1" href="#__codelineno-146-1"></a>syntax
 </code></pre></div>
