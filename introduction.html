@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="stylesheets/focus.css">
     
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -394,14 +396,14 @@
   
   
     <li class="md-nav__item">
-      <a href="sql-expressions.html" class="md-nav__link">
+      <a href="expressions-in-the-sql-language.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    4. SQL expressions
+    4. Expressions in the SQL language
   
 
     
@@ -448,14 +450,14 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced-sql.html" class="md-nav__link">
+      <a href="in-depth-look-at-the-sql-language.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    6. Advanced SQL
+    6. In-Depth Look at the SQL Language
   
 
     
@@ -502,14 +504,14 @@
   
   
     <li class="md-nav__item">
-      <a href="installing-and-using-an-odbc-driver-for-firebird.html" class="md-nav__link">
+      <a href="install-and-use-a-odbc-driver-for-firebird.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    8. Installing and using an ODBC driver for [Firebird]
+    8. Install and use a ODBC driver for [Firebird]
   
 
     
@@ -540,11 +542,11 @@
 
 
 <h1 id="1-introduction">1. <span style="color: #365f91">Introduction</span></h1>
-<p>The PDF of this document is available |<a href="https://1drv.ms/b/c/f53a919f43d27eb5/IQAQd9dyubfGSax6dveogtQLAWZc2K5AveSvbyrXRDUG09U?e=xFrXiw">HERE</a>|.</p>
-<p>This document is based on a similar document written in 1991 for Oracle and adapts it for the Firebird DBMS. In 1991, the core content of the document was drawn from Oracle’s official documentation and, for certain points, from an excellent book of the time written by Christian MAREE and Guy LEDANT: *SQL: Introduction, Programming, and Mastery*, published by EYROLLES. To my knowledge, this book is no longer in print. The authors have written a new book that I have not had the opportunity to read: SQL 2: Introduction / Programming.</p>
-<p>SQL (<em>Structured Query Language</em>) is a standard language for creating, maintaining, and querying relational databases. It is largely independent of the DBMS used. While the examples in this document were written using the Firebird DBMS, most of them can be reproduced with any relational DBMS. Under Windows, there are various DBMSs available: open-source products such as MySQL, Postgres, Firebird, and SQL Server 2005, as well as commercial products: Access, SQL Server, and Oracle. These DBMSs all support the SQL language, though sometimes with proprietary variations—often extensions to the standard SQL language.</p>
-<p>The Firebird DBMS was chosen because it has the feature of encapsulating a database into a single file. This makes it convenient for students to save this file on a USB drive so they can use it on their personal computers or those at their school or university.</p>
-<p>This document is intended for beginners or those wishing to refresh their knowledge of SQL. It does not claim to cover SQL in its entirety. Programming concepts (stored procedures, SQL programming, SQL API), for example, are not covered, nor are those related to DBMS administration.</p>
+<p>The PDF for this document is available |<a href="https://1drv.ms/b/c/f53a919f43d27eb5/IQAQd9dyubfGSax6dveogtQLAWZc2K5AveSvbyrXRDUG09U?e=MHoi1N">HERE</a>|.</p>
+<p>This document is based on a similar document written in 1991 for Oracle and adapts it to SGBD Firebird. In 1991, the core of the document was drawn from the official ORACLE documentation and, for certain points, from an excellent book of the time written by Christian MAREE and Guy LEDANT: SQL Introduction, Programming, and Mastery, published by EYROLLES. To my knowledge, this book is no longer in print. The authors have written a new book that I have not had the opportunity to read: SQL 2 Introduction / Programming.</p>
+<p>SQL (<em>Structured Query Language</em>) is a standard language for creating, maintaining, and querying relational databases. It is largely independent of the specific database system used. While the examples in this document were written using the Firebird database system, most of them can be reproduced with any relational database system. On Windows, various SGBD are available: open-source products such as MySQL, Postgres, Firebird, and SQL Express 2005, as well as commercial products: Access, SQL Server, and Oracle. These databases all support the SQL language, though sometimes with proprietary variations, often extensions to the standard SQL language.</p>
+<p>Firebird was chosen because it has the feature of encapsulating a database into a single file. This makes it convenient for students to place this file on a USB drive so they can use it on their personal computers or those at their school or university.</p>
+<p>This document is intended for beginners or those wishing to refresh their knowledge of SQL. It does not claim to cover SQL in its entirety. For example, programming concepts (stored procedures, SQL programming, API, SQL) are not covered, nor are those related to the administration of a SGBD.</p>
 <p>Serge Tahé, January 2006</p>
 
 

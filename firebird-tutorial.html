@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="stylesheets/focus.css">
     
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -390,10 +392,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#21-where-to-find-firebird" class="md-nav__link">
+  <a href="#21-where-can-i-find-firebird" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1. Where to find Firebird?
+        2.1. Where can I find Firebird?
       
     </span>
   </a>
@@ -412,10 +414,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#23-working-with-the-firebird-dbms-using-ib-expert" class="md-nav__link">
+  <a href="#23-working-with-sgbd-firebird-using-ib-expert" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3. Working with the Firebird DBMS using IB- Expert
+        2.3. Working with SGBD Firebird using IB- Expert
       
     </span>
   </a>
@@ -426,7 +428,7 @@
   <a href="#24-creating-a-data-table" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.4. Creating a Data Table
+        2.4. Creating a data table
       
     </span>
   </a>
@@ -445,10 +447,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#26-the-ib-expert-sql-editor" class="md-nav__link">
+  <a href="#26-the-sql-editor-for-ib-expert" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.6. The [IB-Expert] SQL Editor
+        2.6. The SQL editor for [IB-Expert]
       
     </span>
   </a>
@@ -497,14 +499,14 @@
   
   
     <li class="md-nav__item">
-      <a href="sql-expressions.html" class="md-nav__link">
+      <a href="expressions-in-the-sql-language.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    4. SQL expressions
+    4. Expressions in the SQL language
   
 
     
@@ -551,14 +553,14 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced-sql.html" class="md-nav__link">
+      <a href="in-depth-look-at-the-sql-language.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    6. Advanced SQL
+    6. In-Depth Look at the SQL Language
   
 
     
@@ -605,14 +607,14 @@
   
   
     <li class="md-nav__item">
-      <a href="installing-and-using-an-odbc-driver-for-firebird.html" class="md-nav__link">
+      <a href="install-and-use-a-odbc-driver-for-firebird.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    8. Installing and using an ODBC driver for [Firebird]
+    8. Install and use a ODBC driver for [Firebird]
   
 
     
@@ -643,132 +645,132 @@
 
 
 <h1 id="2-firebird-tutorial">2. <span style="color: #365f91">Firebird Tutorial</span></h1>
-<p>Before covering the basics of the SQL language, we will show the reader how to install the Firebird DBMS as well as the IB-Expert graphical client.</p>
-<h2 id="21-where-to-find-firebird">2.1. <span style="color: #4f81bd">Where to find Firebird?</span></h2>
-<p>The main Firebird<a id="firebird"></a> website is [<a href="http://firebird.sourceforge.net/"><u><span style="color: #0563c1">http://firebird.sourceforge.net/</span></u></a>]. The downloads page offers the following links (April 2005):</p>
+<p>Before covering the basics of the SQL language, we will show the reader how to install Firebird SGBD as well as the IB-Expert graphical client.</p>
+<h2 id="21-where-can-i-find-firebird">2.1. <span style="color: #4f81bd"><strong>Where can I find Firebird?</strong></span></h2>
+<p>The main Firebird website is<span id="firebird" name="firebird" class="odt-bookmark-anchor"></span> . The downloads page offers the following links (April 2005):</p>
 <p><img src="images/100000000000029C000001F5CFB40258.png" width="467" height="350" style="width:12.363cm;height:9.273cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029C000001F5CFB40258.png" /></p>
-<p>You will download the following items:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>You will need to download the following files:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>firebird-win32
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">the DBMS for Windows</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">SGBD for Windows</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>firebird-net-provider
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">a class library for .NET applications that allows access to the DBMS without using an ODBC driver.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">a class library for .NET applications that allows access to Firebird without using a driver.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>firebird-ODBC-driver
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">the Firebird ODBC driver</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">the Firebird ODBC driver</div></td></tr></table>
 
-<p>Install these components. The DBMS is installed in a folder with contents similar to the following:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000016C000000F954F34DD9.png" width="291" height="199" style="display:inline-block; margin:4px;width:7.694cm;height:5.263cm;" class="odt-zoomable" data-zoom-src="images/100000000000016C000000F954F34DD9.png" /></td></tr></table>
+<p>Install these components. SGBD is installed in a folder with contents similar to the following:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000016C000000F954F34DD9.png" width="291" height="199" style="display:inline-block; margin:4px;width:7.694cm;height:5.263cm;" class="odt-zoomable" data-zoom-src="images/100000000000016C000000F954F34DD9.png" /></td></tr></table>
 
 <p>The binaries are in the [bin] folder:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000980000018EB6B815A2.png" width="106" height="279" style="display:inline-block; margin:4px;width:2.817cm;height:7.377cm;" class="odt-zoomable" data-zoom-src="images/10000000000000980000018EB6B815A2.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000980000018EB6B815A2.png" width="106" height="279" style="display:inline-block; margin:4px;width:2.817cm;height:7.377cm;" class="odt-zoomable" data-zoom-src="images/10000000000000980000018EB6B815A2.png" /></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>fbguard.exe
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">allows you to start/stop the DBMS</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">allows you to start/stop the SGBD</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>isql.exe
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">command-line client for managing databases</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">command-line client for managing databases</div></td></tr></table>
 
-<p>Note that by default, the DBMS administrator is named [SYSDBA] and the password is [masterkey]. Menus have been added to [Start]:</p>
+<p>Note that by default, the administrator of SGBD is named [SYSDBA] and the password is [masterkey]. Menus have been installed in [Démarrer]:</p>
 <p><img src="images/10000000000000B50000005C44F7E193.png" width="181" height="92" style="width:4.782cm;height:2.431cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B50000005C44F7E193.png" /></p>
-<p>The [Firebird Guardian] option allows you to start/stop the DBMS. After startup, the DBMS icon remains in the Windows taskbar:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000340000002BBE55685B.png" width="52" height="43" style="display:inline-block; margin:4px;width:1.374cm;height:1.136cm;" class="odt-zoomable" data-zoom-src="images/10000000000000340000002BBE55685B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000B1000000517CF578E2.png" width="177" height="81" style="display:inline-block; margin:4px;width:4.676cm;height:2.14cm;" class="odt-zoomable" data-zoom-src="images/10000000000000B1000000517CF578E2.png" /></td></tr></table>
+<p>The option [Firebird Guardian] allows you to start/stop the SGBD. After startup, the SGBD icon remains in the Windows taskbar:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000340000002BBE55685B.png" width="52" height="43" style="display:inline-block; margin:4px;width:1.374cm;height:1.136cm;" class="odt-zoomable" data-zoom-src="images/10000000000000340000002BBE55685B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000B1000000517CF578E2.png" width="177" height="81" style="display:inline-block; margin:4px;width:4.676cm;height:2.14cm;" class="odt-zoomable" data-zoom-src="images/10000000000000B1000000517CF578E2.png" /></td></tr></table>
 
-<p>To create and manage Firebird databases using the command-line client [isql.exe], you must read the documentation included with the product in the [doc] folder.</p>
-<p><a id="ibexpert1"></a>
-<a id="docfirebird"></a></p>
+<p>To create and manage Firebird databases using the [isql.exe] command-line client, you must read the documentation included with the product in the [doc] folder.</p>
+<p><span id="ibexpert1" name="ibexpert1" class="odt-bookmark-anchor"></span>
+<span id="docfirebird" name="docfirebird" class="odt-bookmark-anchor"></span></p>
 <h2 id="22-firebird-documentation">2.2. <span style="color: #4f81bd"><strong>Firebird documentation</strong></span></h2>
 <p>Documentation on Firebird and the SQL language can be found on the Firebird website (January 2006):</p>
 <p><img src="images/100000000000024000000101E38316E1.png" width="461" height="206" style="width:12.188cm;height:5.438cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000024000000101E38316E1.png" /></p>
 <p>Various manuals are available in English:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Firebird 1.5 Quick Start Guide
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">to get started with FB</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">to get started with FB</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Firebird 1.5 Error Codes
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">to understand the error codes returned by FB</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">To understand the error codes returned by FB</div></td></tr></table>
 
-<p>SQL training manuals are also available:</p>
+<p>Training manuals for the SQL language are also available:</p>
 <p><img src="images/10000000000002B800000109096DAA6C.png" width="487" height="185" style="width:12.889cm;height:4.907cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002B800000109096DAA6C.png" /></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Data Definition Guide
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">to learn how to create tables, what data types are available, ...</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">to learn how to create tables, which data types are supported, ...</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Language Reference
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">the reference guide for learning SQL with Firebird</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">the reference guide for learning SQL with Firebird</div></td></tr></table>
 
-<p>A quick way to work with Firebird and learn SQL is to use a graphical client. One such client is IB-Expert, described in the following section.</p>
-<p><a id="ibexpert"></a></p>
-<h2 id="23-working-with-the-firebird-dbms-using-ib-expert">2.3. <span style="color: #4f81bd"><strong>Working with the Firebird DBMS using IB-</strong> <strong>Expert</strong></span></h2>
-<p>The main IB-Expert website is [<a href="http://www.ibexpert.com/"><u><span style="color: #0563c1">http://www.ibexpert.com/</span></u></a>]. The downloads page offers the following links:</p>
+<p>A quick way to work with Firebird and learn the SQL language is to use a graphical client. One such client is IB-Expert, described in the following section.</p>
+<p><span id="ibexpert" name="ibexpert" class="odt-bookmark-anchor"></span></p>
+<h2 id="23-working-with-sgbd-firebird-using-ib-expert">2.3. <span style="color: #4f81bd"><strong>Working with SGBD Firebird using IB-</strong> <strong>Expert</strong></span></h2>
+<p>The main IB-Expert website is [http://www.ibexpert.com/]. The downloads page offers the following links:</p>
 <p><img src="images/10000000000001D0000001AC51C2A46D.png" width="324" height="299" style="width:8.585cm;height:7.92cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D0000001AC51C2A46D.png" /></p>
-<p>Select the free version [Personal Edition]. Once downloaded and installed, you will have a folder similar to the following:</p>
+<p>Select the free version version. Once downloaded and installed, you will have a folder similar to the following:</p>
 <p><img src="images/100000000000017200000145CD603301.png" width="259" height="227" style="width:6.84cm;height:6.008cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017200000145CD603301.png" /></p>
-<p>The executable file is [ibexpert.exe]. A shortcut is normally available in the [Start] menu:</p>
+<p>The executable is [ibexpert.exe]. A shortcut is normally available in the [Démarrer] menu:</p>
 <p><img src="images/10000000000001B200000058D089D858.png" width="304" height="62" style="width:8.038cm;height:1.63cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001B200000058D089D858.png" /></p>
 <p>Once launched, IBExpert displays the following window:</p>
 <p><img src="images/100000000000011C000000C2791DD7B5.png" width="199" height="136" style="width:5.253cm;height:3.588cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011C000000C2791DD7B5.png" /></p>
-<p>Use the [<a id="createdatabase"></a> Database/Create Database] option to create a database:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>Let’s use option [Database/Create Database]<span id="createdatabase" name="createdatabase" class="odt-bookmark-anchor"></span> to create a database:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Server
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">can be [local] or [remote]. Here, our server is on the same machine as [IBExpert]. We therefore select [local]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">can be [local] or [remote]. Here, our server is on the same machine as [IBExpert]. We therefore choose [local]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Database
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Use the [folder] button in the dropdown to select the database file. Firebird stores the entire database in a single file. This is one of its advantages. You can transfer the database from one computer to another by simply copying the file. The [.gdb] suffix is added automatically.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Use the [dossier]-style button in the dropdown to select the database file. Firebird stores the entire database in a single file. This is one of its key advantages. You can transfer the database from one machine to another simply by copying the file. The suffix [.gdb] is added automatically.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Username
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SYSDBA </b>is the default administrator for current Firebird distributions</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SYSDBA </b>is the default administrator for current Firebird distributions</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Password
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>masterkey </b>is the password for the SYSDBA administrator in current Firebird distributions</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>masterkey </b>is the password for the administrator SYSDBA in current Firebird distributions</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Dialect
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">The SQL dialect to use</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">the SQL dialect to use</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Register Database
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">If this box is checked, IBExpert will display a link to the database after it has been created</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">if this box is checked, IBExpert will display a link to the database after it has been created</div></td></tr></table>
 
-<p>If, when clicking the [OK] button to create the database, you see the following warning:</p>
+<p>If, when clicking the [OK] creation button, you receive the following warning:</p>
 <p><img src="images/100000000000016100000081ABF4648E.png" width="247" height="90" style="width:6.537cm;height:2.388cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000016100000081ABF4648E.png" /></p>
-<p>it means you haven&#x27;t started Firebird. Start it. A new window will appear:</p>
+<p>it means you haven’t started Firebird. Start it. A new window will appear:</p>
 <p><img src="images/10000000000002BF00000122360041C0.png" width="492" height="203" style="width:13.014cm;height:5.369cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BF00000122360041C0.png" /></p>
-<p><a id="dbarticles"></a></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p><span id="dbarticles" name="dbarticles" class="odt-bookmark-anchor"></span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Charset
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Character set to use. Although the screenshot above does not show any information, it is recommended to select the [ISO-8859-1] set from the drop-down list, which allows the use of accented Latin characters.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Character set to use. Although the screenshot above does not show any information, it is recommended to select the [ISO-8859-1] character set from the drop-down list, which allows the use of accented Latin characters.</div></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Server version
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[IBExpert] can handle various DBMSs derived from Interbase. Select the version of Firebird you have installed:</div><img src="images/10000000000001E300000044A1D6FA65.png" width="338" height="48" style="display:inline-block; margin:4px;width:8.934cm;height:1.258cm;" class="odt-zoomable" data-zoom-src="images/10000000000001E300000044A1D6FA65.png" /></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">[IBExpert] is capable of handling various SGBD versions derived from Interbase. Select the version version of Firebird that you have installed:</div><img src="images/10000000000001E300000044A1D6FA65.png" width="338" height="48" style="display:inline-block; margin:4px;width:8.934cm;height:1.258cm;" class="odt-zoomable" data-zoom-src="images/10000000000001E300000044A1D6FA65.png" /></td></tr></table>
 
-<p>Once this new window is confirmed by clicking [Register], you will see the following result:</p>
+<p>Once this new window is validated by [Register], you get the following result:</p>
 <p><img src="images/100000000000013A000000D07E511B2E.png" width="251" height="166" style="width:6.634cm;height:4.394cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013A000000D07E511B2E.png" /></p>
-<p>To access the database you created, simply double-click its link. IBExpert will then display a tree view providing access to the database properties:</p>
+<p>To access the created database, simply double-click on its link. IBExpert then displays a tree structure providing access to the database properties:</p>
 <p><img src="images/100000000000013B000000FBEC216B48.png" width="220" height="175" style="width:5.824cm;height:4.641cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013B000000FBEC216B48.png" /></p>
-<h2 id="24-creating-a-data-table">2.4. <span style="color: #4f81bd">Creating a Data Table</span></h2>
-<p>Let’s create a table. Right-click on [Tables] (see window above) and select the [New Table] option. This opens the window for defining the table’s properties:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000025C0000011864B71078.png" width="302" height="140" style="display:inline-block; margin:4px;width:7.99cm;height:3.704cm;" class="odt-zoomable" data-zoom-src="images/100000000000025C0000011864B71078.png" /></td></tr></table>
+<h2 id="24-creating-a-data-table">2.4. <span style="color: #4f81bd">Creating a data table</span></h2>
+<p>Let’s create a table. Right-click on [Tables] (see window above) and select option [New Table]. This opens the table properties definition window:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000025C0000011864B71078.png" width="302" height="140" style="display:inline-block; margin:4px;width:7.99cm;height:3.704cm;" class="odt-zoomable" data-zoom-src="images/100000000000025C0000011864B71078.png" /></td></tr></table>
 
-<p>Let’s start by naming the table [ARTICLES] using the input field [1]:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000257000001547586EAE1.png" width="300" height="170" style="display:inline-block; margin:4px;width:7.925cm;height:4.498cm;" class="odt-zoomable" data-zoom-src="images/1000000000000257000001547586EAE1.png" /></td></tr></table>
+<p>Let’s start by naming the table [ARTICLES] using the [1] input field:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000257000001547586EAE1.png" width="300" height="170" style="display:inline-block; margin:4px;width:7.925cm;height:4.498cm;" class="odt-zoomable" data-zoom-src="images/1000000000000257000001547586EAE1.png" /></td></tr></table>
 
-<p>Use the input field [2] to define a primary key [ID]:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001DC000000E2D6A28434.png" width="238" height="113" style="display:inline-block; margin:4px;width:6.297cm;height:2.99cm;" class="odt-zoomable" data-zoom-src="images/10000000000001DC000000E2D6A28434.png" /></td></tr></table>
+<p>Use the [2] input field to define a primary key [ID]:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001DC000000E2D6A28434.png" width="238" height="113" style="display:inline-block; margin:4px;width:6.297cm;height:2.99cm;" class="odt-zoomable" data-zoom-src="images/10000000000001DC000000E2D6A28434.png" /></td></tr></table>
 
 <p>A field is made a primary key by double-clicking the [PK] (Primary Key) field. Let’s add fields using the button above [3]:</p>
 <p><img src="images/1000000000000235000000E89CC75685.png" width="452" height="185" style="width:11.952cm;height:4.907cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000235000000E89CC75685.png" /></p>
 <p>Until we have &quot;compiled&quot; our definition, the table is not created. Use the [Compile] button above to finalize the table definition. IBExpert prepares the SQL queries to generate the table and asks for confirmation:</p>
 <p><img src="images/10000000000001F000000156BF4EB358.png" width="397" height="273" style="width:10.493cm;height:7.235cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F000000156BF4EB358.png" /></p>
-<p>Interestingly, IBExpert displays the SQL queries it has executed. This allows you to learn both the SQL language and any proprietary SQL dialect that may be used. The [Commit] button validates the current transaction, while [Rollback] cancels it. Here, we accept it by clicking [Commit]. Once this is done, IBExpert adds the created table to our database tree:</p>
+<p>Interestingly, IBExpert displays the SQL queries it has executed. This allows you to learn both the SQL language and the potentially proprietary SQL dialect used. The [Commit] button validates the current transaction, while [Rollback] cancels it. Here, we accept it using [Commit]. Once this is done, IBExpert adds the created table to our database tree:</p>
 <p><img src="images/100000000000013C0000010895A3EEDA.png" width="221" height="185" style="width:5.851cm;height:4.888cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013C0000010895A3EEDA.png" /></p>
 <p>By double-clicking on the table, we can access its properties:</p>
 <p><img src="images/100000000000024E000000C80B48A012.png" width="413" height="140" style="width:10.929cm;height:3.704cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000024E000000C80B48A012.png" /></p>
@@ -782,22 +784,22 @@
 </ul>
 <p>Let’s specify that:</p>
 <ul>
-<li>the fields [ID, PRICE, CURRENTSTOCK, MINIMUMSTOCK] must be &gt;0</li>
-<li>the [NAME] field must be non-empty and unique</li>
+<li>the fields [ID, PRIX, STOCKACTUEL, STOKMINIMUM] must be &gt;0</li>
+<li>the field [NOM] must be non-empty and unique</li>
 </ul>
-<p>Open the [Checks] panel and right-click in the constraint definition area to add a new constraint:</p>
+<p>Open the [Checks] panel and right-click in its constraint definition area to add a new constraint:</p>
 <p><img src="images/1000000000000160000000A5AD45096D.png" width="246" height="115" style="width:6.514cm;height:3.053cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000160000000A5AD45096D.png" /></p>
 <p>Let’s define the desired constraints:</p>
 <p><img src="images/10000000000000F6000000CC296F6CC5.png" width="197" height="163" style="width:5.207cm;height:4.318cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F6000000CC296F6CC5.png" /></p>
-<p>Note above that the constraint [NAME&lt;&gt;&#x27;&#x27;] uses two single quotes, not double quotes. Compile these constraints using the [Compile] button above:</p>
+<p>Note above that the [NOM&lt;&gt;&#x27;&#x27;] constraint uses two apostrophes, not quotation marks. Compile these constraints using the [Compile] button above:</p>
 <p><img src="images/10000000000001EB000000E85058E006.png" width="343" height="162" style="width:9.084cm;height:4.292cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EB000000E85058E006.png" /></p>
-<p>Once again, IBExpert demonstrates its user-friendliness by displaying the SQL queries it has executed. Let’s now move to the [Constraints/Unique] panel to specify that the name must be unique. This means that the same name cannot appear twice in the table.</p>
+<p>Once again, IBExpert demonstrates its educational value by listing the SQL queries it has executed. Let’s now move on to the [Constraints/Uniques] panel to specify that the name must be unique. This means that the same name cannot appear twice in the table.</p>
 <p><img src="images/10000000000001C3000000B94989C09B.png" width="315" height="129" style="width:8.341cm;height:3.42cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C3000000B94989C09B.png" /></p>
 <p>Let’s define the constraint:</p>
 <p><img src="images/100000000000018B0000008A85D0443A.png" width="276" height="96" style="width:7.306cm;height:2.552cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018B0000008A85D0443A.png" /></p>
-<p>Then let’s compile it. Once that’s done, open the [DDL] (Data Definition Language) panel for the [ARTICLES] table: </p>
+<p>Then let’s compile it. Once that’s done, open the [DDL] panel (Data Definition Language) for the [ARTICLES] table: </p>
 <p><img src="images/1000000000000235000000587021FF84.png" width="452" height="70" style="width:11.952cm;height:1.863cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000235000000587021FF84.png" /></p>
-<p>This panel displays the SQL code for generating the table with all its constraints. You can save this code in a script to run it later:</p>
+<p>This panel displays the table generation code SQL, including all its constraints. You can save this code in a script to run it later:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SET</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="n">DIALECT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">SET</span><span class="w"> </span><span class="k">NAMES</span><span class="w"> </span><span class="k">NONE</span><span class="p">;</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ARTICLES</span><span class="w"> </span><span class="p">(</span>
@@ -818,12 +820,12 @@
 <h2 id="25-inserting-data-into-a-table">2.5. <span style="color: #4f81bd">Inserting data into a table</span></h2>
 <p>It is now time to enter data into the [ARTICLES] table. To do this, use its [Data] panel:</p>
 <p><img src="images/10000000000001CC0000009C5D747458.png" width="318" height="108" style="width:8.401cm;height:2.849cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CC0000009C5D747458.png" /></p>
-<p>Data is entered by double-clicking on the input fields of each row in the table. A new row is added using the [+] button, and a row is deleted using the [-] button. These operations are performed within a transaction that is committed using the [Commit Transaction] button (see above). Without this commit, the data will be lost.</p>
-<p><a id="editeursql"></a></p>
-<h2 id="26-the-ib-expert-sql-editor">2.6. <span style="color: #4f81bd">The [IB-Expert] SQL Editor</span></h2>
-<p>The SQL (Structured Query Language) allows a user to:</p>
+<p>Data is entered by double-clicking the input fields in each row of the table. A new row is added using the [+] button, and a row is deleted using the [-] button. These operations are performed within a transaction that is committed using the [Commit Transaction] button (see above). Without this commit, the data will be lost.</p>
+<p><span id="editeursql" name="editeursql" class="odt-bookmark-anchor"></span></p>
+<h2 id="26-the-sql-editor-for-ib-expert">2.6. <span style="color: #4f81bd">The SQL editor for [IB-Expert]</span></h2>
+<p>The SQL language (Structured Query Language) allows a user to:</p>
 <ol>
-<li>create tables by specifying the data type they will store and the constraints that the data must satisfy</li>
+<li>create tables by specifying the type of data they will store and the constraints that this data must satisfy</li>
 </ol>
 <ol start="2">
   <li>insert data into them
@@ -832,21 +834,21 @@
   </li>
   <li>delete other data
   </li>
-  <li>use the data to retrieve information
+  <li>use the content to retrieve information
   </li>
   <li>...
   </li>
 </ol>
 
-<p>IBExpert allows users to perform operations 1 through 4 graphically. We just saw that. When the database contains many tables, each with hundreds of rows, we need information that is difficult to obtain visually. Suppose, for example, that an online store has thousands of customers per month. All purchases are recorded in a database. After six months, it is discovered that product “X” is defective. The store wants to contact everyone who purchased it so they can return the product for a free exchange. How can the addresses of these buyers be found?</p>
+<p>IBExpert allows a user to perform operations 1 through 4 graphically. We have just seen this. When the database contains many tables, each with hundreds of rows, we need information that is difficult to obtain visually. Suppose, for example, that an online store has thousands of customers per month. All purchases are recorded in a database. After six months, it is discovered that product “X” is defective. The store wants to contact everyone who purchased it so they can return the product for a free exchange. How can the addresses of these buyers be found?</p>
 <ol>
-  <li>You could manually go through all the tables and search for these buyers. That would take a few hours.
+  <li>You could manually search through all the tables to find these buyers. That would take a few hours.
   </li>
-  <li>We can run an SQL query that will return a list of these people in a matter of seconds
+  <li>We can issue a query SQL that will return a list of these people in a matter of seconds
   </li>
 </ol>
 
-<p>SQL is useful whenever </p>
+<p>The SQL language is useful whenever </p>
 <ul>
   <li>the amount of data in the tables is large
   </li>
@@ -858,63 +860,63 @@
   </li>
 </ul>
 
-<p>We will now introduce IBExpert’s SQL Editor. It can be accessed via the [Tools/SQL Editor] option or by pressing [F12]:</p>
+<p>We now present the SQL editor from IBExpert. This editor is accessible via option, [Tools/SQL Editor], or [F12]:</p>
 <p><img src="images/10000000000001BD0000005547C3D716.png" width="356" height="68" style="width:9.414cm;height:1.797cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001BD0000005547C3D716.png" /></p>
-<p>This gives you access to an advanced SQL query editor where you can run queries. Let’s type a query:</p>
+<p>This gives you access to an advanced query editor (SQL) where you can experiment with queries. Let’s enter a query:</p>
 <p><img src="images/10000000000001A40000007268367E9D.png" width="313" height="85" style="width:8.274cm;height:2.245cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A40000007268367E9D.png" /></p>
-<p>Execute the SQL query using the [Execute] button above. You will get the following result:</p>
+<p>We execute the query SQL using the button above. We obtain the following result:</p>
 <p><img src="images/100000000000017300000062A2B8745F.png" width="296" height="78" style="width:7.844cm;height:2.073cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017300000062A2B8745F.png" /></p>
-<p>Above, the [Results] tab displays the result table for the [Select] SQL statement. To issue a new SQL command, simply return to the [Edit] tab. You will then see the SQL statement that was executed.</p>
+<p>Above, the [Results] tab displays the result table for the SQL [Select] command. To issue a new command SQL, simply return to the [Edit] tab. You will then see the SQL command that was executed.</p>
 <p><img src="images/100000000000018300000031CA59D8D9.png" width="309" height="39" style="width:8.184cm;height:1.035cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018300000031CA59D8D9.png" /></p>
 <p>Several buttons on the toolbar are useful:</p>
 <ul>
-  <li>The [New Query] button allows you to move on to a new SQL query:
+  <li>the [New Query] button allows you to move to a new query SQL:
   </li>
 </ul>
 
 <p><img src="images/100000000000029F0000005C9684C2EA.png" width="537" height="74" style="width:14.196cm;height:1.946cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029F0000005C9684C2EA.png" /></p>
 <p>This brings up a blank editing page:</p>
 <p><img src="images/10000000000001D2000000602D426AED.png" width="372" height="77" style="width:9.855cm;height:2.03cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D2000000602D426AED.png" /></p>
-<p>You can then type a new SQL statement:</p>
+<p>You can then type a new command SQL:</p>
 <p><img src="images/10000000000001FD00000062A7B296AF.png" width="407" height="78" style="width:10.767cm;height:2.073cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001FD00000062A7B296AF.png" /></p>
 <p>and execute it:</p>
 <p><img src="images/1000000000000155000000917F327163.png" width="273" height="116" style="width:7.216cm;height:3.067cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000155000000917F327163.png" /></p>
-<p>Let’s return to the [Edit] tab. The various SQL statements issued are stored by [IB-xpert]. The [Previous Query] button allows you to return to a previously issued SQL statement:</p>
+<p>Let’s return to the [Edit] tab. The various SQL orders issued are stored by [IB-xpert]. The [Previous Query] button allows you to return to a previously issued SQL order:</p>
 <p><img src="images/100000000000026D00000061DEA33AFC.png" width="496" height="78" style="width:13.134cm;height:2.051cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000026D00000061DEA33AFC.png" /></p>
-<p>You are then returned to the previous query:</p>
+<p>You are then returned to the previous request:</p>
 <p><img src="images/10000000000001E60000006B452EDD3F.png" width="389" height="86" style="width:10.289cm;height:2.265cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001E60000006B452EDD3F.png" /></p>
-<p>The [Next Query] button allows you to go to the next SQL statement:</p>
+<p>The [Next Query] button allows you to go to the next SQL order:</p>
 <p><img src="images/100000000000029F00000065D5ED7FF5.png" width="537" height="81" style="width:14.196cm;height:2.138cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029F00000065D5ED7FF5.png" /></p>
-<p>You will then see the next SQL statement in the list of stored SQL statements:</p>
+<p>You will then see the next order, SQL, in the list of saved orders SQL:</p>
 <p><img src="images/10000000000002A200000063CA8D040D.png" width="539" height="79" style="width:14.265cm;height:2.096cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002A200000063CA8D040D.png" /></p>
-<p>The [Delete Query] button allows you to delete an SQL statement from the list of stored statements:</p>
+<p>The [Delete Query] button allows you to delete an order SQL from the list of saved orders:</p>
 <p><img src="images/10000000000002CD000000680FEA2EB7.png" width="574" height="83" style="width:15.175cm;height:2.201cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002CD000000680FEA2EB7.png" /></p>
-<p>The [Clear Current Query] button clears the contents of the editor for the displayed SQL query:</p>
+<p>The [Clear Current Query] button clears the editor&#x27;s contents for the displayed SQL order:</p>
 <p><img src="images/100000000000029800000069D9E21A4C.png" width="531" height="84" style="width:14.046cm;height:2.221cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029800000069D9E21A4C.png" /></p>
 <p>The [Commit] button allows you to permanently save the changes made to the database:</p>
 <p><img src="images/1000000000000330000000641FC053DE.png" width="571" height="70" style="width:15.106cm;height:1.85cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000330000000641FC053DE.png" /></p>
-<p>The [RollBack] button allows you to undo the changes made to the database since the last [Commit]. If no [Commit] has been made since connecting to the database, then the changes made since that connection are undone.</p>
+<p>The [RollBack] button allows you to undo the changes made to the database since the last [Commit]. If no [Commit] has been performed since connecting to the database, then the changes made since that connection are undone.</p>
 <p><img src="images/10000000000002310000005FC55916CB.png" width="448" height="76" style="width:11.864cm;height:2.009cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002310000005FC55916CB.png" /></p>
 <p>Let’s look at an example. Let’s insert a new row into the table:</p>
 <p><img src="images/10000000000002E700000035322F0A87.png" width="630" height="45" style="width:16.669cm;height:1.189cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002E700000035322F0A87.png" /></p>
-<p>The SQL statement is executed but nothing is displayed. We don’t know if the insertion took place. To find out, let’s execute the following SQL statement [New Query]:</p>
+<p>The SQL command is executed, but nothing is displayed. We do not know if the insertion took place. To find out, let’s execute the SQL command following [New Query]:</p>
 <p><img src="images/100000000000015700000063216F4977.png" width="274" height="79" style="width:7.255cm;height:2.094cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015700000063216F4977.png" /></p>
 <p>We get the following result:</p>
 <p><img src="images/100000000000018D000000802CABE41B.png" width="317" height="102" style="width:8.396cm;height:2.708cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018D000000802CABE41B.png" /></p>
-<p>The row has indeed been inserted. Let’s examine the table’s contents in another way now. Double-click the [ARTICLES] table in the database explorer:</p>
+<p>The row has therefore been successfully inserted. Let’s now examine the table’s contents in another way. Double-click on the table [ARTICLES] in the database explorer:</p>
 <p><img src="images/100000000000013C0000010895A3EEDA.png" width="221" height="185" style="width:5.849cm;height:4.888cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013C0000010895A3EEDA.png" /></p>
 <p>We get the following table:</p>
 <p><img src="images/10000000000001FD000000A077F4A88B.png" width="407" height="128" style="width:10.767cm;height:3.385cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001FD000000A077F4A88B.png" /></p>
-<p>The button with the arrow above allows you to refresh the table. After refreshing, the table above does not change. It appears that the new row was not inserted. Let’s return to the SQL editor (F12) and then commit the SQL statement using the [Commit] button:</p>
+<p>The arrow button above allows you to refresh the table. After refreshing, the table above does not change. It appears that the new row has not been inserted. Let’s return to the SQL editor (F12) and then validate the SQL command issued with the [Commit] button:</p>
 <p><img src="images/10000000000002970000006671498947.png" width="530" height="82" style="width:14.025cm;height:2.157cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002970000006671498947.png" /></p>
-<p>Once this is done, let’s return to the [ARTICLES] table. We can see that nothing has changed, even when using the [Refresh] button:</p>
+<p>Once this is done, let’s return to the [ARTICLES] table. We can see that nothing has changed even when using the [Refresh] button:</p>
 <p><img src="images/10000000000001FD000000A077F4A88B.png" width="407" height="128" style="width:10.767cm;height:3.385cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001FD000000A077F4A88B.png" /></p>
-<p>Above, open the [Fields] tab, then return to the [Data] tab. This time, the inserted row appears correctly:</p>
+<p>Above, let’s open the [Fields] tab and then return to the [Data] tab. This time, the inserted row appears correctly:</p>
 <p><img src="images/10000000000001B9000000814572FAEE.png" width="352" height="103" style="width:9.324cm;height:2.727cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001B9000000814572FAEE.png" /></p>
-<p>When the execution of the various SQL statements begins, the editor opens what is called a <strong>transaction</strong> on the database. The changes made by these SQL statements in the SQL editor will only be visible as long as you remain in the same SQL editor (you can open multiple instances). It is as if the SQL editor were working not on the actual database but on its own copy. In reality, this is not exactly how it works, but this analogy can help us understand the concept of a transaction. All changes made to the copy during a transaction will only be visible in the actual database once they have been committed via a [Commit Transaction]. The current transaction is then terminated, and a new transaction begins.</p>
-<p>Changes made during a transaction can be undone by an operation called [Rollback]. Let’s try the following experiment. Let’s start a new transaction (simply [Commit] the current transaction) with the following SQL statement:</p>
+<p>When the execution of the various SQL commands begins, the editor opens what is called a <strong>transaction</strong> on the database. The changes made by these SQL commands from the SQL editor will only be visible as long as you remain in the same SQL editor (you can open multiple instances). It is as if the SQL editor were working not on the actual database but on its own copy. In reality, this is not exactly how it works, but this analogy can help us understand the concept of a transaction. All changes made to the copy during a transaction will only be visible in the actual database once they have been committed by a [Commit Transaction]. The current transaction is then completed, and a new transaction begins.</p>
+<p>Changes made during a transaction can be rolled back using a command called [Rollback]. Let’s try the following experiment. Start a new transaction (simply run [Commit] on the current transaction) with the following command SQL:</p>
 <p><img src="images/10000000000000D400000066029FD8BA.png" width="170" height="82" style="width:4.486cm;height:2.157cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D400000066029FD8BA.png" /></p>
-<p>Let’s execute this command, which deletes all rows from the [ARTICLES] table, and then execute [New Query] with the following new SQL command:</p>
+<p>Let’s execute this command, which deletes all rows from table [ARTICLES], and then execute [New Query], the new command SQL:</p>
 <p><img src="images/10000000000001540000004755A4DBBF.png" width="272" height="57" style="width:7.195cm;height:1.503cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001540000004755A4DBBF.png" /></p>
 <p>We get the following result:</p>
 <p><img src="images/10000000000002240000007C2F998A16.png" width="438" height="99" style="width:11.596cm;height:2.625cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002240000007C2F998A16.png" /></p>
@@ -922,15 +924,15 @@
 <p><img src="images/100000000000013C0000010895A3EEDA.png" width="221" height="185" style="width:5.851cm;height:4.888cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013C0000010895A3EEDA.png" /></p>
 <p>and view the [Data] tab:</p>
 <p><img src="images/10000000000001A3000000AEDB946E10.png" width="335" height="139" style="width:8.867cm;height:3.681cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A3000000AEDB946E10.png" /></p>
-<p>Even if we use the [Refresh] button or switch to the [Fields] tab and then back to the [Data] tab, the content above remains unchanged. This has been explained. We are in another transaction that is working on its own copy. Now let’s return to the SQL editor (F12) and use the [RollBack] button to undo the row deletions that were made:</p>
+<p>Even if you use the [Refresh] button or switch to the [Fields] tab and then back to the [Data] tab, the content above remains unchanged. This has been explained. We are in another transaction that is working on its own copy. Now let’s return to the SQL editor (F12) and use the [RollBack] button to undo the line deletions that were made:</p>
 <p><img src="images/10000000000002AF000000610C034AD3.png" width="549" height="78" style="width:14.534cm;height:2.051cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002AF000000610C034AD3.png" /></p>
 <p>We are asked for confirmation:</p>
 <p><img src="images/10000000000000C5000000886744B44B.png" width="138" height="95" style="width:3.646cm;height:2.517cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C5000000886744B44B.png" /></p>
-<p>Let’s confirm. The SQL editor confirms that the changes have been rolled back:</p>
+<p>Let’s confirm. The SQL editor confirms that the changes have been undone:</p>
 <p><img src="images/1000000000000151000000A5EBC33000.png" width="269" height="132" style="width:7.126cm;height:3.489cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000151000000A5EBC33000.png" /></p>
-<p>Let’s run the SQL query above again to verify. The rows that had been deleted are now back:</p>
+<p>Let’s rerun the SQL query above to verify. The rows that had been deleted are now back:</p>
 <p><img src="images/100000000000018C0000009F53376765.png" width="317" height="127" style="width:8.378cm;height:3.364cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018C0000009F53376765.png" /></p>
-<p>The [Rollback] operation has restored the copy that the SQL editor is working on to the state it was in at the beginning of the transaction.</p>
+<p>Operation [Rollback] has restored the copy on which editor SQL is working to the state it was in at the start of the transaction.</p>
 
 
 

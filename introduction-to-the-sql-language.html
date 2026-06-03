@@ -18,7 +18,7 @@
         <link rel="prev" href="firebird-tutorial.html">
       
       
-        <link rel="next" href="sql-expressions.html">
+        <link rel="next" href="expressions-in-the-sql-language.html">
       
       
         
@@ -56,6 +56,8 @@
     
     
       <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -453,7 +455,7 @@
   <a href="#34-filling-a-table" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.4. Filling a Table
+        3.4. Filling a table
       
     </span>
   </a>
@@ -533,10 +535,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#38-permanently-updating-a-table" class="md-nav__link">
+  <a href="#38-permanent-update-of-a-table" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.8. Permanently updating a table
+        3.8. Permanent update of a table
       
     </span>
   </a>
@@ -611,10 +613,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3123-deleting-a-view" class="md-nav__link">
+  <a href="#3123-delete-a-view" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.12.3. Deleting a view
+        3.12.3. Delete a view
       
     </span>
   </a>
@@ -630,7 +632,7 @@
   <a href="#313-using-group-functions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.13. Using group functions
+        3.13. Using Group Functions
       
     </span>
   </a>
@@ -638,10 +640,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#314-creating-an-sql-script-for-a-table" class="md-nav__link">
+  <a href="#314-create-the-sql-script-for-a-table" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.14. Creating an SQL script for a table
+        3.14. Create the SQL script for a table
       
     </span>
   </a>
@@ -663,14 +665,14 @@
   
   
     <li class="md-nav__item">
-      <a href="sql-expressions.html" class="md-nav__link">
+      <a href="expressions-in-the-sql-language.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    4. SQL expressions
+    4. Expressions in the SQL language
   
 
     
@@ -717,14 +719,14 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced-sql.html" class="md-nav__link">
+      <a href="in-depth-look-at-the-sql-language.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    6. Advanced SQL
+    6. In-Depth Look at the SQL Language
   
 
     
@@ -771,14 +773,14 @@
   
   
     <li class="md-nav__item">
-      <a href="installing-and-using-an-odbc-driver-for-firebird.html" class="md-nav__link">
+      <a href="install-and-use-a-odbc-driver-for-firebird.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    8. Installing and using an ODBC driver for [Firebird]
+    8. Install and use a ODBC driver for [Firebird]
   
 
     
@@ -809,67 +811,67 @@
 
 
 <h1 id="3-introduction-to-the-sql-language">3. <span style="color: #365f91">Introduction to the SQL Language</span></h1>
-<p>In this section of the chapter, we present the first SQL commands <strong>for</strong> <strong>creating</strong> and <strong>working with</strong> a single table. We generally provide a simplified version of these commands. Their full syntax is available in the Firebird reference guides (see Section<a href="#docfirebird"><u><span style="color: #0563c1"> 2.2</span></u></a>).</p>
+<p>In this section, we present the first SQL commands <strong>for</strong> <strong>creating</strong> and <strong>using</strong> a single table. We generally provide a simplified version of these commands. Their complete syntax is available in the Firebird reference guides (see Section<a href="firebird-tutorial.html#docfirebird"><u><span style="color: #0563c1"> 2.2</span></u></a>).</p>
 <p>A database is used by people with various skill sets:</p>
 <ul>
-  <li>the database <b>administrator </b>is generally someone proficient in SQL and databases. They are the ones who create the tables, as this operation is usually performed only once. Over time, they may need to modify the structure. A database is a collection of tables linked by relationships. The database administrator defines these relationships. They also grant permissions to the database’s various users. For example, they may specify that a particular user has the right to view the contents of a table but not to modify it.
+  <li>the database <b>administrator </b>is generally someone proficient in the SQL language and databases. They are the ones who create the tables, as this operation is usually performed only once. Over time, they may need to modify the structure. A database is a set of tables linked by relationships. The database administrator defines these relationships. They also grant permissions to the various database users. For example, they may specify that a particular user has the right to view the contents of a table but not to modify it.
   </li>
   <li>The database <b>user </b>is the person who brings the data to life. Depending on the permissions granted by the database administrator, they will add, modify, and delete data in the database’s various tables. They will also analyze the data to extract information useful for the smooth operation of the business, the administration, etc.
   </li>
 </ul>
 
-<p>In section<a href="#editeursql"><u><span style="color: #0563c1"> 2.6</span></u></a>, we introduced the SQL editor of the [IB-Expert] tool.  This is the tool we will be using. Let’s review a few points:</p>
+<p>In section<a href="firebird-tutorial.html#editeursql"><u><span style="color: #0563c1"> 2.6</span></u></a>, we introduced the SQL editor from the [IB-Expert] tool.  This is the tool we will be using. Let’s review a few points:</p>
 <ul>
-  <li>The SQL Editor can be accessed via the [Tools/SQL Editor] menu option or by pressing the [F12] key
+  <li>The SQL editor is accessed via the option menu item in the [Tools/SQL Editor] menu, or via the [F12] key
   </li>
 </ul>
 
 <p><img src="images/10000000000001BD0000005547C3D716.png" width="356" height="68" style="width:9.414cm;height:1.797cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001BD0000005547C3D716.png" /></p>
-<p>This opens an [SQL Editor] window where we can type an SQL command:</p>
+<p>This opens a [SQL Editor] window where we can enter a SQL command:</p>
 <p><img src="images/10000000000001720000006437FB8DFA.png" width="296" height="80" style="width:7.826cm;height:2.115cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001720000006437FB8DFA.png" /></p>
 <p>The screenshot above is often represented by the text below:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO</span>
 </code></pre></div>
 <h2 id="31-firebird-data-types">3.1. <span style="color: #4f81bd">Firebird Data Types</span></h2>
-<p>When creating a table, you must specify the data type that a table column can contain. Here, we present the most common Firebird data types. Note that these data types may vary from one DBMS to another.</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>When creating a table, we must specify the data type that a table column can contain. Here, we present the most common Firebird data types. Note that these data types may vary from one SGBD to another.</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SMALLINT
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">integer in the range [-32768, 32767]: 4</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">integer in the range [-32768, 32767]: 4</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>INTEGER
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">integer in the range [–2,147,483,648, 2,147,483,647]: -100</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">integer in the range [–2 147 483 648, 2 147 483 647]: -100</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>NUMERIC(n,m)
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>DECIMAL(n,m)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">real number with n digits, m of which are decimal</div><div style="margin:0 0 0.5em 0">NUMERIC(5,2): -100.23, +027.30</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">a real number with n digits, m of which are after the decimal point</div><div style="margin:0 0 0.5em 0">NUMERIC(5,2): -100.23, +027.30</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>FLOAT
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">real number approximated to 7 significant digits: 10.4</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">floating-point number approximated to 7 significant digits: 10.4</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>DOUBLE PRECISION
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">real number approximated to 15 significant digits: -100.89</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">real number approximated to 15 significant digits: -100.89</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>CHAR(N)
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>CHARACTER(N)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">A string of exactly N characters. If the stored string has fewer than N characters, it is padded with spaces.</div><div style="margin:0 0 0.5em 0">CHAR(10): &#x27;ANGERS    &#x27; (4 trailing spaces)</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">string of exactly N characters. If the stored string has fewer than N characters, it is padded with spaces.</div><div style="margin:0 0 0.5em 0">CHAR(10): &#x27;ANGERS    &#x27; (4 trailing spaces)</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>VARCHAR(N)
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>CHARACTER VARYING(N)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">string of up to N characters</div><div style="margin:0 0 0.5em 0">VARCHAR(10): &#x27;ANGERS&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">string of at most N characters</div><div style="margin:0 0 0.5em 0">VARCHAR(10): &#x27;ANGERS&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>DATE
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">a date: &#x27;2006-01-09&#x27; (YYYY-MM-DD format)</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">a date: &#x27;2006-01-09&#x27; (YYYY-MM-DD format)</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>TIME
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">a time: &#x27;16:43:00&#x27; (HH:MM:SS format)</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">a time: &#x27;16:43:00&#x27; (format HH:MM:SS)</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>TIMESTAMP
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">both date and time: &#x27;2006-01-09  16:43:00&#x27; (format  YYYY-MM-DD  HH:MM:SS)</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">both date and time: &#x27;2006-01-09  16:43:00&#x27; (format  YYYY-MM-DD  HH:MM:SS)</div></td></tr></table>
 
-<p>The <strong>CAST()</strong> function allows you to convert from one type to another when necessary. To convert a value V declared as type T1 to type T2, you write: CAST(V,T2). You can perform the following type conversions:</p>
+<p>The <strong>CAST()</strong> function allows you to convert between types when necessary. To convert a value V declared as type T1 to type T2, write: CAST(V,T2). The following type conversions are supported:</p>
 <ul>
-  <li><b>number </b>to <b>string</b>. This type conversion is implicit and does not require the use of the CAST function. Thus, the operation 1 + &#x27;3&#x27; does not require conversion of the character &#x27;3&#x27;. Its result is the number 4.
+  <li><b>number </b>to <b>string</b>. This type change is performed implicitly and does not require the use of the CAST function. Thus, the operation 1 + &#x27;3&#x27; does not require conversion of the character &#x27;3&#x27;. Its result is the number 4.
   </li>
   <li><b>DATE</b>, <b>TIME</b>, <b>TIMESTAMP </b>to <b>strings </b>and vice versa. Thus 
   </li>
@@ -877,101 +879,101 @@
   </li>
 </ul>
 
-<p>In a table, a row may have columns with no value. We say that the value of the column is the NULL constant. You can check for the presence of this value using the operators </p>
+<p>In a table, a row may have columns with no value. We say that the value of the column is the constant NULL. We can check for the presence of this value using the operators </p>
 <p><strong>IS NULL</strong>    /    <strong>IS NOT NULL</strong></p>
 <h2 id="32-creating-a-table">3.2. <span style="color: #4f81bd">Creating a table</span></h2>
-<p>To learn how to create a table, we’ll start by creating one in [Design] mode with IBExpert. To do this, we’ll follow the method described in section<a href="#createdatabase"><u><span style="color: #0563c1"> 2.3</span></u></a>. This will create the following table:</p>
+<p>To learn how to create a table, we’ll start by creating one in [Design] mode using IBExpert. To do this, we’ll follow the method described in section<a href="firebird-tutorial.html#createdatabase"><u><span style="color: #0563c1"> 2.3</span></u></a>. This creates the following table:</p>
 <p><img src="images/10000000000002450000008A601A62B7.png" width="465" height="110" style="width:12.3cm;height:2.923cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002450000008A601A62B7.png" /></p>
-<p>This table will be used to record the books purchased by a library. The meaning of the fields is as follows:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Name</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Type</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Constraint</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Meaning</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>This table will be used to record the books purchased by a library. The fields have the following meanings:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Name</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Type</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Constraint</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>Meaning</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ID
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>INTEGER
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Primary Key
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Book ID
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Identifiant du livre
 </code></pre></div>
-</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a> TITLE
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a> TITRE
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>VARCHAR(30)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>NOT NULL UNIQUE
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Book Title
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Titre du livre
 </code></pre></div>
-</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a> AUTHOR
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a> AUTEUR
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>VARCHAR(20)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>NOT NULL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Author
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Son auteur
 </code></pre></div>
-</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a> GENRE
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>VARCHAR(30)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>NOT NULL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>Genre (Novel, Poetry, Mystery, Comic Book, etc.)
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>Son genre (Roman, Poésie, Policier, BD, ..)
 </code></pre></div>
-</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a> PURCHASE
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a> ACHAT
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>DATE
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>NOT NULL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>Date the book was purchased
 </code></pre></div>
-</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a> PRICE
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a> PRIX
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>NUMERIC(6,2)
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>NUMERIC6,2)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>NOT NULL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>Price
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>Son prix
 </code></pre></div>
-</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a> AVAILABLE
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a> DISPONIBLE
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>CHAR(1)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>NOT NULL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>Is it available? Y (yes), N (no)
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>Est-il disponible ? O (oui), N (non)
 </code></pre></div>
 </div></td></tr></table>
 
-<p>This table, which was created using the IBEXPERT wizard, could have been created directly using SQL statements. To view these, simply check the [DDL] tab for the table:</p>
+<p>This table, which was created using the IBEXPERT tool as a wizard, could have been created directly using SQL commands. To find these, simply consult the [DDL] tab of the table:</p>
 <p><img src="images/100000000000024D0000008BFCD65B65.png" width="471" height="111" style="width:12.465cm;height:2.942cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000024D0000008BFCD65B65.png" /></p>
-<p>The SQL code used to create the [BIBLIO] table is as follows:</p>
+<p>The code SQL used to create the table [BIBLIO] is as follows:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-39-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-39-3"> 3</a></span>
@@ -1007,40 +1009,40 @@
 <a id="__codelineno-39-17" name="__codelineno-39-17"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">PK_BIBLIO</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <ul>
-  <li>line 1: owner Firebird - indicates the SQL dialect level used
+  <li>line 1: Firebird owner - specifies the SQL dialect level used
   </li>
-  <li>line 2: Firebird-specific - specifies the character set used
+  <li>line 2: Firebird owner - specifies the character set used
   </li>
-  <li>lines 6–14: SQL standard: creates the BIBLIO table by defining the name and data type of each of its columns.
+  <li>lines 6–14: SQL standard: creates the BIBLIO table by defining the name and type of each of its columns.
   </li>
-  <li>line 16: SQL standard: creates a constraint specifying that the TITLE column does not allow duplicates
+  <li>line 16: SQL standard: creates a constraint specifying that the TITRE column does not allow duplicates
   </li>
-  <li>line 17: SQL standard: specifies that the [ID] column is the table’s primary key. This means that no two rows in the table can have the same ID. This is similar to the [UNIQUE NOT NULL] constraint on the [TITLE] column, and in fact the TITLE column could have served as the primary key. The current trend is to use primary keys that have no specific meaning and are generated by the DBMS.
+  <li>line 17: standard SQL: specifies that the column [ID] is the primary key of the table. This means that no two rows in the table can have the same ID. This is similar to the [UNIQUE NOT NULL] constraint on the [TITRE] column, and in fact the TITRE column could have served as the primary key. The current trend is to use primary keys that have no meaning and are generated by the SGBD.
   </li>
 </ul>
 
-<p>The syntax for the [CREATE TABLE] command is as follows:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>The syntax of the [CREATE TABLE] command is as follows:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>CREATE TABLE </b><i>table (column_name1 column_type1 column_constraint1, column_name2 column_type2 column_constraint2, ..., column_nameN column_typeN column_constraintN, other constraints)</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>CREATE TABLE </b><i>table (nom_colonne1 type_colonne1 contrainte_colonne1, nom_colonne2 type_colonne2 contrainte_colonne2, ..., nom_colonnen type_colonnen contrainte_colonnen, other constraints)</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">creates the table <i>table </i>with the specified columns</div><table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>column_name_i
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">creates the table <i>table </i>with the specified columns</div><table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>nom_colonnei
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">name of column i to be created</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>column_type_i
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">name of column i to be created</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>type_colonnei
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">data type of column i:</div><div style="margin:0 0 0.5em 0">char(30) numeric(6,2) date timestamp ...</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>column_constraint_i
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">data type of column i:</div><div style="margin:0 0 0.5em 0">char(30) numeric(6,2) date timestamp ...</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>contrainte_colonnei
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Constraint that the data in column i must satisfy. Here are a few examples:</div><div style="margin:0 0 0.5em 0"><b>PRIMARY KEY</b>: the column is a <b>primary</b> key. This means that no two rows in the table can have the same value in this column, and furthermore, a value is required in this column. A primary key is primarily used to uniquely identify a row.</div><div style="margin:0 0 0.5em 0"><b>NOT NULL</b>    : No null values are allowed in the column.</div><div style="margin:0 0 0.5em 0"><b>UNIQUE</b>    : no value can appear more than once in the column.</div><div style="margin:0 0 0.5em 0"><b>CHECK (condition)</b>: The value in the column must satisfy <b>the condition</b>.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>other constraints
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Constraint that the data in column i must satisfy. Here are a few examples:</div><div style="margin:0 0 0.5em 0"><b>PRIMARY KEY</b>: the column is a <b>primary</b> key. This means that no two rows in the table can have the same value in this column, and furthermore, a value is required in this column. A primary key is primarily used to uniquely identify a row.</div><div style="margin:0 0 0.5em 0"><b>NOT NULL</b>    : No null values are allowed in the column.</div><div style="margin:0 0 0.5em 0"><b>UNIQUE</b>    : no value can appear more than once in the column.</div><div style="margin:0 0 0.5em 0"><b>CHECK (condition)</b>: the value in the column must satisfy <b>condition</b>.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>autres contraintes
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">You can specify here</div><div style="margin:0 0 0.5em 0">- constraints on multiple columns: check(col1&gt;col2)</div><div style="margin:0 0 0.5em 0">- foreign key constraints</div></td></tr></table></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">can be placed here</div><div style="margin:0 0 0.5em 0">- constraints on multiple columns: check(col1&gt;col2)</div><div style="margin:0 0 0.5em 0">- foreign key constraints</div></td></tr></table></td></tr></table>
 
-<p>The [BIBLIO] table could also have been created with the following SQL statement:</p>
+<p>The table [BIBLIO] could also have been created with the following SQL order:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span>
 <span class="normal"><a href="#__codelineno-46-2">2</a></span>
 <span class="normal"><a href="#__codelineno-46-3">3</a></span>
@@ -1059,7 +1061,7 @@
 <a id="__codelineno-46-8" name="__codelineno-46-8"></a><span class="w">   </span><span class="n">DISPONIBLE</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
 <a id="__codelineno-46-9" name="__codelineno-46-9"></a><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
-<p>Let&#x27;s demonstrate this. Let&#x27;s open this query in an SQL editor (F12) to create a table we&#x27;ll call [BIBLIO2]:</p>
+<p>Let&#x27;s demonstrate this. Let&#x27;s open this command in a SQL editor (F12) to create a table that we will call [BIBLIO2]:</p>
 <p><img src="images/100000000000018E000000D2B26CACB6.png" width="318" height="168" style="width:8.421cm;height:4.443cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018E000000D2B26CACB6.png" /></p>
 <p>After execution, you must commit the transaction to see the result in the database:</p>
 <p><img src="images/100000000000028D000000884DEA88BB.png" width="525" height="109" style="width:13.889cm;height:2.893cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000028D000000884DEA88BB.png" /></p>
@@ -1067,39 +1069,39 @@
 <p><img src="images/100000000000010800000053F7BDFBAA.png" width="211" height="66" style="width:5.588cm;height:1.757cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010800000053F7BDFBAA.png" /></p>
 <p>By double-clicking on its name, we can view its structure:</p>
 <p><img src="images/1000000000000246000000CFD6B31107.png" width="465" height="165" style="width:12.298cm;height:4.374cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000246000000CFD6B31107.png" /></p>
-<p>We can see the definition we created for the [BIBLIO2] table</p>
+<p>We can see the definition we created for the table [BIBLIO2]</p>
 <h2 id="33-deleting-a-table">3.3. <span style="color: #4f81bd">Deleting a table</span></h2>
-<p>The SQL statement to delete a table is as follows:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>The command SQL to delete a table is as follows:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>DROP TABLE </b>table</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>DROP TABLE </b>table</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Deletes [table]</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Deletes [table]</div></td></tr></table>
 
-<p>To delete the [BIBLIO2] table we just created, we now execute the following SQL command:</p>
+<p>To delete the table [BIBLIO2] that we just created, we now execute the following command SQL:</p>
 <p><img src="images/10000000000000C7000000518AFF2DC0.png" width="159" height="65" style="width:4.209cm;height:1.713cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C7000000518AFF2DC0.png" /></p>
-<p>and confirm it with [Commit]. The [BIBLIO2] table is deleted:</p>
+<p>and we validate it using [Commit]. The table [BIBLIO2] is deleted:</p>
 <p><img src="images/1000000000000090000000C9A9522CA4.png" width="115" height="161" style="width:3.048cm;height:4.255cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000090000000C9A9522CA4.png" /></p>
-<h2 id="34-filling-a-table">3.4. <span style="color: #4f81bd">Filling a Table</span></h2>
-<p>Let’s insert a row into the [BIBLIO] table we just created:</p>
+<h2 id="34-filling-a-table">3.4. <span style="color: #4f81bd">Filling a table</span></h2>
+<p>Let’s insert a row into the table [BIBLIO] that we just created:</p>
 <p><img src="images/10000000000001C800000086CDFCE3F7.png" width="365" height="107" style="width:9.647cm;height:2.835cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C800000086CDFCE3F7.png" /></p>
-<p>Confirm the addition of the row with [Commit], then right-click on the added row:</p>
+<p>Validate the addition of the row using [Commit], then right-click on the added row:</p>
 <p><img src="images/10000000000001C40000012E719B06E7.png" width="316" height="211" style="width:8.368cm;height:5.592cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C40000012E719B06E7.png" /></p>
-<p>and, as shown above, copy the inserted row to the clipboard as an INSERT SQL statement. Next, open any text editor and paste what we just copied. We get the following SQL code:</p>
+<p>and, as shown above, request that the inserted row be copied to the clipboard as a SQL INSERT command. Next, open any text editor and paste what we just copied. We get the following SQL code:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="n">TITRE</span><span class="p">,</span><span class="n">AUTEUR</span><span class="p">,</span><span class="n">GENRE</span><span class="p">,</span><span class="n">ACHAT</span><span class="p">,</span><span class="n">PRIX</span><span class="p">,</span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Candide&#39;</span><span class="p">,</span><span class="s1">&#39;Voltaire&#39;</span><span class="p">,</span><span class="s1">&#39;Essai&#39;</span><span class="p">,</span><span class="s1">&#39;18-OCT-1985&#39;</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
 </code></pre></div>
-<p>The syntax for an SQL <strong>INSERT</strong> statement is as follows:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>The syntax for a SQL <strong>INSERT</strong> statement is as follows:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>insert into </b><i>table [(column1, column2, ..)] </i><b>values </b><i>(value1, value2, ....)</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>insert into </b><i>table [(colonne1, colonne2, ..)] </i><b>values </b><i>(value1, value2, ....)</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">adds a row <i>(value1, value2, ..) </i>to <i>the table</i>. These values are assigned to <i>column1</i>, <i>column2</i>, ... if they exist; otherwise, to the table&#x27;s columns in the order in which they were defined.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">adds a row <i>(value1, value2, ..) </i>to <i>the table</i>. These values are assigned to <i>column1</i>, <i>column2</i>, ... if they exist; otherwise, to the table&#x27;s columns in the order in which they were defined.</div></td></tr></table>
 
-<p>To insert new rows into the [BIBLIO] table, we will type the following INSERT statements into the SQL editor. We will execute and commit these statements one by one. We will use the [New Query] button to move on to the next INSERT statement.</p>
+<p>To insert new rows into the [BIBLIO] table, enter the following INSERT commands in the SQL editor. Execute and confirm these commands one by one. Use the button to move to the next command.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-52-1">1</a></span>
 <span class="normal"><a href="#__codelineno-52-2">2</a></span>
 <span class="normal"><a href="#__codelineno-52-3">3</a></span>
@@ -1114,23 +1116,23 @@
 <a id="__codelineno-52-6" name="__codelineno-52-6"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="s1">&#39;Manhattan transfer&#39;</span><span class="p">,</span><span class="s1">&#39;Dos Passos&#39;</span><span class="p">,</span><span class="s1">&#39;Roman&#39;</span><span class="p">,</span><span class="s1">&#39;30-aug-87&#39;</span><span class="p">,</span><span class="mi">320</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
 <a id="__codelineno-52-7" name="__codelineno-52-7"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="s1">&#39;Tintin en Amérique&#39;</span><span class="p">,</span><span class="s1">&#39;Hergé&#39;</span><span class="p">,</span><span class="s1">&#39;BD&#39;</span><span class="p">,</span><span class="s1">&#39;15-may-91&#39;</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
-<p>After committing [Commit] the various SQL statements, we obtain the following table:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000203000001026998415E.png" width="412" height="206" style="display:inline-block; margin:4px;width:10.899cm;height:5.459cm;" class="odt-zoomable" data-zoom-src="images/1000000000000203000001026998415E.png" /></td></tr></table>
+<p>After validating [Commit] and the various orders SQL, we obtain the following table:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000203000001026998415E.png" width="412" height="206" style="display:inline-block; margin:4px;width:10.899cm;height:5.459cm;" class="odt-zoomable" data-zoom-src="images/1000000000000203000001026998415E.png" /></td></tr></table>
 
 <h2 id="35-querying-a-table">3.5. <span style="color: #4f81bd">Querying a table</span></h2>
 <h3 id="351-introduction">3.5.1. <span style="color: #4f81bd">Introduction</span></h3>
 <p>In the SQL editor, type the following command:</p>
 <p><img src="images/10000000000001DD000000608F293F33.png" width="382" height="77" style="width:10.098cm;height:2.032cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001DD000000608F293F33.png" /></p>
-<p>and execute it. We get the following result:</p>
+<p>and execute it. We obtain the following result:</p>
 <p><img src="images/10000000000001DF000000CEBD55B923.png" width="383" height="165" style="width:10.139cm;height:4.36cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001DF000000CEBD55B923.png" /></p>
-<p>The <strong>SELECT</strong> statement is used to retrieve data from database tables. This statement has a very rich syntax. Here, we will focus on the syntax for querying a single table. We will cover querying multiple tables simultaneously at a later time. The syntax for the SQL [SELECT] statement is as follows:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>The <strong>SELECT</strong> command allows you to view the contents of database tables. This command has a very rich syntax. Here, we will present the syntax for querying a single table. We will cover querying multiple tables simultaneously at a later time. The syntax for the command SQL [SELECT] is as follows:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT [ALL|DISTINCT] </b><i>[*|expression1 alias1, expression2 alias2, ...]</i></div><div style="margin:0 0 0.5em 0"><b>FROM </b><i>table</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SELECT [ALL|DISTINCT] </b><i>[*|expression1 alias1, expression2 alias2, ...]</i></div><div style="margin:0 0 0.5em 0"><b>FROM </b><i>table</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">displays the values of <i>expression1 </i>for all rows in the table. <i>expression1 </i>can be a column or a more complex expression. The <i>*</i> symbol denotes all columns. By default, all rows in the table (<b>ALL</b>) are displayed. If <b>DISTINCT </b>is present, identical selected rows are displayed only once. The values of <i>expression1 </i>are displayed in a column titled <i>expression1 </i>or <i>alias1 </i>if the latter was used.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Displays the values of <i>expressioni </i>for all table rows. <i>expressioni </i>can be a column or a more complex expression. The <i>*</i> symbol denotes all columns. By default, all table rows (<b>ALL</b>) are displayed. If <b>DISTINCT </b>is present, identical selected rows are displayed only once. The values of <i>`expressioni` </i>are displayed in a column titled `<i>expressioni` </i>or <i>`aliasi` </i>if the latter was used.</div></td></tr></table>
 
 <p><strong>Examples</strong>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">SQL</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
@@ -1142,15 +1144,15 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="n">TITRE_DU_LIVRE</span><span class="p">,</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="n">PRIX_ACHAT</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/10000000000001160000009BF994E384.png" width="222" height="124" style="width:5.879cm;height:3.277cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001160000009BF994E384.png" /></p>
-<p>In the examples above, we have assigned aliases (BOOK_TITLE, PURCHASE_PRICE) to the requested columns.</p>
+<p>In the examples above, we have assigned aliases (TITRE_DU_LIVRE, PRIX_ACHAT) to the requested columns.</p>
 <h3 id="352-displaying-rows-that-meet-a-condition">3.5.2. <span style="color: #4f81bd">Displaying rows that meet a condition</span></h3>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b>....</div><div style="margin:0 0 0.5em 0"><b>WHERE </b><i>condition</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SELECT </b>....</div><div style="margin:0 0 0.5em 0"><b>WHERE </b><i>condition</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Only rows that meet the <i>condition </i>are displayed</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Only rows that meet the <i>condition </i>are displayed</div></td></tr></table>
 
 <p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">prix</span><span class="o">&gt;</span><span class="mi">100</span>
@@ -1159,21 +1161,21 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">genre</span><span class="o">=</span><span class="s1">&#39;Roman&#39;</span>
 </code></pre></div>
 <p><img src="images/100000000000010C00000045A08DF196.png" width="214" height="55" style="width:5.667cm;height:1.459cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010C00000045A08DF196.png" /></p>
-<p>One of the books has the genre &#x27;novel&#x27; and not &#x27;Novel&#x27;. We use the <em>UPPER</em> function, which converts a string to uppercase, to get all the novels.</p>
+<p>One of the books has the genre &#x27;novel&#x27; rather than &#x27;Novel&#x27;. We use the <em>UPPER</em> function, which converts a string to uppercase, to retrieve all the novels.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span>
 </code></pre></div>
 <p><img src="images/10000000000000DD00000058C2F14B0F.png" width="177" height="70" style="width:4.678cm;height:1.863cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000DD00000058C2F14B0F.png" /></p>
 <p>We can combine conditions using logical operators</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>AND
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">logical AND</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">ET logic</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>OR
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Logical OR</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">OU logical</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>NOT
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Logical negation</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Logical negation</div></td></tr></table>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">prix</span><span class="o">&lt;</span><span class="mi">100</span>
 </code></pre></div>
@@ -1192,20 +1194,20 @@
 <p><img src="images/10000000000001170000009B6319FFFD.png" width="223" height="124" style="width:5.909cm;height:3.283cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001170000009B6319FFFD.png" /></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">achat</span><span class="o">&gt;</span><span class="s1">&#39;31-dec-1987&#39;</span>
 </code></pre></div>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001180000005751848011.png" width="224" height="70" style="display:inline-block; margin:4px;width:5.928cm;height:1.842cm;" class="odt-zoomable" data-zoom-src="images/10000000000001180000005751848011.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001180000005751848011.png" width="224" height="70" style="display:inline-block; margin:4px;width:5.928cm;height:1.842cm;" class="odt-zoomable" data-zoom-src="images/10000000000001180000005751848011.png" /></td></tr></table>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">150</span>
 </code></pre></div>
 <p><img src="images/1000000000000119000000440BBBF342.png" width="225" height="54" style="width:5.948cm;height:1.439cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000119000000440BBBF342.png" /></p>
 <h3 id="353-displaying-rows-in-a-specific-order">3.5.3. <span style="color: #4f81bd">Displaying rows in a specific order</span></h3>
-<p>To the previous syntaxes, you can add an <strong>ORDER BY</strong> clause specifying the desired display order:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>To the previous syntaxes, you can add a clause such as <strong>ORDER BY</strong> to specify the desired display order:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b>....</div><div style="margin:0 0 0.5em 0"><b>ORDER BY </b><i>expression1 </i>[<b>asc|desc</b>], <i>expression2 </i>[<b>asc|desc</b>], ...</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SELECT </b>....</div><div style="margin:0 0 0.5em 0"><b>ORDER BY </b><i>expression1 </i>[asc|desc], <i>expression2 </i>[asc|dec], ...</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">The result rows of the selection are displayed in the order of</div><div style="margin:0 0 0.5em 0">1: ascending (<b>asc </b>/ <b>ascending, </b>which is the default) or descending (<b>desc / descending</b>) order of <i>expression1</i></div><div style="margin:0 0 0.5em 0">2: if <i>expression1</i> is equal, the display is based on the values of <i>expression2</i></div><div style="margin:0 0 0.5em 0">etc.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">The result rows of the selection are displayed in the order of</div><div style="margin:0 0 0.5em 0">1: ascending (<b>asc </b>/ <b>ascending, </b>which is the default) or descending (<b>desc / descending</b>) order of <i>expression1</i></div><div style="margin:0 0 0.5em 0">2: if <i>expression1</i> is equal, the display is based on the values of <i>expression2</i></div><div style="margin:0 0 0.5em 0">etc.</div></td></tr></table>
 
 <p><strong>Examples</strong>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">achat</span><span class="w"> </span><span class="k">desc</span>
@@ -1224,13 +1226,13 @@
 </code></pre></div>
 <p><img src="images/100000000000011F0000009A39F46255.png" width="229" height="123" style="width:6.068cm;height:3.256cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011F0000009A39F46255.png" /></p>
 <h2 id="36-deleting-rows-from-a-table">3.6. <span style="color: #4f81bd">Deleting rows from a table</span></h2>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>DELETE FROM </b><i>table </i>[<b>WHERE </b><i>condition</i>]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>DELETE FROM </b><i>table </i>[WHERE condition]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a>Action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Deletes <i>table</i> rows that meet <i>the condition</i>. If no condition is specified, all rows are deleted.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Deletes <i>table</i> rows that meet <i>the condition</i>. If no condition is specified, all rows are deleted.</div></td></tr></table>
 
 <p><strong>Examples</strong>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
@@ -1242,14 +1244,14 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/100000000000007A0000008871DE31D3.png" width="97" height="109" style="width:2.579cm;height:2.875cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007A0000008871DE31D3.png" /></p>
-<h2 id="37-modifying-the-contents-of-a-table">3.7. <span style="color: #4f81bd">Modifying the contents of a table</span></h2>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<h2 id="37-modifying-the-contents-of-a-table">3.7. <span style="color: #4f81bd"><strong>Modifying the contents of a table</strong></span></h2>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>update table set </b><i>column1 = expression1, column2 = </i><i>expression2, ...</i></div><div style="margin:0 0 0.5em 0">[<b>where </b><i>condition</i>]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a>action
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>update table set </b><i>column1 = expression1, column2 = expression2, ...</i></div><div style="margin:0 0 0.5em 0">[where condition]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a>Action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">For <i>table</i> rows that satisfy <i>the condition </i>(all rows if there is no condition), <i>column1 </i>is set to the value <i>of expression1</i>.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">For <i>table</i> rows that meet <i>the condition </i>(all rows if there is no condition), <i>column1 </i>is set to the value <i>of expression1</i>.</div></td></tr></table>
 
 <p><strong>Examples</strong>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
@@ -1258,49 +1260,49 @@
 <p><img src="images/100000000000004D0000008911F25B3D.png" width="62" height="109" style="width:1.628cm;height:2.896cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000004D0000008911F25B3D.png" /></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">genre</span><span class="o">=</span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span>
 </code></pre></div>
-<p>We check:</p>
+<p>Let&#x27;s check:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/100000000000003B0000008CAEBEFCE4.png" width="47" height="112" style="width:1.249cm;height:2.963cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000003B0000008CAEBEFCE4.png" /></p>
-<p>Display the prices:</p>
+<p>We display the prices:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="p">;</span>
 </code></pre></div>
 <p><img src="images/10000000000000680000008B40D1CEDB.png" width="83" height="111" style="width:2.198cm;height:2.939cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000680000008B40D1CEDB.png" /></p>
 <p>The price of novels increases by 5%: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">prix</span><span class="o">=</span><span class="n">prix</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">genre</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span><span class="p">;</span>
 </code></pre></div>
-<p>Let&#x27;s check:</p>
+<p>We verify:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/10000000000000670000008957F3498F.png" width="82" height="109" style="width:2.178cm;height:2.896cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000670000008957F3498F.png" /></p>
-<h2 id="38-permanently-updating-a-table">3.8. <span style="color: #4f81bd">Permanently updating a table</span></h2>
-<p>When changes are made to a table, Firebird actually applies them to a copy of the table. These changes can then be made permanent or rolled back using the <strong>COMMIT</strong> and <strong>ROLLBACK</strong> commands.</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<h2 id="38-permanent-update-of-a-table">3.8. <span style="color: #4f81bd">Permanent update of a table</span></h2>
+<p>When changes are made to a table, Firebird actually applies them to a copy of the table. These changes can then be made permanent or rolled back using the commands <strong>COMMIT</strong> and <strong>ROLLBACK</strong>.</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a>Syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">COMMIT</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a>action
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">COMMIT</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a>Action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Makes the updates made to the tables since the last COMMIT permanent.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Makes the updates made to the tables since the last COMMIT permanent.</div></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ROLLBACK</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">ROLLBACK</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Reverts all changes made to the tables since the last COMMIT.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">reverts all changes made to the tables since the last COMMIT.</div></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a>Note
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">A COMMIT is performed implicitly at the following times:</div><div style="margin:0 0 0.5em 0">a) Upon logging out of Firebird</div><div style="margin:0 0 0.5em 0">b) After each command affecting the structure of tables: CREATE, ALTER, DROP.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">A COMMIT is performed implicitly at the following times:</div><div style="margin:0 0 0.5em 0">a) Upon logging out of Firebird</div><div style="margin:0 0 0.5em 0">b) After each command affecting the table structure: CREATE, ALTER, DROP.</div></td></tr></table>
 
 <p><strong>Examples</strong></p>
-<p>In the SQL editor, you can restore the database to a known state by committing all operations performed since the last COMMIT or ROLLBACK:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+<p>In the SQL editor, the database is brought to a known state by committing all operations performed since the last COMMIT or ROLLBACK:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a>SQL&gt; commit
 </code></pre></div>
-<p>We retrieve the list of titles:</p>
+<p>We request the list of titles:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/1000000000000077000000890BB53B60.png" width="95" height="110" style="width:2.519cm;height:2.9cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000077000000890BB53B60.png" /></p>
@@ -1311,18 +1313,18 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-101-1" name="__codelineno-101-1" href="#__codelineno-101-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/100000000000007800000078D9A03C32.png" width="96" height="96" style="width:2.538cm;height:2.538cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007800000078D9A03C32.png" /></p>
-<p>The title has been successfully deleted. Now we&#x27;ll roll back all changes made since the last COMMIT / ROLLBACK:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-102-1" name="__codelineno-102-1" href="#__codelineno-102-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">rollback</span>
+<p>The title has been successfully deleted. Now we roll back all changes made since the last COMMIT / ROLLBACK:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-102-1" name="__codelineno-102-1" href="#__codelineno-102-1"></a>SQL&gt; rollback
 </code></pre></div>
 <p>Verification:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-103-1" name="__codelineno-103-1" href="#__codelineno-103-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/10000000000000790000008AEF1966E1.png" width="97" height="110" style="width:2.558cm;height:2.917cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000790000008AEF1966E1.png" /></p>
-<p>The deleted title has reappeared. Now let’s retrieve the list of prices:</p>
+<p>The deleted title has been restored. Now let’s retrieve the list of prices:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-104-1" name="__codelineno-104-1" href="#__codelineno-104-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/100000000000003C0000008A13F61867.png" width="48" height="110" style="width:1.268cm;height:2.916cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000003C0000008A13F61867.png" /></p>
-<p>Let&#x27;s set all prices to zero.</p>
+<p>Let’s set all prices to zero.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-105-1" name="__codelineno-105-1" href="#__codelineno-105-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">prix</span><span class="o">=</span><span class="mi">0</span>
 </code></pre></div>
 <p>Let&#x27;s check the prices:</p>
@@ -1330,7 +1332,7 @@
 </code></pre></div>
 <p><img src="images/100000000000003B00000089900CBDB6.png" width="47" height="110" style="width:1.249cm;height:2.9cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000003B00000089900CBDB6.png" /></p>
 <p>Let&#x27;s undo the changes made to the database:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-107-1" name="__codelineno-107-1" href="#__codelineno-107-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">rollback</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-107-1" name="__codelineno-107-1" href="#__codelineno-107-1"></a>SQL&gt; rollback
 </code></pre></div>
 <p>and check the prices again:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-108-1" name="__codelineno-108-1" href="#__codelineno-108-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
@@ -1338,14 +1340,14 @@
 <p><img src="images/100000000000003C0000008B47503EC8.png" width="48" height="111" style="width:1.268cm;height:2.939cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000003C0000008B47503EC8.png" /></p>
 <p>We have restored the original prices.</p>
 <h2 id="39-adding-rows-from-one-table-to-another">3.9. <span style="color: #4f81bd">Adding rows from one table to another</span></h2>
-<p>It is possible to add rows from one table to another when their structures are compatible. To demonstrate this, let’s start by creating a table [BIBLIO2] with the same structure as [BIBLIO].</p>
-<p>In the IBExpert database explorer, double-click the [BIBLIO] table to access the [DDL] tab:</p>
+<p>It is possible to add rows from one table to another when their structures are compatible. To demonstrate this, let’s start by creating a table named [BIBLIO2] with the same structure as [BIBLIO].</p>
+<p>In the IBExpert database explorer, double-click on the [BIBLIO] table to access the [DDL] tab:</p>
 <p><img src="images/1000000000000314000001241011E3D9.png" width="551" height="204" style="width:14.589cm;height:5.406cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000314000001241011E3D9.png" /></p>
-<p>In this tab, you’ll find the list of SQL statements used to generate the [BIBLIO] table. Copy all of this code to the clipboard (CTRL-A, CTRL-C). Then open a tool called [Script Executive] that allows you to execute a list of SQL statements: </p>
+<p>In this tab, you will find the list of SQL commands that generate the [BIBLIO] table. Copy all of this code to the clipboard (CTRL-A, CTRL-C). Then, call a tool called [Script Executive], which allows you to execute a list of SQL commands: </p>
 <p><img src="images/10000000000000FD000000A49207069C.png" width="203" height="131" style="width:5.359cm;height:3.475cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000FD000000A49207069C.png" /></p>
-<p>A text editor opens, into which we can paste (CTRL-V) the text previously copied to the clipboard:</p>
+<p>A text editor appears, into which we can paste (CTRL-V) the text previously copied to the clipboard:</p>
 <p><img src="images/10000000000000E0000000DAFDFB41AC.png" width="157" height="153" style="width:4.149cm;height:4.038cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E0000000DAFDFB41AC.png" /></p>
-<p>A list of SQL commands is often called <strong>an SQL script</strong>. [Script Executive] will allow us to execute such a script, whereas the SQL editor only allowed the execution of a single command at a time. The current SQL script creates the [BIBLIO] table. Let’s make it create a table named [BIBLIO2]. To do this, simply change [BIBLIO] to [BIBLIO2]:</p>
+<p>A list of commands SQL is often referred to as <strong>a script SQL</strong>. [Script Executive] will allow us to execute such a script, whereas the SQL editor only allowed the execution of a single command at a time. The current SQL script creates the [BIBLIO] table. Let’s make it create a table named [BIBLIO2]. To do this, simply change [BIBLIO] to [BIBLIO2]:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-109-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-109-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-109-3"> 3</a></span>
@@ -1388,74 +1390,74 @@
 <p><img src="images/10000000000000FD000000536F986C1C.png" width="177" height="58" style="width:4.678cm;height:1.535cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000FD000000536F986C1C.png" /></p>
 <p>If we double-click on [BIBLIO2] to check its contents, we find that it is empty, which is normal:</p>
 <p><img src="images/10000000000001C600000077DE6CF029.png" width="318" height="83" style="width:8.408cm;height:2.205cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C600000077DE6CF029.png" /></p>
-<p>A variant of the SQL INSERT statement allows you to insert rows from one table into another:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>A variant of the SQL INSERT command allows you to insert rows from one table into another:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-110-1" name="__codelineno-110-1" href="#__codelineno-110-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>INSERT INTO </b><i>table1 </i>[(<i>column1, column2</i>, ...)]</div><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>column1, column2</i>, ... <b>FROM </b><i>table2 </i><b>WHERE </b><i>condition</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>INSERT INTO </b><i>table1 </i>[(colonne1, colonne2, ...)]</div><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>column1, column2</i>, ... <b>FROM </b><i>table2 </i><b>WHERE </b><i>condition</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-111-1" name="__codelineno-111-1" href="#__codelineno-111-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">The rows from <i>table2 </i>that satisfy <i>the condition </i>are added to <i>table1</i>. The columns <i>column1, column2</i>, ... from <i>table2 </i>are assigned in order to <i>column1, column2</i>, ... in <i>table1 </i>and must therefore be of compatible types.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">The rows of <i>table2 </i>that satisfy <i>condition </i>are added to <i>table1</i>. The columns <i>columnA, columnB</i>, ... of <i>table2 </i>are assigned in order to <i>column1, column2</i>, ... of <i>table1 </i>and must therefore be of a compatible type.</div></td></tr></table>
 
-<p>Let&#x27;s go back to the SQL editor:</p>
+<p>Let&#x27;s return to the SQL editor:</p>
 <p><img src="images/10000000000000BE0000010D52F9C729.png" width="133" height="188" style="width:3.519cm;height:4.981cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000BE0000010D52F9C729.png" /></p>
-<p>and execute the following SQL statement:</p>
+<p>and issue the following SQL command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-112-1" name="__codelineno-112-1" href="#__codelineno-112-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">BIBLIO2</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span>
 </code></pre></div>
-<p>which inserts into [BIBLIO2] all rows from [BIBLIO] corresponding to a novel. After executing the SQL statement, let’s commit it with a [Commit]:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-113-1" name="__codelineno-113-1" href="#__codelineno-113-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+<p>which inserts into [BIBLIO2] all rows from [BIBLIO] corresponding to a novel. After executing the SQL command, let’s commit it with a [Commit]:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-113-1" name="__codelineno-113-1" href="#__codelineno-113-1"></a>SQL&gt; commit
 </code></pre></div>
 <p>Now, let’s view the data in the [BIBLIO2] table:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-114-1" name="__codelineno-114-1" href="#__codelineno-114-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO2</span>
 </code></pre></div>
 <p><img src="images/10000000000001D1000000550A786F95.png" width="372" height="68" style="width:9.839cm;height:1.799cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D1000000550A786F95.png" /></p>
 <h2 id="310-deleting-a-table">3.10. <span style="color: #4f81bd">Deleting a table</span></h2>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-115-1" name="__codelineno-115-1" href="#__codelineno-115-1"></a>syntax
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-115-1" name="__codelineno-115-1" href="#__codelineno-115-1"></a>Syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>DROP TABLE </b><i>table</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>DROP TABLE </b><i>table</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-116-1" name="__codelineno-116-1" href="#__codelineno-116-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">deletes <i>table</i></div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">deletes <i>table</i></div></td></tr></table>
 
-<p>Example: Dropping the BIBLIO2 table</p>
+<p>Example: Dropping the table BIBLIO2</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-117-1" name="__codelineno-117-1" href="#__codelineno-117-1"></a>SQL&gt; drop table BIBLIO2
 </code></pre></div>
 <p>Confirm the change:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-118-1" name="__codelineno-118-1" href="#__codelineno-118-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-118-1" name="__codelineno-118-1" href="#__codelineno-118-1"></a>SQL&gt; commit
 </code></pre></div>
 <p>In the database explorer, refresh the table view:</p>
 <p><img src="images/100000000000015A000000B9F7D9352A.png" width="277" height="148" style="width:7.318cm;height:3.912cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015A000000B9F7D9352A.png" /></p>
-<p>We see that the [BIBLIO2] table has been deleted:</p>
+<p>We see that the table [BIBLIO2] has been deleted:</p>
 <p><img src="images/10000000000001030000005133B61751.png" width="207" height="65" style="width:5.479cm;height:1.715cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001030000005133B61751.png" /></p>
 <h2 id="311-modifying-a-tables-structure">3.11. <span style="color: #4f81bd">Modifying a table&#x27;s structure</span></h2>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-119-1" name="__codelineno-119-1" href="#__codelineno-119-1"></a>Syntax
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-119-1" name="__codelineno-119-1" href="#__codelineno-119-1"></a>syntaxe
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>ALTER TABLE </b><i>table</i></div><div style="margin:0 0 0.5em 0">[ <b>ADD </b><i>column_name1 column_type1 column_constraint1</i>]</div><div style="margin:0 0 0.5em 0">[<b>ALTER </b><i>column_name2 </i><i><b>TYPE </b></i><i>column_type2</i>]</div><div style="margin:0 0 0.5em 0">[<b>DROP </b><i>column_name3</i>]</div><div style="margin:0 0 0.5em 0">[<b>ADD </b><i>constraint</i>]</div><div style="margin:0 0 0.5em 0">[<b>DROP CONSTRAINT </b><i>constraint_name</i>]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>ALTER TABLE </b><i>table</i></div><div style="margin:0 0 0.5em 0">[ ADD nom_colonne1 type_colonne1 contrainte_colonne1]</div><div style="margin:0 0 0.5em 0">[ALTER nom_colonne2 TYPE type_colonne2]</div><div style="margin:0 0 0.5em 0">[DROP nom_colonne3]</div><div style="margin:0 0 0.5em 0">[ADD contrainte]</div><div style="margin:0 0 0.5em 0">[DROP CONSTRAINT nom_contrainte]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-120-1" name="__codelineno-120-1" href="#__codelineno-120-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">allows you to add (<b>ADD</b>), modify (<b>ALTER</b>), and drop (<b>DROP) </b>table columns. The syntax <i>column_name1 column_type1 column_constraint1 </i>is the same as that of CREATE TABLE. You can also add or drop table constraints.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">allows you to add (<b>ADD</b>), modify (<b>ALTER</b>), and delete (<b>DROP) </b>table columns. The syntax <i>nom_colonnei type_colonnei contrainte_colonnei </i>is the same as that of CREATE TABLE. You can also add or remove table constraints.</div></td></tr></table>
 
 <p><strong>Example:</strong> Execute the following two SQL commands sequentially in the SQL editor</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-121-1" name="__codelineno-121-1" href="#__codelineno-121-1"></a><span class="k">SQL</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">nb_pages</span><span class="w"> </span><span class="nb">numeric</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="n">genre</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-122-1" name="__codelineno-122-1" href="#__codelineno-122-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-122-1" name="__codelineno-122-1" href="#__codelineno-122-1"></a>SQL&gt; commit
 </code></pre></div>
 <p>In the database explorer, let’s check the structure of the [BIBLIO] table:</p>
 <p><img src="images/100000000000016A000000B21FDCB4F3.png" width="289" height="142" style="width:7.659cm;height:3.766cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000016A000000B21FDCB4F3.png" /></p>
-<p>The changes have been applied. Let’s see how the table’s contents have changed:</p>
+<p>The changes have been applied. Let’s see how the table’s content has changed:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-123-1" name="__codelineno-123-1" href="#__codelineno-123-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/100000000000021D00000089DEA7C703.png" width="433" height="110" style="width:11.448cm;height:2.9cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000021D00000089DEA7C703.png" /></p>
-<p>The new [NB_PAGES] column has been created but has no values. Let’s drop this column:</p>
+<p>The new column [NB_PAGES] has been created but has no values. Let’s delete this column:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-124-1" name="__codelineno-124-1" href="#__codelineno-124-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="n">nb_pages</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-125-1" name="__codelineno-125-1" href="#__codelineno-125-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-125-1" name="__codelineno-125-1" href="#__codelineno-125-1"></a>SQL&gt; commit
 </code></pre></div>
 <p>Let&#x27;s check the new structure of the [BIBLIO] table:</p>
 <p><img src="images/10000000000001660000009FF1750C5B.png" width="286" height="127" style="width:7.578cm;height:3.366cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001660000009FF1750C5B.png" /></p>
-<p>The [NB_PAGES] column has indeed disappeared.</p>
+<p>The column [NB_PAGES] has indeed disappeared.</p>
 <h2 id="312-views">3.12. <span style="color: #4f81bd">Views</span></h2>
 <p>It is possible to have a partial view of a table or multiple tables. A view behaves like a table but does not contain data. Its data is extracted from other tables or views. A view has several advantages:</p>
 <ol>
@@ -1465,33 +1467,33 @@
   </li>
 </ol>
 <h3 id="3121-creating-a-view">3.12.1. <span style="color: #4f81bd">Creating a view</span></h3>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-126-1" name="__codelineno-126-1" href="#__codelineno-126-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>CREATE VIEW </b><i>view_name</i></div><div style="margin:0 0 0.5em 0"><b>AS SELECT </b><i>column1, column2</i>, ... <b>FROM </b><i>table </i><b>WHERE </b><i>condition</i></div><div style="margin:0 0 0.5em 0">[ <b>WITH CHECK OPTION </b>]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>CREATE VIEW </b><i>nom_vue</i></div><div style="margin:0 0 0.5em 0"><b>AS SELECT </b><i>column1, column2</i>, ... <b>FROM </b><i>table </i><b>WHERE </b><i>condition</i></div><div style="margin:0 0 0.5em 0">[ WITH CHECK OPTION ]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-127-1" name="__codelineno-127-1" href="#__codelineno-127-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">creates the view <i>view_name</i>. This is a table with the structure <i>column1, column2</i>, ... from <i>table </i>and, for rows, the rows from <i>table </i>that satisfy <i>condition </i>(all rows if there is no condition)</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">creates the view <i>nom_vue</i>. This is a table with the structure <i>column1, column2</i>, ... from <i>table </i>and, for rows, the rows of <i>table </i>that satisfy <i>condition </i>(all rows if there is no condition)</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-128-1" name="__codelineno-128-1" href="#__codelineno-128-1"></a><span class="k">WITH</span><span class="w"> </span><span class="n">CHECK</span><span class="w"> </span><span class="n">OPTION</span>
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">This optional clause specifies that inserts and updates to the view must not create rows that the view could not select.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">This optional clause specifies that inserts and updates on the view must not create rows that the view could not select.</div></td></tr></table>
 
-<p><strong>Note</strong>    The syntax of CREATE VIEW is actually more complex than that presented above and allows, in particular, the creation of a view from multiple tables. To do this, the SELECT statement simply needs to reference multiple tables (see the following chapter).</p>
+<p><strong>Note</strong>    The syntax of CREATE VIEW is actually more complex than the one presented above and allows, in particular, the creation of a view from multiple tables. To do this, the query SELECT simply needs to involve multiple tables (see the following chapter).</p>
 <p><strong>Examples</strong></p>
-<p>We create a view from the <strong>biblio</strong> table that includes only novels (row selection) and only the <strong>title, author, and price</strong> columns (column selection):</p>
+<p>From the <strong>biblio</strong> table, we create a view containing only novels (row selection) and only the <strong>title, author, and price</strong> columns (column selection):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-129-1" name="__codelineno-129-1" href="#__codelineno-129-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">romans</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span><span class="p">;</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-130-1" name="__codelineno-130-1" href="#__codelineno-130-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-130-1" name="__codelineno-130-1" href="#__codelineno-130-1"></a>SQL&gt; commit
 </code></pre></div>
 <p>In the database explorer, refresh the view (F5). A view appears:</p>
 <p><img src="images/10000000000000F7000000D98EA7697B.png" width="198" height="174" style="width:5.228cm;height:4.593cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F7000000D98EA7697B.png" /></p>
-<p>We can view the SQL statement associated with the view. To do this, double-click on the [ROMANS] view:</p>
+<p>We can find out the SQL order associated with the view. To do this, double-click on the [ROMANS] view:</p>
 <p><img src="images/100000000000021E00000096CC193736.png" width="433" height="120" style="width:11.469cm;height:3.173cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000021E00000096CC193736.png" /></p>
 <p>A view is like a table. It has a structure:</p>
 <p><img src="images/10000000000001440000008FD314233B.png" width="259" height="114" style="width:6.858cm;height:3.027cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001440000008FD314233B.png" /></p>
 <p>and content:</p>
 <p><img src="images/10000000000000FF000000AC8E2AFA17.png" width="204" height="138" style="width:5.398cm;height:3.641cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000FF000000AC8E2AFA17.png" /></p>
-<p>A view is used like a table. You can run SQL queries on it. Here are a few examples to try in the SQL editor:</p>
+<p>A view is used like a table. We can run queries on it. Here are a few examples to try in the editor:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-131-1" name="__codelineno-131-1" href="#__codelineno-131-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">romans</span>
 </code></pre></div>
 <p><img src="images/10000000000000F40000005806869C0E.png" width="195" height="70" style="width:5.158cm;height:1.859cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F40000005806869C0E.png" /></p>
@@ -1508,11 +1510,11 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-135-1" name="__codelineno-135-1" href="#__codelineno-135-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO</span>
 </code></pre></div>
 <p><img src="images/10000000000000B7000000AA3FE3A74D.png" width="146" height="136" style="width:3.868cm;height:3.593cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B7000000AA3FE3A74D.png" /></p>
-<p>Let&#x27;s check the [ROMANS] view:</p>
+<p>Let&#x27;s check the view [ROMANS]:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-136-1" name="__codelineno-136-1" href="#__codelineno-136-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ROMANS</span>
 </code></pre></div>
 <p><img src="images/10000000000000B900000068B5D0F04D.png" width="148" height="83" style="width:3.918cm;height:2.203cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B900000068B5D0F04D.png" /></p>
-<p>The added book is not in the [ROMANS] view because it did not have upper(genre)=&#x27;ROMAN&#x27;.</p>
+<p>The added book is not in the view [ROMANS] because it did not have upper(genre)=&#x27;ROMAN&#x27;.</p>
 <h3 id="3122-updating-a-view">3.12.2. <span style="color: #4f81bd">Updating a view</span></h3>
 <p>You can update a view just as you would a table. All tables from which the view’s data is extracted are affected by this update. Here are a few examples:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-137-1" name="__codelineno-137-1" href="#__codelineno-137-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="s1">&#39;Le Rouge et le Noir&#39;</span><span class="p">,</span><span class="s1">&#39;Stendhal&#39;</span><span class="p">,</span><span class="s1">&#39;Roman&#39;</span><span class="p">,</span><span class="s1">&#39;03-oct-92&#39;</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
@@ -1523,7 +1525,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-139-1" name="__codelineno-139-1" href="#__codelineno-139-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
 <p><img src="images/10000000000000B6000000BCD1704424.png" width="145" height="150" style="width:3.849cm;height:3.976cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B6000000BCD1704424.png" /></p>
-<p>We delete a row from the [ROMANS] view:</p>
+<p>We delete a row from the view [ROMANS]:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-140-1" name="__codelineno-140-1" href="#__codelineno-140-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ROMANS</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">titre</span><span class="o">=</span><span class="s1">&#39;Le Rouge et le Noir&#39;</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-141-1" name="__codelineno-141-1" href="#__codelineno-141-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">romans</span>
@@ -1532,10 +1534,10 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-142-1" name="__codelineno-142-1" href="#__codelineno-142-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">auteur</span><span class="p">,</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO</span>
 </code></pre></div>
 <p><img src="images/10000000000000B7000000AA3506FC15.png" width="146" height="136" style="width:3.868cm;height:3.593cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B7000000AA3506FC15.png" /></p>
-<p>The row deleted from the [NOVELS] view has also been deleted from the [BIBLIO] table. We will now increase the price of the books in the [NOVELS] view:</p>
+<p>The row deleted from the [ROMANS] view was also deleted from the [BIBLIO] table. We will now increase the price of the books in the [ROMANS] view:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-143-1" name="__codelineno-143-1" href="#__codelineno-143-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">romans</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">prix</span><span class="o">=</span><span class="n">prix</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span>
 </code></pre></div>
-<p>Let&#x27;s check in [NOVELS]:</p>
+<p>Let’s check in [ROMANS]:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-144-1" name="__codelineno-144-1" href="#__codelineno-144-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">romans</span>
 </code></pre></div>
 <p><img src="images/10000000000000E5000000671473CD89.png" width="183" height="82" style="width:4.849cm;height:2.18cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E5000000671473CD89.png" /></p>
@@ -1544,68 +1546,68 @@
 </code></pre></div>
 <p><img src="images/10000000000000E5000000AC516AA2EA.png" width="183" height="138" style="width:4.849cm;height:3.642cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E5000000AC516AA2EA.png" /></p>
 <p>The prices of the novels have indeed been increased by 5% in [BIBLIO] as well.</p>
-<h3 id="3123-deleting-a-view">3.12.3. <span style="color: #4f81bd">Deleting a view</span></h3>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<h3 id="3123-delete-a-view">3.12.3. <span style="color: #4f81bd">Delete a view</span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-146-1" name="__codelineno-146-1" href="#__codelineno-146-1"></a>syntax
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>DROP VIEW </b>view_name</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>DROP VIEW </b>nom_vue</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-147-1" name="__codelineno-147-1" href="#__codelineno-147-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">deletes the view named</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">deletes the view named</div></td></tr></table>
 
 <p><strong>Example</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-148-1" name="__codelineno-148-1" href="#__codelineno-148-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">romans</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-148-1" name="__codelineno-148-1" href="#__codelineno-148-1"></a>SQL&gt; drop view romans
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-149-1" name="__codelineno-149-1" href="#__codelineno-149-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-149-1" name="__codelineno-149-1" href="#__codelineno-149-1"></a>SQL&gt; commit
 </code></pre></div>
-<p>In the database explorer, you can refresh the view (F5) to see that the [ROMANS] view has disappeared:</p>
+<p>In the database explorer, you can refresh the view (F5) to see that the view [ROMANS] has disappeared:</p>
 <p><img src="images/10000000000000FC000000662163F411.png" width="201" height="82" style="width:5.329cm;height:2.157cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000FC000000662163F411.png" /></p>
-<h2 id="313-using-group-functions">3.13. <span style="color: #4f81bd">Using group functions</span></h2>
+<h2 id="313-using-group-functions">3.13. <span style="color: #4f81bd">Using Group Functions</span></h2>
 <p>There are functions that, instead of operating on each row of a table, operate on groups of rows. These are essentially statistical functions that allow us to calculate the mean, standard deviation, etc., of the data in a column. </p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-150-1" name="__codelineno-150-1" href="#__codelineno-150-1"></a>syntax1
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>f1, f2, .., fn </i><b>FROM </b><i>table</i></div><div style="margin:0 0 0.5em 0">[ <b>WHERE </b><i>condition </i>]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>f1, f2, .., fn </i><b>FROM </b><i>table</i></div><div style="margin:0 0 0.5em 0">[ WHERE condition ]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-151-1" name="__codelineno-151-1" href="#__codelineno-151-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Calculates the statistical functions <i>fi </i>on all rows of the table that satisfy <i>the condition</i>.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Calculates the <i>FI</i> statistical functions on all table rows that meet <i>the</i> specified <i>condition</i>.</div></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-152-1" name="__codelineno-152-1" href="#__codelineno-152-1"></a>syntax2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>f1, f2, .., fn </i><b>FROM </b><i>table</i></div><div style="margin:0 0 0.5em 0">[ <b>WHERE </b><i>condition </i>]</div><div style="margin:0 0 0.5em 0">[ <b>GROUP BY </b><i>expr1</i>, <i>expr2</i>, ..]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>f1, f2, .., fn </i><b>FROM </b><i>table</i></div><div style="margin:0 0 0.5em 0">[ WHERE condition ]</div><div style="margin:0 0 0.5em 0">[ GROUP BY expr1, expr2, ..]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-153-1" name="__codelineno-153-1" href="#__codelineno-153-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">The <b>GROUP BY </b>keyword divides the table rows into groups. Each group contains the rows for which the expressions <i>expr1, expr2</i>, ... have the same value.</div><div style="margin:0 0 0.5em 0">Example: <b>GROUP BY genre </b>groups together books of the same genre. The <b>GROUP BY author,genre </b>clause would group together books with the same author and the same genre. The <b>WHERE condition </b>first removes rows from the table that do not meet <b>the condition</b>. Then, groups are formed by the GROUP BY clause. The <i>aggregate</i> functions are then calculated for each group of rows.</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">The keyword <b>GROUP BY </b>divides the table rows into groups. Each  group contains the rows for which the expressions <i>expr1, expr2</i>, ... have the same value.</div><div style="margin:0 0 0.5em 0">Example: <b>GROUP BY genre </b>places books of the same genre in the same group. The clause <b>GROUP BY author,genre </b>would place books with the same author and genre in the same group. The <b>WHERE condition </b>first removes rows that do not meet <b>the condition</b> from the table. Then, groups are formed by the clause GROUP BY. The <i>fi</i> functions are then calculated for each group of rows.</div></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-154-1" name="__codelineno-154-1" href="#__codelineno-154-1"></a>syntax3
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>f1, f2, .., fn </i><b>FROM </b><i>table</i></div><div style="margin:0 0 0.5em 0">[ <b>WHERE </b><i>condition </i>]</div><div style="margin:0 0 0.5em 0">[ <b>GROUP BY </b><i>expression</i>]</div><div style="margin:0 0 0.5em 0">[ <b>HAVING </b>group_condition]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>f1, f2, .., fn </i><b>FROM </b><i>table</i></div><div style="margin:0 0 0.5em 0">[ WHERE condition ]</div><div style="margin:0 0 0.5em 0">[ GROUP BY expression]</div><div style="margin:0 0 0.5em 0">[ HAVING condition_de_groupe]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-155-1" name="__codelineno-155-1" href="#__codelineno-155-1"></a>action
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">The <b>HAVING</b> clause filters the groups formed by the <b>GROUP BY </b>clause. It is therefore always associated with the presence of the GROUP BY clause. Example: <b>GROUP BY </b>genre <b>HAVING </b>genre!=&#x27;NOVEL&#x27;</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">The clause <b>HAVING </b>filters the groups formed by the clause <b>GROUP BY</b>. It is therefore always linked to the presence of this clause GROUP BY. Example: <b>GROUP BY </b>genre <b>HAVING </b>genre!=&#x27;ROMAN&#x27;</div></td></tr></table>
 
-<p>The available statistical functions are as follows:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>The following statistical functions are available:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-156-1" name="__codelineno-156-1" href="#__codelineno-156-1"></a>AVG(expression)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">average of expression</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">average of expression</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-157-1" name="__codelineno-157-1" href="#__codelineno-157-1"></a>COUNT(expression)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">number of rows for which expression has a value</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">number of rows for which expression has a value</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-158-1" name="__codelineno-158-1" href="#__codelineno-158-1"></a>COUNT(*)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">total number of rows in the table</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">total number of rows in the table</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-159-1" name="__codelineno-159-1" href="#__codelineno-159-1"></a>MAX(expression)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Maximum value of expression</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Maximum value of expression</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-160-1" name="__codelineno-160-1" href="#__codelineno-160-1"></a>MIN(expression)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">min of expression</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">min of expression</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-161-1" name="__codelineno-161-1" href="#__codelineno-161-1"></a>SUM(expression)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">sum of expression</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">sum of expression</div></td></tr></table>
 
 <p><strong>Examples</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-162-1" name="__codelineno-162-1" href="#__codelineno-162-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
@@ -1622,7 +1624,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-165-1" name="__codelineno-165-1" href="#__codelineno-165-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span><span class="w"> </span><span class="n">moyenne</span><span class="p">,</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span><span class="w"> </span><span class="n">prix_maxi</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span>
 </code></pre></div>
 <p><img src="images/10000000000000B1000000235F15D93E.png" width="177" height="35" style="width:4.681cm;height:0.926cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B1000000235F15D93E.png" /></p>
-<p>How many comic books? </p>
+<p>How many BD? </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-166-1" name="__codelineno-166-1" href="#__codelineno-166-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;BD&#39;</span>
 </code></pre></div>
 <p><img src="images/100000000000004000000024B4388C66.png" width="64" height="36" style="width:1.692cm;height:0.953cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000004000000024B4388C66.png" /></p>
@@ -1662,46 +1664,46 @@
 <a id="__codelineno-172-5" name="__codelineno-172-5" href="#__codelineno-172-5"></a><span class="k">having</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">100</span>
 </code></pre></div>
 <p><img src="images/10000000000000D100000035717D5286.png" width="167" height="42" style="width:4.419cm;height:1.122cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D100000035717D5286.png" /></p>
-<p><a id="bibliosql"></a></p>
-<h2 id="314-creating-an-sql-script-for-a-table">3.14. <span style="color: #4f81bd"><strong>Creating an SQL script for a table</strong></span></h2>
-<p>SQL is a standard language that can be used with many DBMSs. To be able to switch from one DBMS to another, it is useful to export a database or simply certain elements of it in the form of an SQL script which, when re-run in another DBMS, will be able to recreate the elements exported in the script.</p>
-<p>Here, we will export the [BIBLIO] table. Let’s select the [Extract Metadata] option:</p>
+<p><span id="bibliosql" name="bibliosql" class="odt-bookmark-anchor"></span></p>
+<h2 id="314-create-the-sql-script-for-a-table">3.14. <span style="color: #4f81bd">Create the SQL script for a table</span></h2>
+<p>The SQL language is a standard language that can be used with many SGBD scripts. To switch from one SGBD script to another, it is useful to export a database or simply certain elements of it in the form of a SQL script which, when re-run in another SGBD, will be able to recreate the elements exported in the script.</p>
+<p>Here, we will export the [BIBLIO] table. Let’s take the option [Extract Metadata]:</p>
 <p><img src="images/1000000000000196000000F73E86A5B2.png" width="325" height="197" style="width:8.588cm;height:5.225cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000196000000F73E86A5B2.png" /></p>
-<p>Note that you must be in the database from which you want to export elements. The option launches a wizard:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000031A00000252071623F8.png" width="397" height="297" style="display:inline-block; margin:4px;width:10.504cm;height:7.858cm;" class="odt-zoomable" data-zoom-src="images/100000000000031A00000252071623F8.png" /></td></tr></table>
+<p>Note above that you must be positioned on the database from which you want to export elements. The option launches a wizard:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000031A00000252071623F8.png" width="397" height="297" style="display:inline-block; margin:4px;width:10.504cm;height:7.858cm;" class="odt-zoomable" data-zoom-src="images/100000000000031A00000252071623F8.png" /></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-173-1" name="__codelineno-173-1" href="#__codelineno-173-1"></a>1
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">where to generate the SQL script:</div><ul>
-  <li>in a file (File)
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">where to generate the SQL script:</div><ul>
+  <li>in a file
   </li>
   <li>to the Clipboard
   </li>
   <li>in the Script Executive tool
   </li>
-</ul></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</ul></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-174-1" name="__codelineno-174-1" href="#__codelineno-174-1"></a>2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">file name if the [File] option is selected</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">file name if option or [File] is selected</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-175-1" name="__codelineno-175-1" href="#__codelineno-175-1"></a>3
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">what to export</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">What to export</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-176-1" name="__codelineno-176-1" href="#__codelineno-176-1"></a>4
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Buttons to select (-&gt;) or deselect (&lt;-) the objects to export</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Buttons to select (-&gt;) or deselect (&lt;-) the objects to export</div></td></tr></table>
 
-<p>If we wanted to export the entire database, we would check the [Extract All] option above. We simply want to export the BIBLIO table. To do this, using [4], we select the [BIBLIO] table, and using [2], we specify a file:</p>
+<p>If we wanted to export the entire database, we would check the option and [Extract All] above. We simply want to export the BIBLIO table. To do this, with [4], we select the [BIBLIO] table, and with [2] we specify a file:</p>
 <p><img src="images/10000000000001740000012381618292.png" width="297" height="233" style="width:7.869cm;height:6.156cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001740000012381618292.png" /></p>
-<p>If we stop here, only the structure of the [BIBLIO] table will be exported. To export its contents, we need to use the [Data Tables] tab:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000024E000000ED016B1A34.png" width="295" height="118" style="display:inline-block; margin:4px;width:7.805cm;height:3.134cm;" class="odt-zoomable" data-zoom-src="images/100000000000024E000000ED016B1A34.png" /></td></tr></table>
+<p>If we stop here, only the structure of table [BIBLIO] will be exported. To export its contents, we need to use the [Data Tables] tab:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000024E000000ED016B1A34.png" width="295" height="118" style="display:inline-block; margin:4px;width:7.805cm;height:3.134cm;" class="odt-zoomable" data-zoom-src="images/100000000000024E000000ED016B1A34.png" /></td></tr></table>
 
-<p>Use [1] to select the [BIBLIO] table:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000020E000000F4EC2E2DF0.png" width="263" height="122" style="display:inline-block; margin:4px;width:6.959cm;height:3.228cm;" class="odt-zoomable" data-zoom-src="images/100000000000020E000000F4EC2E2DF0.png" /></td></tr></table>
+<p>Let’s use [1] to select the table [BIBLIO]:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000020E000000F4EC2E2DF0.png" width="263" height="122" style="display:inline-block; margin:4px;width:6.959cm;height:3.228cm;" class="odt-zoomable" data-zoom-src="images/100000000000020E000000F4EC2E2DF0.png" /></td></tr></table>
 
-<p>Use [2] to generate the SQL script:</p>
+<p>Use [2] to generate the script SQL:</p>
 <p><img src="images/100000000000018D000000843AF1D0C0.png" width="317" height="106" style="width:8.398cm;height:2.792cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018D000000843AF1D0C0.png" /></p>
-<p>Let’s accept the prompt. This allows us to view the generated script in the [biblio.sql] file:</p>
+<p>Let&#x27;s accept the offer. This allows us to view the script that was generated in the file [biblio.sql]:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-177-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-177-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-177-3"> 3</a></span>
@@ -1819,13 +1821,13 @@
 <ul>
   <li>Lines 1 through 3 are comments
   </li>
-  <li>Lines 5 through 12 are Firebird-specific SQL
+  <li>Lines 5 through 12 are from the Firebird-specific SQL
   </li>
-  <li>the remaining lines are standard SQL that should be executable in a DBMS that supports the data types declared in the BIBLIO table.
+  <li>the other lines are from the standard SQL, which should be able to be replayed in a SGBD that would have the data types declared in the BIBLIO table.
   </li>
 </ul>
 
-<p>Let’s run this script within Firebird to create a BIBLIO2 table that will be a clone of the BIBLIO table. To do this, use [Script Executive] (Ctrl-F12):</p>
+<p>Let’s replay this script within Firebird to create a BIBLIO2 table that will be a clone of the BIBLIO table. To do this, let’s use [Script Executive] (Ctrl-F12):</p>
 <p><img src="images/10000000000001D10000006E8CFE7A3E.png" width="372" height="88" style="width:9.843cm;height:2.328cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D10000006E8CFE7A3E.png" /></p>
 <p>Let’s load the [biblio.sql] script we just generated:</p>
 <p><img src="images/100000000000015D0000011A29C896F8.png" width="244" height="197" style="width:6.458cm;height:5.218cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015D0000011A29C896F8.png" /></p>
@@ -1846,10 +1848,10 @@
 <a id="__codelineno-178-14" name="__codelineno-178-14" href="#__codelineno-178-14"></a><span class="k">COMMIT</span><span class="w"> </span><span class="k">WORK</span><span class="p">;</span>
 </code></pre></div>
 <p>Let&#x27;s run this script:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001D00000006717B8E512.png" width="371" height="82" style="display:inline-block; margin:4px;width:9.818cm;height:2.178cm;" class="odt-zoomable" data-zoom-src="images/10000000000001D00000006717B8E512.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000D90000007FF646FC00.png" width="173" height="101" style="display:inline-block; margin:4px;width:4.588cm;height:2.685cm;" class="odt-zoomable" data-zoom-src="images/10000000000000D90000007FF646FC00.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001D00000006717B8E512.png" width="371" height="82" style="display:inline-block; margin:4px;width:9.818cm;height:2.178cm;" class="odt-zoomable" data-zoom-src="images/10000000000001D00000006717B8E512.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000D90000007FF646FC00.png" width="173" height="101" style="display:inline-block; margin:4px;width:4.588cm;height:2.685cm;" class="odt-zoomable" data-zoom-src="images/10000000000000D90000007FF646FC00.png" /></td></tr></table>
 
-<p>We can verify in the database explorer that the [BIBLIO2] table has been created and that it has the expected structure and content:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000F90000009EDFC8F1BB.png" width="199" height="126" style="display:inline-block; margin:4px;width:5.269cm;height:3.343cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F90000009EDFC8F1BB.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001EF000000FC7FB4644F.png" width="396" height="202" style="display:inline-block; margin:4px;width:10.478cm;height:5.334cm;" class="odt-zoomable" data-zoom-src="images/10000000000001EF000000FC7FB4644F.png" /></td></tr></table>
+<p>We can verify in the database explorer that the table [BIBLIO2] has been created and that it has the expected structure and content:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000F90000009EDFC8F1BB.png" width="199" height="126" style="display:inline-block; margin:4px;width:5.269cm;height:3.343cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F90000009EDFC8F1BB.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001EF000000FC7FB4644F.png" width="396" height="202" style="display:inline-block; margin:4px;width:10.478cm;height:5.334cm;" class="odt-zoomable" data-zoom-src="images/10000000000001EF000000FC7FB4644F.png" /></td></tr></table>
 
 
 

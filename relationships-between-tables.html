@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://stahe.github.io/en-sql-firebird-janv-2006/relationships-between-tables.html">
       
       
-        <link rel="prev" href="sql-expressions.html">
+        <link rel="prev" href="expressions-in-the-sql-language.html">
       
       
-        <link rel="next" href="advanced-sql.html">
+        <link rel="next" href="in-depth-look-at-the-sql-language.html">
       
       
         
@@ -56,6 +56,8 @@
     
     
       <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -384,14 +386,14 @@
   
   
     <li class="md-nav__item">
-      <a href="sql-expressions.html" class="md-nav__link">
+      <a href="expressions-in-the-sql-language.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    4. SQL expressions
+    4. Expressions in the SQL language
   
 
     
@@ -507,14 +509,14 @@
   
   
     <li class="md-nav__item">
-      <a href="advanced-sql.html" class="md-nav__link">
+      <a href="in-depth-look-at-the-sql-language.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    6. Advanced SQL
+    6. In-Depth Look at the SQL Language
   
 
     
@@ -561,14 +563,14 @@
   
   
     <li class="md-nav__item">
-      <a href="installing-and-using-an-odbc-driver-for-firebird.html" class="md-nav__link">
+      <a href="install-and-use-a-odbc-driver-for-firebird.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    8. Installing and using an ODBC driver for [Firebird]
+    8. Install and use a ODBC driver for [Firebird]
   
 
     
@@ -600,39 +602,39 @@
 
 <h1 id="5-relationships-between-tables">5. <span style="color: #365f91">Relationships between tables</span></h1>
 <h2 id="51-foreign-keys">5.1. <span style="color: #4f81bd">Foreign keys</span></h2>
-<p>A relational database is a set of tables linked together by relationships. Let’s take an example inspired by the previous [BIBLIO] table, which had the following structure:</p>
+<p>A relational database is a set of tables linked together by relationships. Let’s take an example inspired by the previous table [BIBLIO], which had the following structure:</p>
 <p><img src="images/100000000000014D0000008AB26B6EA2.png" width="266" height="110" style="width:7.049cm;height:2.921cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000014D0000008AB26B6EA2.png" /></p>
 <p>An example of the content was as follows:</p>
 <p><img src="images/1000000000000200000000AAB5E71811.png" width="410" height="136" style="width:10.839cm;height:3.598cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000200000000AAB5E71811.png" /></p>
-<p>You might want information about the various authors of these works, such as their <em>first</em> and last <em>names</em>, <em>date of birth</em>, and <em>nationality</em>. Let&#x27;s create such a table. Right-click on [DBBIBLIO / Tables] and select the [New Table] option:</p>
+<p>We might want information about the various authors of these works, such as their <em>first</em> and <em>last names</em>, <em>date of birth</em>, and <em>nationality</em>. Let’s create such a table. Right-click on [DBBIBLIO / Tables], then select option [New Table]:</p>
 <p><img src="images/10000000000001500000018E88305495.png" width="269" height="318" style="width:7.108cm;height:8.421cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001500000018E88305495.png" /></p>
-<p>Now let’s create the following [AUTHORS] table:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000008C0000006539F73B1A.png" width="112" height="81" style="display:inline-block; margin:4px;width:2.958cm;height:2.134cm;" class="odt-zoomable" data-zoom-src="images/100000000000008C0000006539F73B1A.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000145000000673D89D830.png" width="260" height="82" style="display:inline-block; margin:4px;width:6.877cm;height:2.178cm;" class="odt-zoomable" data-zoom-src="images/1000000000000145000000673D89D830.png" /></td></tr></table>
+<p>Now let’s build the following table, [AUTEURS]:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000008C0000006539F73B1A.png" width="112" height="81" style="display:inline-block; margin:4px;width:2.958cm;height:2.134cm;" class="odt-zoomable" data-zoom-src="images/100000000000008C0000006539F73B1A.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000145000000673D89D830.png" width="260" height="82" style="display:inline-block; margin:4px;width:6.877cm;height:2.178cm;" class="odt-zoomable" data-zoom-src="images/1000000000000145000000673D89D830.png" /></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>id
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">primary key of the table—used to uniquely identify a row</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>last name
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">primary key of the table—used to uniquely identify a row</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>name
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">author&#x27;s last name</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>first name
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">author&#x27;s last name</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>prénom
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">author&#x27;s first name, if applicable</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>date_of_birth
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">author&#x27;s first name, if applicable</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>date_naissance
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">date of birth</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">date of birth</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>nationality
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">country of origin</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">country of origin</div></td></tr></table>
 
-<p>The contents of the [AUTHORS] table could be as follows:</p>
+<p>The contents of table [AUTEURS] could be as follows:</p>
 <p><img src="images/10000000000001770000009CA8D7412F.png" width="300" height="125" style="width:7.938cm;height:3.302cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001770000009CA8D7412F.png" /></p>
-<p>Let’s return to the [BIBLIO] table and its contents:</p>
+<p>Let’s return to the table [BIBLIO] and its contents:</p>
 <p><img src="images/1000000000000200000000AAB5E71811.png" width="410" height="136" style="width:10.839cm;height:3.598cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000200000000AAB5E71811.png" /></p>
-<p>In the [AUTHOR] column of the table, it is no longer necessary to enter the author’s name. Instead, it is preferable to enter the ID number assigned to them in the [AUTHORS] table. Let’s create a new table called [BOOKS]. To create it, we will use the [biblio.sql] script created in section<a href="#bibliosql"><u><span style="color: #0563c1"> 3.14.</span></u></a> We run this script using the [Script Executive, Ctrl-F12] tool:</p>
+<p>In the [AUTEUR] column of the table, it is no longer necessary to include the author’s name. Instead, it is preferable to include the number (id) assigned to them in the [AUTEURS] table. Let’s create a new table called [LIVRES]. To create it, we will use the [biblio.sql] script created in section<a href="introduction-to-the-sql-language.html#bibliosql"><u><span style="color: #0563c1"> 3.14.</span></u></a> We load this script using the [Script Executive, Ctrl-F12] tool:</p>
 <p><img src="images/10000000000001CE000000C03DB2BA7D.png" width="370" height="154" style="width:9.779cm;height:4.064cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CE000000C03DB2BA7D.png" /></p>
-<p>We modify the script for creating the BIBLIO table to adapt it to the BOOKS table:</p>
+<p>We modify the table creation script BIBLIO to match that of the table LIVRES:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
@@ -705,59 +707,59 @@
 <a id="__codelineno-5-35" name="__codelineno-5-35"></a>
 <a id="__codelineno-5-36" name="__codelineno-5-36"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">LIVRES</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">PK_LIVRES</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
-<p>We will only comment on the changes:</p>
+<p>We only comment on the changes:</p>
 <ul>
-  <li>line 4: the [AUTHOR] column in the table becomes an integer. This number references one of the authors in the previously created [AUTHORS] table.
+  <li>line 4: the [AUTEUR] field in the table becomes an integer. This number references one of the authors in the previously created [AUTEURS] table.
   </li>
-  <li>Lines 11–19: The authors’ names have been replaced by their author IDs.
+  <li>lines 11–19: the authors’ names have been replaced by their author numbers.
   </li>
-  <li>line 29: the constraint name has been changed. It was previously called [UNQ1_BIBLIO]. It is now called [UNQ1_LIVRES]. This name can be anything. However, it is preferable that it be meaningful. Here, this effort was not made. Constraints on different fields and different tables within a database must be distinguished by different names. Recall that the constraint on line 29 requires that a title be unique within the table.
+  <li>line 29: the constraint name has been changed. It was previously called [ UNQ1_BIBLIO ]. It is now called [ UNQ1_LIVRES ]. This name can be anything. However, it is preferable that it be meaningful. Here, this effort was not made. Constraints on different fields and different tables within a database must be distinguished by different names. Recall that the constraint in line 29 requires that a title be unique within the table.
   </li>
-  <li>Line 36: Change the name of the constraint on the primary key ID.
+  <li>Line 36: Renaming the constraint on the primary key to ID.
   </li>
 </ul>
 
-<p>Let’s run this script. If it succeeds, we get the following new [BOOKS] table:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000008500000076777FB9B3.png" width="107" height="95" style="display:inline-block; margin:4px;width:2.819cm;height:2.501cm;" class="odt-zoomable" data-zoom-src="images/100000000000008500000076777FB9B3.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001E5000000ABADDE5D06.png" width="388" height="137" style="display:inline-block; margin:4px;width:10.268cm;height:3.62cm;" class="odt-zoomable" data-zoom-src="images/10000000000001E5000000ABADDE5D06.png" /></td></tr></table>
+<p>Let’s run this script. If it succeeds, we get the following new table [LIVRES]:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000008500000076777FB9B3.png" width="107" height="95" style="display:inline-block; margin:4px;width:2.819cm;height:2.501cm;" class="odt-zoomable" data-zoom-src="images/100000000000008500000076777FB9B3.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001E5000000ABADDE5D06.png" width="388" height="137" style="display:inline-block; margin:4px;width:10.268cm;height:3.62cm;" class="odt-zoomable" data-zoom-src="images/10000000000001E5000000ABADDE5D06.png" /></td></tr></table>
 
-<p>One might wonder if we’ve actually gained anything in the end. Indeed, the [BOOKS] table lists author numbers instead of their names. Since there are thousands of authors, linking a book to its author seems difficult. Fortunately, SQL is here to help us. It allows us to query multiple tables at the same time. For this example, we present the SQL query that lets us retrieve the titles of the books in the library, along with their authors’ information. Let’s use the SQL editor (F12) to execute the following SQL statement:</p>
+<p>One might wonder if we’ve actually gained anything in the end. Indeed, the table [LIVRES] lists author numbers instead of their names. Since there are thousands of authors, linking a book to its author seems difficult. Fortunately, the SQL language is there to help us. It allows us to query multiple tables at the same time. For this example, we present the query SQL, which allows us to retrieve the titles of the books in the library, along with their authors’ information. Let’s use the SQL editor (F12) to issue the following SQL command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">LIVRES</span><span class="p">.</span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEURS</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEURS</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span><span class="n">AUTEURS</span><span class="p">.</span><span class="n">date_naissance</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">LIVRES</span><span class="w"> </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">AUTEURS</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">LIVRES</span><span class="p">.</span><span class="n">AUTEUR</span><span class="o">=</span><span class="n">AUTEURS</span><span class="p">.</span><span class="n">ID</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">AUTEURS</span><span class="p">.</span><span class="n">nom</span><span class="w"> </span><span class="k">asc</span>
 </code></pre></div>
-<p>It is too early to explain this SQL query. We will come back to it shortly. The result of this query is as follows:</p>
+<p>It is too early to explain this SQL query. We will revisit it shortly. The result of this query is as follows:</p>
 <p><img src="images/1000000000000164000000AA7F9D92F7.png" width="285" height="136" style="width:7.539cm;height:3.6cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000164000000AA7F9D92F7.png" /></p>
-<p>Each book has been correctly matched with its author and the associated information.</p>
+<p>Each book has been correctly associated with its author and the information linked to it.</p>
 <p>Let’s summarize what we’ve just done:</p>
 <ul>
   <li>we have two tables containing different types of information:
     <ul>
-      <li>the AUTHORS table contains information about authors
+      <li>the AUTEURS table contains information about authors
       </li>
-      <li>the BOOKS table contains information about the books purchased by the library
+      <li>the LIVRES table contains information about books purchased by the library
       </li>
     </ul>
   </li>
-  <li>these tables are linked to each other. A book must have an author. It may even have several. This scenario has not been considered here. The [AUTHOR] field in the [BOOKS] table references a row in the [AUTHORS] table. This is called a <b>relationship</b>.
+  <li>these tables are linked to each other. A book must have an author. It may even have several. This scenario has not been considered here. The [AUTEUR] field in the [LIVRES] table references a row in the [AUTEURS] table. This is called a <b>relationship</b>.
   </li>
 </ul>
 
-<p>The relationship between the [BOOKS] table and the [AUTHORS] table is actually a type of constraint: a row in the [BOOKS] table must always have an author ID that exists in the [AUTHORS] table. If a row in [BOOKS] had an author ID that does not exist in the [AUTHORS] table, we would be in an abnormal situation where we would not be able to find the author of a book.</p>
-<p>The DBMS is capable of ensuring that this constraint is always satisfied. To do this, we will add a constraint to the [BOOKS] table:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000009E000000EA2C064F16.png" width="126" height="187" style="display:inline-block; margin:4px;width:3.339cm;height:4.944cm;" class="odt-zoomable" data-zoom-src="images/100000000000009E000000EA2C064F16.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000AD0000009065CA70B9.png" width="138" height="115" style="display:inline-block; margin:4px;width:3.658cm;height:3.044cm;" class="odt-zoomable" data-zoom-src="images/10000000000000AD0000009065CA70B9.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000FE000000EB317A31FD.png" width="203" height="188" style="display:inline-block; margin:4px;width:5.378cm;height:4.976cm;" class="odt-zoomable" data-zoom-src="images/10000000000000FE000000EB317A31FD.png" /></td></tr></table>
+<p>The relationship linking the [LIVRES] table to the [AUTEURS] table is actually a form of constraint: a row in table [LIVRES] must always have an author ID that exists in table [AUTEURS]. If a row in [LIVRES] had an author ID that does not exist in the table [AUTEURS], we would be in an abnormal situation where we would be unable to identify the author of a book.</p>
+<p>The SGBD is capable of ensuring that this constraint is always satisfied. To do this, we will add a constraint to the [LIVRES] table:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000009E000000EA2C064F16.png" width="126" height="187" style="display:inline-block; margin:4px;width:3.339cm;height:4.944cm;" class="odt-zoomable" data-zoom-src="images/100000000000009E000000EA2C064F16.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000AD0000009065CA70B9.png" width="138" height="115" style="display:inline-block; margin:4px;width:3.658cm;height:3.044cm;" class="odt-zoomable" data-zoom-src="images/10000000000000AD0000009065CA70B9.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000FE000000EB317A31FD.png" width="203" height="188" style="display:inline-block; margin:4px;width:5.378cm;height:4.976cm;" class="odt-zoomable" data-zoom-src="images/10000000000000FE000000EB317A31FD.png" /></td></tr></table>
 
-<p>The link connecting the [AUTHOR] column in the [BOOKS] table to the [ID] field in the [AUTHORS] table is called a <strong>foreign key</strong> relationship. The [AUTHOR] field in the [BOOKS] table is called a &quot;foreign key&quot; in the wizard above. Defining a foreign key means that the value of a column [c1] in a table [T1] must exist in column [c2] of table [T2]. Column [c1] is referred to as the &quot;foreign key&quot; of table T1 on column [c2] of table [T2]. Column [c2] is often the primary key of table [T2], but this is not mandatory.</p>
-<p>We define the foreign key [AUTHOR] of table [BOOKS] on the field [ID] of table [AUTHORS] as follows:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000003F9000000C501ADE2AD.png" width="509" height="98" style="display:inline-block; margin:4px;width:13.455cm;height:2.605cm;" class="odt-zoomable" data-zoom-src="images/10000000000003F9000000C501ADE2AD.png" /></td></tr></table>
+<p>The link connecting the [AUTEUR] field in the [LIVRES] table to the [ID] field in the [AUTEURS] table is called a <strong>foreign key</strong> link. The field [AUTEUR] in table [LIVRES] is referred to as a &quot;foreign key&quot; in the wizard above. Defining a foreign key means that the value of a column [c1] in a table [T1] must exist in the column [c2] of the table [T2]. The column [c1] is referred to as the &quot;foreign key&quot; of table T1 on the column [c2] of table [T2]. The column [c2] is often the primary key of table [T2], but this is not mandatory.</p>
+<p>We define the foreign key [AUTEUR] from table [LIVRES] on the field [ID] in table [AUTEURS] as follows:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000003F9000000C501ADE2AD.png" width="509" height="98" style="display:inline-block; margin:4px;width:13.455cm;height:2.605cm;" class="odt-zoomable" data-zoom-src="images/10000000000003F9000000C501ADE2AD.png" /></td></tr></table>
 
 <ol>
   <li>constraint name: free
   </li>
-  <li>&quot;foreign key&quot; column, here the [AUTHOR] column of the [BOOKS] table
+  <li>&quot;Foreign Key&quot; column, here the column [AUTEUR] in table [LIVRES]
   </li>
-  <li>table referenced by the foreign key. Here, the [AUTHOR] column in the [BOOKS] table must have a value in the [ID] column of the [AUTHORS] table. Therefore, the [AUTHORS] table is the referenced table.
+  <li>table referenced by the foreign key. Here, the column [AUTEUR] in table [LIVRES] must have a value in the column [ID] in table [AUTEURS]. Therefore, the table [AUTEURS] is referenced.
   </li>
-  <li>Column referenced by the foreign key. Here, the [ID] column of the [AUTHORS] table.
+  <li>Column referenced by the foreign key. Here, the column [ID] in table [AUTEURS].
   </li>
 </ol>
 
@@ -765,54 +767,54 @@
 <p><img src="images/10000000000001E900000095302F1B8B.png" width="391" height="119" style="width:10.349cm;height:3.154cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001E900000095302F1B8B.png" /></p>
 <p>If all goes well, it is accepted:</p>
 <p><img src="images/10000000000001EE0000010B27B969F6.png" width="395" height="214" style="width:10.458cm;height:5.652cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EE0000010B27B969F6.png" /></p>
-<p>What is the consequence of this new foreign key constraint? Using the SQL editor (F12), let’s try to insert a row into the BOOKS table with a non-existent author ID:</p>
+<p>What is the consequence of this new foreign key constraint? Using the SQL editor (F12), let’s try to insert a row into the LIVRES table with a non-existent author ID:</p>
 <p><img src="images/10000000000001E2000000C16CA79B35.png" width="385" height="154" style="width:10.199cm;height:4.083cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001E2000000C16CA79B35.png" /></p>
-<p>The [INSERT] operation above attempted to insert a book with a non-existent author ID (100). The query execution failed. The associated error message indicates that there was a violation of the foreign key constraint &quot;FK_BOOKS_AUTHORS&quot;. This is the one we just defined.</p>
+<p>The operation [INSERT] above attempted to insert a book with a non-existent author ID (100). The query execution failed. The associated error message indicates that there was a violation of the foreign key constraint &quot;FK_LIVRES_AUTEURS&quot;. This is the one we just defined.</p>
 <h2 id="52-join-operations-between-two-tables">5.2. <span style="color: #4f81bd">Join operations between two tables</span></h2>
-<p>Still in the [DBBIBLIO] database (or any other database), let’s create two test tables named TA and TB and define them as follows:</p>
+<p>Still in the [DBBIBLIO] database (or any other database), let’s create two test tables named TA and TB and defined as follows:</p>
 <p><strong>Table TA</strong></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000012E00000034EE43AFB1.png" width="241" height="42" style="display:inline-block; margin:4px;width:6.389cm;height:1.101cm;" class="odt-zoomable" data-zoom-src="images/100000000000012E00000034EE43AFB1.png" /><div style="margin:0 0 0.5em 0">- ID: primary key of table TA</div><div style="margin:0 0 0.5em 0">- DATA: arbitrary data</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000005600000046ADC07D03.png" width="69" height="56" style="display:inline-block; margin:4px;width:1.819cm;height:1.482cm;" class="odt-zoomable" data-zoom-src="images/100000000000005600000046ADC07D03.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000012E00000034EE43AFB1.png" width="241" height="42" style="display:inline-block; margin:4px;width:6.389cm;height:1.101cm;" class="odt-zoomable" data-zoom-src="images/100000000000012E00000034EE43AFB1.png" /><div style="margin:0 0 0.5em 0">- ID: primary key of table TA</div><div style="margin:0 0 0.5em 0">- DATA: arbitrary data</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000005600000046ADC07D03.png" width="69" height="56" style="display:inline-block; margin:4px;width:1.819cm;height:1.482cm;" class="odt-zoomable" data-zoom-src="images/100000000000005600000046ADC07D03.png" /></td></tr></table>
 
 <p><strong>Table TB</strong></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000014000000045D0BD93DD.png" width="256" height="55" style="display:inline-block; margin:4px;width:6.768cm;height:1.459cm;" class="odt-zoomable" data-zoom-src="images/100000000000014000000045D0BD93DD.png" /><div style="margin:0 0 0.5em 0">- ID: primary key of the TB table</div><div style="margin:0 0 0.5em 0">- IDTA: foreign key of the TB table that references the ID column of the TA table. Thus, a value from the IDTA column of the TA table must exist in the ID column of the TA table</div><div style="margin:0 0 0.5em 0">- VALUE: any data</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000A000000045234CFE2D.png" width="128" height="55" style="display:inline-block; margin:4px;width:3.388cm;height:1.461cm;" class="odt-zoomable" data-zoom-src="images/10000000000000A000000045234CFE2D.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000014000000045D0BD93DD.png" width="256" height="55" style="display:inline-block; margin:4px;width:6.768cm;height:1.459cm;" class="odt-zoomable" data-zoom-src="images/100000000000014000000045D0BD93DD.png" /><div style="margin:0 0 0.5em 0">- ID: primary key of table TB</div><div style="margin:0 0 0.5em 0">- IDTA: foreign key of table TB referencing column ID of table TA. Thus, a value from the IDTA column of the TA table must exist in the ID column of the TA table</div><div style="margin:0 0 0.5em 0">- VALEUR: any data</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000A000000045234CFE2D.png" width="128" height="55" style="display:inline-block; margin:4px;width:3.388cm;height:1.461cm;" class="odt-zoomable" data-zoom-src="images/10000000000000A000000045234CFE2D.png" /></td></tr></table>
 
-<p>In the SQL editor (F12), we will execute SQL statements that simultaneously use both the TA and TB tables.</p>
+<p>In the SQL editor (F12), we will issue SQL commands that simultaneously process both tables TA and TB.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">TA</span><span class="p">,</span><span class="w">  </span><span class="n">TB</span>
 </code></pre></div>
 <p><img src="images/10000000000000F2000000ADA94486D3.png" width="193" height="138" style="width:5.119cm;height:3.658cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F2000000ADA94486D3.png" /></p>
-<p>The SQL statement uses the FROM keyword to reference both the TA and TB tables. The FROM TA, TB operation will cause a new temporary table to be created, in which each row of the TA table will be joined with each row of the TB table. Thus, if the TA table has NA rows and the TB table has NB rows, the resulting table will have NA x NB rows. This is shown in the screenshot above. Furthermore, each row contains the columns from both tables. The columns specified in the order [SELECT <em>col1</em>, <em>col2</em>, ... FROM ...] indicate which ones to include. Here, the * keyword indicates that all columns of the resulting table are requested. The resulting table from the previous SQL statement is sometimes referred to as the <strong>Cartesian product</strong> of tables TA and TB.</p>
-<p>Above, each row of table TA has been associated with each row of table TB. Generally, we want to associate a row of TB with a row of TA that has <strong>a relationship</strong> with it. This relationship often takes the form of a foreign key constraint. This is the case here. To a row in table TA, we can associate the rows in table TB that satisfy the relationship TB.IDTA=TA.ID. There are several ways to query this:</p>
+<p>The SQL command uses the two tables TA and TB behind the FROM keyword. The operation FROM TA, TB will cause a new temporary table to be created in which each row of the table TA will be associated with each row of the table TB. Thus, if table TA has NA rows and table TB has NB rows, the resulting table will have NA × NB rows. This is shown in the screenshot above. Furthermore, each row contains the columns from both tables. The columns specified in the [SELECT col1, col2, ... FROM ...] query indicate which ones to retain. Here, the * wildcard indicates that all columns of the resulting table are requested. It is sometimes said that the resulting table from the previous query SQL is the <strong>Cartesian product</strong> of the tables TA and TB.</p>
+<p>Above, each row of table TA has been matched with each row of table TB. In general, we want to associate with a row in TA the rows in TB that have <strong>a relationship</strong> with it. This relationship often takes the form of a foreign key constraint. This is the case here. For a row in table TA, we can associate the rows from table TB that satisfy the relationship TB.IDTA=TA.ID. There are several ways to query this:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">valeur</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">TA</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="o">=</span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span>
 </code></pre></div>
-<p>The previous SQL statement is similar to the previous one, with two differences:</p>
+<p>The previous SQL query is similar to the previous one, with two differences:</p>
 <ul>
-  <li>the result rows of the TA x TB Cartesian product are filtered by a WHERE clause that associates with a row in table TA only those rows in table TB that satisfy the relationship TB.IDTA=TA.ID
+  <li>the result rows of the Cartesian product TA x TB are filtered by a clause WHERE that  associates with a row in table TA, only the rows in table TB that satisfy the relationship TB.IDTA=TA.ID
   </li>
-  <li>only certain columns are requested using the syntax [T.col], where T is the name of a table and col is the name of a column in that table. This syntax resolves any ambiguity that might arise if two tables had columns with the same name. When this ambiguity does not exist, the syntax [col] can be used without specifying the table for that column.
+  <li>only certain columns are requested using the syntax [T.col], where T is the name of a table and col is the name of a column in that table. This syntax resolves any ambiguity that might arise if two tables had columns with the same name. When this ambiguity does not exist, you can use the syntax [col] without specifying the table for that column.
   </li>
 </ul>
 
 <p>The result is as follows:</p>
 <p><img src="images/10000000000000CA000000467C36DE6B.png" width="162" height="56" style="width:4.277cm;height:1.482cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000CA000000467C36DE6B.png" /></p>
-<p>The same result can be obtained with the following SQL statement:</p>
+<p>The same result can be obtained with the following SQL command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">valeur</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">TA</span><span class="w"> </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">TB</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="o">=</span><span class="n">TB</span><span class="p">.</span><span class="n">idta</span>
 </code></pre></div>
 <p>The term [inner join] gives rise to the name &quot;inner join&quot; given to this type of operation between two tables. We will see that there is also an &quot;outer join.&quot; In an inner join, the order of the tables in the query has no effect on the result: <strong>FROM TA inner join TB</strong> is equivalent to <strong>FROM TB inner join TA</strong>.</p>
-<p>The previous SQL order includes in the result set only those rows from table TA that are referenced by at least one row from table TB. Thus, the row [3, data3] in TA does not appear in the result because it is not referenced by a row in TB. You may want all rows from TA, whether or not they are referenced by a row in TB. In that case, you use a <strong>left outer join</strong> between the two tables:</p>
+<p>The previous query SQL includes in the result table only those rows from table TA that are referenced by at least one row in table TB. Thus, the row TA [3, data3] does not appear in the result because it is not referenced by a row in TB. You may want all rows from TA, regardless of whether they are referenced by a row in TB. In that case, you use a <strong>left outer join</strong> between the two tables:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">valeur</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">TA</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">outer</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">TB</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="o">=</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span><span class="w"> </span>
 </code></pre></div>
 <p><img src="images/10000000000000CA0000005831DE623C.png" width="162" height="70" style="width:4.277cm;height:1.863cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000CA0000005831DE623C.png" /></p>
-<p>Here we have a <strong>left outer join</strong>. To understand the term &quot;FROM TA left outer join TB,&quot; imagine a join with the TA table on the left and the TB table on the right. All rows from the left table appear in the result of a left outer join, even those for which the join condition is not met. This join condition is not necessarily a foreign key constraint, although that is the most common case.</p>
+<p>Here we have a &quot;<strong>left outer join</strong>&quot;. To understand the term &quot;FROM TA left outer join TB&quot;, imagine a join with the table TA on the left and the table TB on the right. All rows from the left table appear in the result of a left outer join, even those for which the join condition is not satisfied. This join condition is not necessarily a foreign key constraint, although that is nevertheless the most common case.</p>
 <p>In the following order:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">valeur</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">TB</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">outer</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">TA</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="o">=</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span>
 </code></pre></div>
-<p>the TB table is on the &quot;left&quot; side of the outer join. Therefore, all rows from TB will appear in the result:</p>
+<p>the table TB is on the &quot;left&quot; side of the outer join. Therefore, all rows from TB will appear in the result:</p>
 <p><img src="images/10000000000000C9000000461F95A28D.png" width="161" height="56" style="width:4.247cm;height:1.478cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C9000000461F95A28D.png" /></p>
 <p>Unlike an inner join, the order of the tables matters here. There are also right outer joins:</p>
 <ul>
-  <li>FROM TA LEFT OUTER JOIN TB is equivalent to FROM TB RIGHT OUTER JOIN TA: the TA table is on the left
+  <li>FROM TA left outer join TB is equivalent to FROM TB right outer join TA: the table TA is on the left
   </li>
-  <li>FROM TB LEFT OUTER JOIN TA is equivalent to FROM TA RIGHT OUTER JOIN TB: the TB table is on the left
+  <li>FROM TB left outer join TA is equivalent to FROM TA right outer join TB: the table TB is on the left
   </li>
 </ul>
 
